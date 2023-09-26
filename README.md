@@ -9,8 +9,7 @@ As my inaugural coding project, the site is relatively simple but gave me essent
 HTML document structure (DOCTYPE, head, body, etc)
 Basic HTML tags for text formatting, lists, links, images, etc.
 Using HTML tables to organize tabular data
-Embedding media like videos and PDFs
-HTML forms and form inputs
+Embedding media like videos and Photos
 Page structure and layout with <div> elements
 Hosting static web pages
 Though rudimentary compared to professional sites, this project represents an important first step for me in building real-world skills in web development. I'm proud of having taught myself HTML fundamentals through creating this site from scratch. Moving forward I'm excited to continue growing as a coder by learning java and php.
