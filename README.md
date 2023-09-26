@@ -1,4 +1,4 @@
-# First Webside of Dunc
+# First Website of Dunc
 
 This project represents my first foray into web development and HTML coding. I began working on it on June 2, 2022 as a way to teach myself the foundations of HTML through hands-on practice.
 
