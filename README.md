@@ -10,6 +10,5 @@ HTML document structure (DOCTYPE, head, body, etc)
 Basic HTML tags for text formatting, lists, links, images, etc.
 Using HTML tables to organize tabular data
 Embedding media like videos and Photos
-Page structure and layout with <div> elements
-and Hosting static web pages
+Page structure and layout with <div> elements and Hosting static web pages
 This project represents an important first step for me in building real-world skills in web development. I'm proud of having taught myself HTML fundamentals through creating this site from scratch. Moving forward I'm excited to continue growing as a coder by learning java and php,Moving forward, I plan to continue improving and expanding the site over time as I learn new skills. I hope this page will much better when i update to v1.0
