@@ -1,12 +1,23 @@
 # First Website of Dunc
 
-This project represents my first foray into web development and HTML coding. I began working on it on June 2, 2022 as a way to teach myself the foundations of HTML through hands-on practice.
+# First Website of Dunc
 
-The code and site were developed entirely by me, without the use of templates or borrowed code. My learning resources were primarily the HTML tutorials and reference materials provided by w3schools.com.
+This project represents my first foray into web development and HTML coding. I began working on it on June 2, 2022, as a way to teach myself the foundations of HTML through hands-on practice.
 
-As my inaugural coding project, the site is relatively simple but gave me essential experience in:HTML document structure (DOCTYPE, head, body, etc),Basic HTML tags for text formatting, lists, links, images, etc.Using HTML tables to organize tabular data,Embedding media like videos and Photos ,Page structure and layout with div elements and Hosting static web pages
+The code and site were developed entirely by me, without the use of templates or borrowed code. My learning resources were primarily the HTML tutorials and reference materials provided by [w3schools.com](https://www.w3schools.com).
 
-This project represents an important first step for me in building real-world skills in web development. I'm proud of having taught myself HTML fundamentals through creating this site from scratch. Moving forward I'm excited to continue growing as a coder by learning java and php,Moving forward, I plan to continue improving and expanding the site over time as I learn new skills. I hope this page will much better when i update to v1.0
+As my inaugural coding project, the site is relatively simple but gave me essential experience in:
+
+- HTML document structure (DOCTYPE, head, body, etc.)
+- Basic HTML tags for text formatting, lists, links, images, etc.
+- Using HTML tables to organize tabular data
+- Embedding media like videos and photos
+- Page structure and layout with div elements
+- Hosting static web pages
+
+This project represents an important first step for me in building real-world skills in web development. I'm proud of having taught myself HTML fundamentals through creating this site from scratch. 
+
+Moving forward, I plan to continue improving and expanding the site over time as I learn new skills, particularly in Java and PHP. I hope this page will be much better when I update to version 1.0.
 
 These photos show what the site looks like as of v0.04.1:
 ![Screenshot 2023-09-27 002227](https://github.com/dunc4009/firstwebsideofdunc/assets/105787911/dc34b094-6dd8-4c76-8cd0-e63dffd81512)
