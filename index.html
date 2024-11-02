@@ -1,957 +1,372 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Firstwebsideofdunc v0.04.1</title>
-    <link rel="icon" type="image/x-icon" href="/firstwebsideofdunc/img/favicon.ico">
-    <!-- 預先連接重要域名 -->
-    <link rel="preconnect" href="https://www.youtube.com">
-    <link rel="preconnect" href="https://api.dicebear.com">
-    
-    <!-- 改為異步載入 CSS -->
-    <link rel="stylesheet" href="styles.css" media="print" onload="this.media='all'">
-
-    <!-- 添加關鍵 CSS -->
+    <title>DunDD's Website v0.9</title>
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        /* 只保留關鍵渲染路徑所需的最小 CSS */
-        :root {
-            --primary-color: #3498db;
-            --background-color: #f0f3f4;
-            --text-color: #333;
-        }
-        
-        body {
-            background-color: var(--background-color);
-            color: var(--text-color);
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0 20px;
-        }
-        
-        .nav-bar {
-            background: var(--primary-color);
-            padding: 1rem;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-    </style>
-    <style>
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
         :root {
             --primary-color: #4B9DFF;
-            --secondary-color: #357abd;
-            --background-color: #f8f9fa;
-            --text-color: #333;
-            --card-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            --card-bg: rgba(255, 255, 255, 0.95);
+            --dark-bg: #121212;
+            --light-bg: #f8f9fa;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: var(--light-bg);
+            transition: background-color 0.3s;
+            line-height: 1.6;
         }
 
         .dark-mode {
-            --primary-color: #61a5ff;
-            --secondary-color: #4B9DFF;
-            --background-color: #1a1a1a;
-            --text-color: #f0f0f0;
-            --card-bg: rgba(40, 40, 40, 0.95);
+            background-color: var(--dark-bg);
+            color: #e0e0e0;
         }
 
-        body {
-            padding: 20px;
-            background-color: var(--background-color);
-            color: var(--text-color);
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            animation: fadeIn 1s ease-in;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            transition: all 0.3s ease;
-        }
-
-        .nav-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: var(--card-bg);
-            padding: 1rem 2rem;
-            margin: 20px;
-            border-radius: 15px;
-            box-shadow: var(--card-shadow);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+        .navbar {
             backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
+            background: rgba(255,255,255,0.9) !important;
         }
 
-        .nav-bar:hover {
-            transform: translateY(2px);
+        .dark-mode .navbar {
+            background: rgba(18,18,18,0.9) !important;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .nav-bar a {
-            color: white;
-            text-decoration: none;
-            margin-right: 1rem;
-        }
-
-        .logo-with-the-web-name {
-            display: flex;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-
-        .logo-with-the-web-name img {
-            margin-left: 15px;
+        .content-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             transition: transform 0.3s;
         }
 
-        .logo-with-the-web-name img:hover {
-            transform: scale(1.1);
+        .dark-mode .content-card {
+            background: #2d2d2d;
         }
 
-        .dark-mode .card, .dark-mode .version-link, .dark-mode .survey-form {
-            background-color: #2b2b2b;
-            color: #ffffff;
-        }
-
-        .survey-form {
-            background: var(--card-bg);
-            border-radius: 10px;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            margin: 2rem auto;
-            max-width: 600px;
-            transition: transform 0.3s ease;
-        }
-
-        .survey-form:hover {
+        .content-card:hover {
             transform: translateY(-5px);
         }
 
-        .survey-form label {
-            margin-left: 8px;
-        }
-
-        .survey-form input[type="radio"] {
-            accent-color: #4B9DFF;
-        }
-
-        button, input[type="submit"] {
-            background: var(--secondary-color);
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-weight: bold;
-            letter-spacing: 0.5px;
-            box-shadow: 0 4px 8px rgba(75, 157, 255, 0.2);
-            color: white;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        button:hover, input[type="submit"]:hover {
-            background-color: #357abd;
-        }
-
-        footer {
-            margin-top: 2rem;
-            padding: 30px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: var(--card-shadow);
-            margin-top: 50px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 2rem;
-            margin: 2rem 0;
-            box-shadow: var(--card-shadow);
-            border: 1px solid rgba(75, 157, 255, 0.1);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            backdrop-filter: blur(5px);
-        }
-
-        .card {
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border: 1px solid #e0e0e0;
-        }
-
-        .card:hover {
-            transform: translateY(-8px) rotate(1deg);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-        }
-
-        .version-links {
-            display: flex;
-            flex-wrap: wrap;
+        .quick-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
-            padding: 30px;
+            margin: 30px 0;
         }
 
-        .version-link {
+        .link-card {
             display: flex;
             align-items: center;
             padding: 15px;
-            background: var(--card-bg);
-            border-radius: 15px;
-            box-shadow: var(--card-shadow);
-            border: 1px solid rgba(75, 157, 255, 0.1);
+            border-radius: 10px;
+            background: white;
             text-decoration: none;
-            color: #333;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
-            flex: 1 1 calc(33% - 20px);
+            color: inherit;
+            transition: all 0.3s;
         }
 
-        .version-link:hover {
+        .dark-mode .link-card {
+            background: #2d2d2d;
+        }
+
+        .link-card:hover {
+            transform: translateX(5px);
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .link-card img {
+            width: 42px;
+            height: 50px;
+            margin-right: 15px;
+        }
+
+        .theme-toggle {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 24px; /* 加大padding */
+            border-radius: 12px; /* 加大圓角 */
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.2rem; /* 加大字體 */
+            transition: all 0.3s;
+        }
+
+        .theme-toggle:hover {
             transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(75, 157, 255, 0.3);
+            background: #357abd;
+        }
+
+        .theme-toggle i {
+            font-size: 1.5rem; /* 加大圖示 */
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2b2b2b 100%);
+            color: white;
+            padding: 40px 0;
+            margin-top: 60px;
+            border-radius: 30px 30px 0 0;
+        }
+
+        .motto-cards {
+            background: #e5e4f1;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .motto-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 10px;
+            border-left: 5px solid var(--primary-color);
+            background: rgba(255,255,255,0.5);
+            border-radius: 5px;
+        }
+
+        .dark-mode .motto-item {
+            background: rgba(45,45,45,0.5);
+        }
+
+        .version-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            padding: 20px;
+            background: var(--light-bg);
+            border-radius: 10px;
+        }
+
+        .dark-mode .version-grid {
+            background: var(--dark-bg);
+        }
+
+        .version-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .dark-mode .version-card {
+            background: #2d2d2d;
+        }
+
+        .version-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
 
         .back-to-top {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: #4B9DFF;
+            background: var(--primary-color);
             color: white;
-            padding: 10px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            cursor: pointer;
-            display: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            opacity: 0;
+            transition: opacity 0.3s;
             z-index: 1000;
         }
 
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            padding: 10px;
-        }
-        
-        @media (max-width: 768px) {
-            .hamburger {
-                display: block;
-            }
-            .nav-links {
-                display: none;
-                width: 100%;
-                text-align: center;
-            }
-            .nav-links.active {
-                display: block;
-            }
-            .nav-links {
-                flex-direction: column;
-            }
-            /* ...other media queries... */
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateY(-20px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .page-transition {
-            animation: slideIn 0.5s ease-out;
-        }
-
-        .theme-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1001;
-            padding: 10px;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .page-loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #4B9DFF, #357abd);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s;
-        }
-
-        .loader {
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid #4B9DFF;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .fade-in {
-            opacity: 0;
-            transition: opacity 0.5s;
-        }
-
-        .fade-in.visible {
+        .back-to-top.visible {
             opacity: 1;
-        }
-
-        #gameContainer {
-            text-align: center;
-            margin: 30px auto;
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: var(--card-shadow);
-            max-width: 900px;
-        }
-
-        #gameCanvas {
-            border: 1px solid #d3d3d3;
-            background-color: #f5f5f5;
-        }
-
-        #trainGameContainer {
-            text-align: center;
-            margin: 30px auto;
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: var(--card-shadow);
-            max-width: 900px;
-        }
-
-        #trainCanvas {
-            border: 1px solid #d3d3d3;
-            background-color: #f5f5f5;
-        }
-
-        .hero-app {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 2rem;
-            margin: 30px auto;
-            max-width: 800px;
-            box-shadow: var(--card-shadow);
-            transition: background-color 0.3s ease;
-        }
-
-        .hero-card {
-            display: flex;
-            padding: 20px;
-            margin: 15px 0;
-            background: var(--card-bg);
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, background-color 0.3s ease;
-        }
-
-        .hero-card:hover {
-            transform: translateX(10px);
-        }
-
-        .hero-controls {
-            margin: 20px 0;
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .hero-controls button {
-            min-width: 120px;
-        }
-
-        .hero-image {
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 50%;
-            margin-right: 15px;
-        }
-
-        .game-section {
-            margin: 50px 0;
-            text-align: center;
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 2rem;
-        }
-        
-        .game-section h2 {
-            margin-bottom: 20px;
-            font-size: 24px;
-            color: #4B9DFF;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in-up {
-            animation: fadeInUp 0.6s ease-out;
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 30px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: var(--card-shadow);
-            margin-top: 50px;
-        }
-
-        .dark-mode .footer-content {
-            background-color: #2b2b2b;
-            color: #ffffff;
-        }
-
-        .dark-mode #gameContainer, .dark-mode #trainGameContainer {
-            background-color: #1e1e1e;
-        }
-
-        .dark-mode .hero-app {
-            color: #ffffff;
-        }
-
-        .dark-mode .hero-card {
-            color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .dark-mode .hero-controls button {
-            background: #4B9DFF;
-        }
-
-        .dark-mode .hero-controls button:hover {
-            background: #357abd;
-        }
-
-        .game-start-btn {
-            padding: 15px 30px;
-            font-size: 1.2em;
-            margin: 20px auto;
-            display: block;
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .game-start-btn:hover {
-            transform: scale(1.05);
         }
     </style>
 </head>
-<body class="page-transition">
-    <!-- Page Loading Animation -->
-    <div class="page-loader">
-        <div class="loader"></div>
-    </div>
+<body>
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="img/patch.png" alt="logo" width="42" height="50">
+                <h4 class="ms-3 mb-0">Hello world by ddd</h4>
+            </a>
+            <button class="theme-toggle" onclick="toggleDarkMode()">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
 
-    <!-- Main Content -->
-    <div class="fade-in">
-        <!-- Navigation Bar -->
-        <div class="nav-bar">
-            <div class="hamburger">☰</div>
-            <div class="nav-links">
-                <a href="#home">Home</a>
-                <a href="#about">About</a>
-                <a href="#links">Links</a>
+    <div class="container py-4">
+        <div class="content-card">
+            <p>This web start from 2-6-2022</p>
+            <p>you are watching [firstwebsideofdunc] v0.04 update at 19-2-2023 04:10</p>
+        </div>
+
+        <div class="content-card">
+            <h1>Never GIVE YOU UP BY Rick Astley</h1>
+            <div class="ratio ratio-16x9">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
             </div>
         </div>
 
-        <button class="theme-toggle" onclick="darkMode()">
-            🌓
-        </button>
-
-        <!-- Logo and Title -->
-        <div class="logo-with-the-web-name">
-            <h1>Hello world by ddd</h1>
-            <img src="/firstwebsideofdunc/img/patch.png" alt="logo" style="width:42px;height:50px;">
-        </div>
-        <p>This web started from 2-6-2022</p>
-        <p>You are watching [firstwebsideofdunc] v0.04.1 updated at 20-2-2023 11:10</p>
-        
-        <div>
-            <button onclick="darkMode()">Dark Mode</button>
-        </div>
-
-        <div class="card">
-            <h1>Never Gonna Give You Up By Rick Astley</h1>
-            <iframe width="100%" height="480" src=""></iframe>
-        </div>
-
-        <div class="survey-form">
-            <h3>Do you love ice cream?</h3>
-            <form>
-                <div>
-                    <input type="radio" id="YES" name="icecream" value="YES">
-                    <label for="YES">YES</label>
+        <div class="content-card">
+            <img src="img/bingchiling.png" alt="i love bingchiling">
+            <h2>Do you love bingchiling?</h2>
+            <form class="mb-4">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="bingchilling" id="YES" value="YES">
+                    <label class="form-check-label" for="YES">YES</label>
                 </div>
-                <div>
-                    <input type="radio" id="NO" name="icecream" value="NO">
-                    <label for="NO">NO</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="bingchilling" id="NO" value="NO">
+                    <label class="form-check-label" for="NO">NO</label>
                 </div>
-                <div>
-                    <input type="radio" id="MAYBE" name="icecream" value="MAYBE">
-                    <label for="MAYBE">MAYBE...</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="bingchilling" id="EM" value="EM.....">
+                    <label class="form-check-label" for="EM">EM.....</label>
                 </div>
-                <button type="submit">Submit</button>
+                <button type="submit" class="btn btn-primary mt-3">Submit</button>
             </form>
         </div>
 
-        <div class="motto_label">
-            <img src="/firstwebsideofdunc/img/bingchiling.png" class="xina_icon">
-            <span class="xinasay_1">John: </span>
-            <span class="xinasay_2">"I love ice cream"</span>
-        </div>
-        <div class="motto_label">
-            <img src="/firstwebsideofdunc/img/laoganma.png" class="xina_icon">
-            <span class="xinasay_1">John: </span>
-            <span class="xinasay_2">"I love food, +999 points"</span>
-        </div>
-
-        <!-- 修改磚塊遊戲區域 -->
-        <div class="game-section">
-            <h2>Brick Breaker Game</h2>
-            <div id="gameContainer">
-                <button id="startBrickGame" class="game-start-btn">開始遊戲</button>
-                <canvas id="gameCanvas" width="480" height="320" style="display:none"></canvas>
-            </div>
-        </div>
-
-        <!-- 修改火車遊戲區域 -->
-        <div class="game-section">
-            <h2>Train Game</h2>
-            <div id="trainGameContainer">
-                <button id="startTrainGame" class="game-start-btn">開始遊戲</button>
-                <canvas id="trainCanvas" width="800" height="400" style="display:none"></canvas>
-            </div>
-        </div>
-
-        <div class="hero-app">
-            <h2>Super Hero Mini App</h2>
-            <div class="hero-controls">
-                <button onclick="createHero()">Create Hero</button>
-                <button onclick="powerUp()">Power Up</button>
-                <button onclick="startFight()">Start Fight</button>
-            </div>
-            <div id="heroList"></div>
-        </div>
-
-        <div class="link">
-            <div class="content_header">
-                <p>Links:</p>
-            </div>
-            <div class="content">
-                <h2>All versions of [firstwebsideofdunc]:</h2>
-                <div class="version-links">
-                    <a href="https://web.archive.org/web/20220602105159/https://first-webside-of-dunc4.on.drv.tw/firstwebsideofdunc/" class="version-link"><img src="/firstwebsideofdunc/img/v0.01.png" alt="v0.01" style="width:42px;height:50px;">Go to Old[firstwebsideofdunc] main page  Backup from web.archive.org </a>
-                    <a href="/firstwebsideofdunc/v0.01.html" class="version-link"><img src="/firstwebsideofdunc/img/v0.01.png" alt="v0.01" style="width:42px;height:50px;">Go to [firstwebsideofdunc] v0.01 </a>
-                    <a href="/firstwebsideofdunc/v0.02.html" class="version-link"><img src="/firstwebsideofdunc/img/v0.02.png" alt="v0.02" style="width:42px;height:50px;">Go to [firstwebsideofdunc] v0.02 </a>
-                    <a href="/firstwebsideofdunc/v0.03.html" class="version-link"><img src="/firstwebsideofdunc/img/patch.png" alt="v0.03" style="width:42px;height:50px;">Go to [firstwebsideofdunc] v0.03 </a>
-                    <a href="/firstwebsideofdunc/v0.04.html" class="version-link"><img src="/firstwebsideofdunc/img/patch.png" alt="v0.04" style="width:42px;height:50px;">Go to [firstwebsideofdunc] v0.04 </a>
-                    <a href="/firstwebsideofdunc/vbeta.html" class="version-link"><img src="/firstwebsideofdunc/img/patch.png" alt="vbeta" style="width:42px;height:50px;">Go to [firstwebsideofdunc] vbeta </a>
-                    <a href="/firstwebsideofdunc/henshin.html" class="version-link"><img src="/firstwebsideofdunc/img/henshin!.gif" alt="henshin!" style="width:42px;height:50px;">Go to [firstwebsideofdunc] game</a>
-                    <a href="/firstwebsideofdunc/Compare AI upscaling.html" class="version-link"><img src="/firstwebsideofdunc/img/patch.png" alt="Compare AI upscaling" style="width:42px;height:50px;">Go to [firstwebsideofdunc] Compare AI upscaling</a>
-                    <a href="/firstwebsideofdunc/log.html" class="version-link"><img src="/firstwebsideofdunc/img/patch.png" alt="[firstwebsideofdunc]log " style="width:42px;height:50px;">Go to [firstwebsideofdunc] update log</a>
+        <div class="content-card">
+            <div class="motto-cards">
+                <div class="motto-item mb-3">
+                    <img src="img/bingchiling.png" alt="Bing Chilling" width="48" height="48">
+                    <div>
+                        <div class="fw-bold">John Xina:</div>
+                        <div class="text-primary">"I love Bing Chilling"</div>
+                    </div>
                 </div>
-                <h2>Visitor count</h2>
-                <!-- Badge Code - Do Not Change The Code -->
-                <a class="hitCounter" href="https://visitorshitcounter.com/" target="_blank" title="Hit counter" data-name="74940327943091ee8b6b21094849d5b4|5|external|1|#0099cc|#f5f5f5|small|s-hit">Hit Counter</a>
-                <script>document.write("<script type='text/javascript' src='https://visitorshitcounter.com/js/hitCounter.js?v="+Date.now()+"'><\/script>");</script>
-                <!-- Badge Code End Here -->
+                <div class="motto-item">
+                    <img src="img/laoganma.png" alt="Lao Gan Ma" width="48" height="48">
+                    <div>
+                        <div class="fw-bold">John Xina:</div>
+                        <div class="text-primary">"I love Lao Gan Ma, +999 social credit"</div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <footer>
-            <div class="footer-content">
-                <p>© 2023 Firstwebsideofdunc</p>
-                <p>Thanks for watching</p>
+        <div class="content-card">
+            <h2>Links:</h2>
+            <div class="quick-links">
+                <a href="Legacy Version/v0.04.1/index.html" class="link-card">
+                    <img src="img/patch.png" alt="Latest Version">
+                    <span>Latest Version (v0.04.1)</span>
+                </a>
+                <a href="Legacy Version/v0.04/index.html" class="link-card">
+                    <img src="img/patch.png" alt="v0.04">
+                    <span>Version 0.04</span>
+                </a>
+                <a href="Legacy Version/v0.03.html" class="link-card">
+                    <img src="img/patch.png" alt="v0.03">
+                    <span>Version 0.03</span>
+                </a>
+                <a href="Legacy Version/v0.02.html" class="link-card">
+                    <img src="img/v0.02.png" alt="v0.02">
+                    <span>Version 0.02</span>
+                </a>
+                <a href="Legacy Version/v0.01.html" class="link-card">
+                    <img src="img/v0.01.png" alt="v0.01">
+                    <span>Version 0.01</span>
+                </a>
+                <a href="Legacy Version/vbeta.html" class="link-card">
+                    <img src="img/patch.png" alt="Beta Version">
+                    <span>Beta Version</span>
+                </a>
+                <a href="https://web.archive.org/web/20220602105159/https://first-webside-of-dunc4.on.drv.tw/firstwebsideofdunc/" class="link-card">
+                    <img src="img/patch.png" alt="Original">
+                    <span>Original Version (Web Archive)</span>
+                </a>
+                <a href="DunDD Threads.html" class="link-card">
+                    <img src="img/patch.png" alt="DunDD Threads">
+                    <span>DunDD Threads</span>
+                </a>
+                <a href="log.html" class="link-card">
+                    <img src="img/patch.png" alt="Update Log">
+                    <span>Update Log</span>
+                </a>
+                <a href="henshin and AI Upscaling Comparison.html" class="link-card">
+                    <img src="img/henshin!.gif" alt="Game & AI">
+                    <span>Game & AI Testing</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="content-card text-center">
+            <h2>Visitor Count</h2>
+            <a class="hitCounter" href="https://visitorshitcounter.com/" target="_blank" title="Hit counter" 
+               data-name="74940327943091ee8b6b21094849d5b4|5|external|1|#0099cc|#f5f5f5|small|s-hit">
+                Hit Counter
+            </a>
+            <script>document.write("<script type='text/javascript' src='https://visitorshitcounter.com/js/hitCounter.js?v="+Date.now()+"'><\/script>");</script>
+        </div>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <p>hi</p>
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <p><b>Thanks for watching</b></p>
+                    </div>
+                </div>
             </div>
         </footer>
-
-        <button class="back-to-top" onclick="scrollToTop()">↑</button>
     </div>
 
-    <!-- 延遲載入非關鍵 JavaScript -->
-    <script defer src="game.js"></script>
-    <script defer src="hero.js"></script>
-    
-    <!-- 延遲載入訪客計數器 -->
-    <script defer>
-        window.addEventListener('load', function() {
-            const counterScript = document.createElement('script');
-            counterScript.src = 'https://visitorshitcounter.com/js/hitCounter.js';
-            document.body.appendChild(counterScript);
-        });
-    </script>
-    
-    <!-- 延遲載入 YouTube iframe -->
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        window.addEventListener('load', function() {
-            const videoContainer = document.querySelector('.card iframe');
-            videoContainer.src = "https://www.youtube.com/embed/dQw4w9WgXcQ";
-        });
-    </script>
-
-    <script>
-        document.querySelector('.hamburger').addEventListener('click', function() {
-            document.querySelector('.nav-links').classList.toggle('active');
-        });
-
-        function darkMode() {
-            var element = document.body;
-            element.classList.toggle("dark-mode");
-            localStorage.setItem('darkMode', element.classList.contains('dark-mode'));
-            
-            const themeToggle = document.querySelector('.theme-toggle');
-            themeToggle.innerHTML = element.classList.contains('dark-mode') ? '🌞' : '🌓';
-            setGameColors();
+        // 簡化的深色模式功能
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+            updateThemeIcon();
         }
 
+        function updateThemeIcon() {
+            const icon = document.querySelector('.theme-toggle i');
+            if (document.body.classList.contains('dark-mode')) {
+                icon.className = 'fas fa-sun';
+            } else {
+                icon.className = 'fas fa-moon';
+            }
+        }
+
+        // Back to top button
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Initialize dark mode
         if (localStorage.getItem('darkMode') === 'true') {
             document.body.classList.add('dark-mode');
-            document.querySelector('.theme-toggle').innerHTML = '🌞';
         }
-
-        window.onscroll = function() {
-            scrollFunction();
-        };
-
-        function scrollFunction() {
-            let topButton = document.querySelector(".back-to-top");
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                topButton.style.display = "block";
-            } else {
-                topButton.style.display = "none";
-            }
-        }
-
-        function scrollToTop() {
-            document.body.scrollTop = 0;
-            document.documentElement.scrollTop = 0;
-        }
-
-        window.addEventListener('load', () => {
-            document.querySelector('.page-loader').style.opacity = '0';
-            setTimeout(() => {
-                document.querySelector('.page-loader').style.display = 'none';
-                document.querySelector('.fade-in').classList.add('visible');
-            }, 500);
-        });
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        });
-
-        document.querySelectorAll('.card, .survey-form, .version-link').forEach((el) => {
-            el.classList.add('fade-in');
-            observer.observe(el);
-        });
-
-        document.getElementById('startBrickGame').addEventListener('click', function() {
-            this.style.display = 'none';
-            document.getElementById('gameCanvas').style.display = 'block';
-            initBrickGame();
-        });
-
-        document.getElementById('startTrainGame').addEventListener('click', function() {
-            this.style.display = 'none';
-            document.getElementById('trainCanvas').style.display = 'block';
-            initTrainGame();
-        });
-
-        function initBrickGame() {
-            var canvas = document.getElementById("gameCanvas");
-            var ctx = canvas.getContext("2d");
-            var ballRadius = 10;
-            var x = canvas.width / 2;
-            var y = canvas.height - 30;
-            var dx = 2;
-            var dy = -2;
-            var paddleHeight = 10;
-            var paddleWidth = 75;
-            var paddleX = (canvas.width - paddleWidth) / 2;
-            var rightPressed = false;
-            var leftPressed = false;
-
-            document.addEventListener("keydown", keyDownHandler, false);
-            document.addEventListener("keyup", keyUpHandler, false);
-
-            function keyDownHandler(e) {
-                if (e.key == "Right" || e.key == "ArrowRight") {
-                    rightPressed = true;
-                } else if (e.key == "Left" || e.key == "ArrowLeft") {
-                    leftPressed = true;
-                }
-            }
-
-            function keyUpHandler(e) {
-                if (e.key == "Right" || e.key == "ArrowRight") {
-                    rightPressed = false;
-                } else if (e.key == "Left" || e.key == "ArrowLeft") {
-                    leftPressed = false;
-                }
-            }
-
-            var ballColor, paddleColor, backgroundColor;
-            var trainBackgroundColor, trackColor, trainColor;
-
-            function setGameColors() {
-                var isDarkMode = document.body.classList.contains('dark-mode');
-                ballColor = isDarkMode ? "#FFFFFF" : "#4B9DFF";
-                paddleColor = isDarkMode ? "#CCCCCC" : "#357abd";
-                backgroundColor = isDarkMode ? "#1e1e1e" : "#f5f5f5";
-                trainBackgroundColor = isDarkMode ? "#1e1e1e" : "#f5f5f5";
-                trackColor = isDarkMode ? "#888888" : "#7B7B7B";
-                trainColor = isDarkMode ? "#FF8800" : "#FF0000";
-            }
-
-            setGameColors();
-
-            function drawBall() {
-                ctx.beginPath();
-                ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
-                ctx.fillStyle = ballColor;
-                ctx.fill();
-                ctx.closePath();
-            }
-
-            function drawPaddle() {
-                ctx.beginPath();
-                ctx.rect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleHeight);
-                ctx.fillStyle = paddleColor;
-                ctx.fill();
-                ctx.closePath();
-            }
-
-            function draw() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                ctx.fillStyle = backgroundColor;
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-                drawBall();
-                drawPaddle();
-
-                if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
-                    dx = -dx;
-                }
-                if (y + dy < ballRadius) {
-                    dy = -dy;
-                } else if (y + dy > canvas.height - ballRadius) {
-                    if (x > paddleX && x < paddleX + paddleWidth) {
-                        dy = -dy;
-                    } else {
-                        x = canvas.width / 2;
-                        y = canvas.height - 30;
-                        dx = 2;
-                        dy = -2;
-                        paddleX = (canvas.width - paddleWidth) / 2;
-                    }
-                }
-
-                if (rightPressed && paddleX < canvas.width - paddleWidth) {
-                    paddleX += 7;
-                } else if (leftPressed && paddleX > 0) {
-                    paddleX -= 7;
-                }
-
-                x += dx;
-                y += dy;
-            }
-
-            setInterval(draw, 10);
-        }
-
-        function initTrainGame() {
-            var trainCanvas = document.getElementById("trainCanvas");
-            var trainCtx = trainCanvas.getContext("2d");
-            var trainX = -100;
-
-            function drawTrain() {
-                trainCtx.clearRect(0, 0, trainCanvas.width, trainCanvas.height);
-
-                trainCtx.fillStyle = trainBackgroundColor;
-                trainCtx.fillRect(0, 0, trainCanvas.width, trainCanvas.height);
-
-                trainCtx.fillStyle = trackColor;
-                trainCtx.fillRect(0, trainCanvas.height / 2 + 20, trainCanvas.width, 10);
-
-                trainCtx.fillStyle = trainColor;
-                trainCtx.fillRect(trainX, trainCanvas.height / 2 - 30, 100, 50);
-
-                trainX += 2;
-                if (trainX > trainCanvas.width) {
-                    trainX = -100;
-                }
-
-                requestAnimationFrame(drawTrain);
-            }
-
-            drawTrain();
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const images = document.querySelectorAll('img');
-            Promise.all(Array.from(images).map(img => {
-                if (img.complete) return Promise.resolve();
-                return new Promise(resolve => img.addEventListener('load', resolve));
-            })).then(() => {
-                document.querySelector('.page-loader').style.opacity = '0';
-                document.body.classList.add('loaded');
-            });
-        });
-
-        const gameLoop = (timestamp) => {
-            if (!lastTime) lastTime = timestamp;
-            const deltaTime = timestamp - lastTime;
-            
-            x += dx * (deltaTime / 16);
-            y += dy * (deltaTime / 16);
-            
-            draw();
-            lastTime = timestamp;
-            requestAnimationFrame(gameLoop);
-        };
-
-        const smoothScroll = (target) => {
-            const element = document.querySelector(target);
-            window.scrollTo({
-                top: element.offsetTop,
-                behavior: 'smooth'
-            });
-        };
-
-        const heroes = [];
-
-        class Hero {
-            constructor(name) {
-                this.name = name;
-                this.power = 100;
-                this.experience = 0;
-                this.level = 1;
-            }
-        }
-
-        const heroNames = [
-            "Thunder Strike", "Shadow Walker", "Light Bearer",
-            "Storm Chaser", "Flame Guardian", "Ice Master"
-        ];
-
-        function createHero() {
-            const randomName = heroNames[Math.floor(Math.random() * heroNames.length)];
-            const hero = new Hero(randomName);
-            heroes.push(hero);
-            updateHeroList();
-        }
-
-        function powerUp() {
-            heroes.forEach(hero => {
-                hero.power += 10;
-                hero.experience += 5;
-                if (hero.experience >= 100) {
-                    hero.level++;
-                    hero.experience = 0;
-                }
-            });
-            updateHeroList();
-        }
-
-        function startFight() {
-            if (heroes.length < 2) {
-                alert("需要至少兩個英雄才能開始戰鬥！");
-                return;
-            }
-
-            const hero1 = heroes[Math.floor(Math.random() * heroes.length)];
-            let hero2;
-            do {
-                hero2 = heroes[Math.floor(Math.random() * heroes.length)];
-            } while (hero2 === hero1);
-
-            // 改進的戰鬥邏輯，加入隨機的戰鬥力和防禦力
-            const hero1Attack = hero1.power * (Math.random() + 0.5);
-            const hero2Defense = hero2.power * (Math.random() + 0.5);
-
-            if (hero1Attack > hero2Defense) {
-                hero1.experience += 20;
-                if (hero1.experience >= 100) {
-                    hero1.level++;
-                    hero1.experience = 0;
-                }
-                alert(`${hero1.name} 戰勝了 ${hero2.name}！`);
-            } else {
-                hero2.experience += 20;
-                if (hero2.experience >= 100) {
-                    hero2.level++;
-                    hero2.experience = 0;
-                }
-                alert(`${hero2.name} 防禦成功，擊敗了 ${hero1.name}！`);
-            }
-            updateHeroList();
-        }
-
-        function updateHeroList() {
-            const heroList = document.getElementById("heroList");
-            heroList.innerHTML = "";
-            
-            heroes.forEach(hero => {
-                const heroCard = document.createElement("div");
-                heroCard.className = "hero-card";
-                heroCard.innerHTML = `
-                    <img src="https://api.dicebear.com/6.x/pixel-art/svg?seed=${hero.name}" class="hero-image" alt="${hero.name}">
-                    <div>
-                        <h3>${hero.name}</h3>
-                        <p>等級: ${hero.level} | 能量: ${hero.power} | 經驗: ${hero.experience}/100</p>
-                    </div>
-                `;
-                heroList.appendChild(heroCard);
-            });
-        }
+        updateThemeIcon();
     </script>
 </body>
 </html>
