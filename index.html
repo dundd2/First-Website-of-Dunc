@@ -1,216 +1,958 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Firstwebsideofdunc v0.04.1</title>
-<link rel="icon" type="image/x-icon" href="/firstwebsideofdunc/img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Firstwebsideofdunc v0.04.1</title>
+    <link rel="icon" type="image/x-icon" href="/firstwebsideofdunc/img/favicon.ico">
+    <!-- 預先連接重要域名 -->
+    <link rel="preconnect" href="https://www.youtube.com">
+    <link rel="preconnect" href="https://api.dicebear.com">
+    
+    <!-- 改為異步載入 CSS -->
+    <link rel="stylesheet" href="styles.css" media="print" onload="this.media='all'">
+
+    <!-- 添加關鍵 CSS -->
+    <style>
+        /* 只保留關鍵渲染路徑所需的最小 CSS */
+        :root {
+            --primary-color: #3498db;
+            --background-color: #f0f3f4;
+            --text-color: #333;
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0 20px;
+        }
+        
+        .nav-bar {
+            background: var(--primary-color);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+    </style>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        :root {
+            --primary-color: #4B9DFF;
+            --secondary-color: #357abd;
+            --background-color: #f8f9fa;
+            --text-color: #333;
+            --card-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            --card-bg: rgba(255, 255, 255, 0.95);
+        }
+
+        .dark-mode {
+            --primary-color: #61a5ff;
+            --secondary-color: #4B9DFF;
+            --background-color: #1a1a1a;
+            --text-color: #f0f0f0;
+            --card-bg: rgba(40, 40, 40, 0.95);
+        }
+
+        body {
+            padding: 20px;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            animation: fadeIn 1s ease-in;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--card-bg);
+            padding: 1rem 2rem;
+            margin: 20px;
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .nav-bar:hover {
+            transform: translateY(2px);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-bar a {
+            color: white;
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+
+        .logo-with-the-web-name {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo-with-the-web-name img {
+            margin-left: 15px;
+            transition: transform 0.3s;
+        }
+
+        .logo-with-the-web-name img:hover {
+            transform: scale(1.1);
+        }
+
+        .dark-mode .card, .dark-mode .version-link, .dark-mode .survey-form {
+            background-color: #2b2b2b;
+            color: #ffffff;
+        }
+
+        .survey-form {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 2rem auto;
+            max-width: 600px;
+            transition: transform 0.3s ease;
+        }
+
+        .survey-form:hover {
+            transform: translateY(-5px);
+        }
+
+        .survey-form label {
+            margin-left: 8px;
+        }
+
+        .survey-form input[type="radio"] {
+            accent-color: #4B9DFF;
+        }
+
+        button, input[type="submit"] {
+            background: var(--secondary-color);
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 8px rgba(75, 157, 255, 0.2);
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover, input[type="submit"]:hover {
+            background-color: #357abd;
+        }
+
+        footer {
+            margin-top: 2rem;
+            padding: 30px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            margin-top: 50px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(75, 157, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(5px);
+        }
+
+        .card {
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 1px solid #e0e0e0;
+        }
+
+        .card:hover {
+            transform: translateY(-8px) rotate(1deg);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .version-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 30px;
+        }
+
+        .version-link {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(75, 157, 255, 0.1);
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            flex: 1 1 calc(33% - 20px);
+        }
+
+        .version-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(75, 157, 255, 0.3);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #4B9DFF;
+            color: white;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            z-index: 1000;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            .nav-links {
+                display: none;
+                width: 100%;
+                text-align: center;
+            }
+            .nav-links.active {
+                display: block;
+            }
+            .nav-links {
+                flex-direction: column;
+            }
+            /* ...other media queries... */
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .page-transition {
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            padding: 10px;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #4B9DFF, #357abd);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s;
+        }
+
+        .loader {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #4B9DFF;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+        }
+
+        #gameContainer {
+            text-align: center;
+            margin: 30px auto;
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            max-width: 900px;
+        }
+
+        #gameCanvas {
+            border: 1px solid #d3d3d3;
+            background-color: #f5f5f5;
+        }
+
+        #trainGameContainer {
+            text-align: center;
+            margin: 30px auto;
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            max-width: 900px;
+        }
+
+        #trainCanvas {
+            border: 1px solid #d3d3d3;
+            background-color: #f5f5f5;
+        }
+
+        .hero-app {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 30px auto;
+            max-width: 800px;
+            box-shadow: var(--card-shadow);
+            transition: background-color 0.3s ease;
+        }
+
+        .hero-card {
+            display: flex;
+            padding: 20px;
+            margin: 15px 0;
+            background: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .hero-card:hover {
+            transform: translateX(10px);
+        }
+
+        .hero-controls {
+            margin: 20px 0;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .hero-controls button {
+            min-width: 120px;
+        }
+
+        .hero-image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        .game-section {
+            margin: 50px 0;
+            text-align: center;
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2rem;
+        }
+        
+        .game-section h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #4B9DFF;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            margin-top: 50px;
+        }
+
+        .dark-mode .footer-content {
+            background-color: #2b2b2b;
+            color: #ffffff;
+        }
+
+        .dark-mode #gameContainer, .dark-mode #trainGameContainer {
+            background-color: #1e1e1e;
+        }
+
+        .dark-mode .hero-app {
+            color: #ffffff;
+        }
+
+        .dark-mode .hero-card {
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .dark-mode .hero-controls button {
+            background: #4B9DFF;
+        }
+
+        .dark-mode .hero-controls button:hover {
+            background: #357abd;
+        }
+
+        .game-start-btn {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            margin: 20px auto;
+            display: block;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .game-start-btn:hover {
+            transform: scale(1.05);
+        }
+    </style>
 </head>
-<style>
-body {
-  padding: 15px;
-  background-color: #FFF;
-  color: black;
-  font-size: 15px;
-}
-.logo-with-the-web-name {
-    display: flex;
-    align-items: center;
-  }
-.logo-with-the-web-name img {
-    margin-left: 10px;
-  }
-.dark-mode {
-    background-color: #7C7B7B;
-    color: #131417;;
-  }
-</style>
-<body>
-<div class="logo-with-the-web-name img">
- <h1> Hello world by ddd </h1>
- <img src="/firstwebsideofdunc/img/patch.png" alt="logo" style="width:42px;height:50px;">
-</div>
- <p>This web start from 2-6-2022</p>
- <p>you are watching [firstwebsideofdunc] v0.04.1 update at 20-2-2023 11:10</p>
-<div>
-    <button onclick="darkMode()">Darkmode</button>
-  </div>
-  <script>
-    function darkMode() {
-      var element = document.body;
-      element.classList.toggle("dark-mode");
-    }
-  </script>
-<br>
-<h1> Never GIVE YOU UP BY Rick Astley</h1>
-<iframe width="640" height="480"
-src="https://www.youtube.com/embed/dQw4w9WgXcQ">
-</iframe>
+<body class="page-transition">
+    <!-- Page Loading Animation -->
+    <div class="page-loader">
+        <div class="loader"></div>
+    </div>
 
-<blockquote></blockquote>
-<img src="/firstwebsideofdunc/img/bingchiling.png" alt="i love bingchiling">
+    <!-- Main Content -->
+    <div class="fade-in">
+        <!-- Navigation Bar -->
+        <div class="nav-bar">
+            <div class="hamburger">☰</div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#links">Links</a>
+            </div>
+        </div>
 
-<p>Do you love bingchiling?</p>
-<form>
-  <input type="radio" id="YES" name="YES" value="YES">
-  <label for="html">YES</label><br>
-  <input type="radio" id="NO" name="NO" value="NO">
-  <label for="css">NO</label><br>
-  <input type="radio" id="EM....." name="EM....." value="EM....."> 
-  <label for="javascript">EM.....</label><br> 
-  <input type="submit" value="Submit">
-</form> 
-<br>
-<div class="hi">
-	<div><style>
-    
-@media (max-width: 767px) {
-      .xinasay_1 {
-          font-size: 16px; 
-      }
-      .xinasay_2 {
-          font-size: 14px; 
-      }
-      .motto_label .xina_icon {
-        max-width: 24px;
-        height: auto;
-      }
-    }
-    
-@media (min-width: 768px) {
-       .xinasay_1 {
-          font-size: 20px; 
-      }
-      
-      .xinasay_2 {
-          font-size: 16px; 
-      }
-      
-      .motto_label .xina_icon{
-          max-width: 48px;
-          height: auto;
-          
-      }
-    
-    }
-    
-    .motto_label {
-        background:#e5e4f1;
-        border-left:10px solid #085cba;
-        color: #085CBA;
-        padding: 10px;
+        <button class="theme-toggle" onclick="darkMode()">
+            🌓
+        </button>
+
+        <!-- Logo and Title -->
+        <div class="logo-with-the-web-name">
+            <h1>Hello world by ddd</h1>
+            <img src="/firstwebsideofdunc/img/patch.png" alt="logo" style="width:42px;height:50px;">
+        </div>
+        <p>This web started from 2-6-2022</p>
+        <p>You are watching [firstwebsideofdunc] v0.04.1 updated at 20-2-2023 11:10</p>
         
-    }
-    .xinasay_1 {
-        
-    font-weight: bold;
-    color: black;
-    display: inline-block;
-    margin-left: 20px;
-    }
+        <div>
+            <button onclick="darkMode()">Dark Mode</button>
+        </div>
+
+        <div class="card">
+            <h1>Never Gonna Give You Up By Rick Astley</h1>
+            <iframe width="100%" height="480" src=""></iframe>
+        </div>
+
+        <div class="survey-form">
+            <h3>Do you love ice cream?</h3>
+            <form>
+                <div>
+                    <input type="radio" id="YES" name="icecream" value="YES">
+                    <label for="YES">YES</label>
+                </div>
+                <div>
+                    <input type="radio" id="NO" name="icecream" value="NO">
+                    <label for="NO">NO</label>
+                </div>
+                <div>
+                    <input type="radio" id="MAYBE" name="icecream" value="MAYBE">
+                    <label for="MAYBE">MAYBE...</label>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
+        <div class="motto_label">
+            <img src="/firstwebsideofdunc/img/bingchiling.png" class="xina_icon">
+            <span class="xinasay_1">John: </span>
+            <span class="xinasay_2">"I love ice cream"</span>
+        </div>
+        <div class="motto_label">
+            <img src="/firstwebsideofdunc/img/laoganma.png" class="xina_icon">
+            <span class="xinasay_1">John: </span>
+            <span class="xinasay_2">"I love food, +999 points"</span>
+        </div>
+
+        <!-- 修改磚塊遊戲區域 -->
+        <div class="game-section">
+            <h2>Brick Breaker Game</h2>
+            <div id="gameContainer">
+                <button id="startBrickGame" class="game-start-btn">開始遊戲</button>
+                <canvas id="gameCanvas" width="480" height="320" style="display:none"></canvas>
+            </div>
+        </div>
+
+        <!-- 修改火車遊戲區域 -->
+        <div class="game-section">
+            <h2>Train Game</h2>
+            <div id="trainGameContainer">
+                <button id="startTrainGame" class="game-start-btn">開始遊戲</button>
+                <canvas id="trainCanvas" width="800" height="400" style="display:none"></canvas>
+            </div>
+        </div>
+
+        <div class="hero-app">
+            <h2>Super Hero Mini App</h2>
+            <div class="hero-controls">
+                <button onclick="createHero()">Create Hero</button>
+                <button onclick="powerUp()">Power Up</button>
+                <button onclick="startFight()">Start Fight</button>
+            </div>
+            <div id="heroList"></div>
+        </div>
+
+        <div class="link">
+            <div class="content_header">
+                <p>Links:</p>
+            </div>
+            <div class="content">
+                <h2>All versions of [firstwebsideofdunc]:</h2>
+                <div class="version-links">
+                    <a href="https://web.archive.org/web/20220602105159/https://first-webside-of-dunc4.on.drv.tw/firstwebsideofdunc/" class="version-link"><img src="/firstwebsideofdunc/img/v0.01.png" alt="v0.01" style="width:42px;height:50px;">Go to Old[firstwebsideofdunc] main page  Backup from web.archive.org </a>
+                    <a href="/firstwebsideofdunc/v0.01.html" class="version-link"><img src="/firstwebsideofdunc/img/v0.01.png" alt="v0.01" style="width:42px;height:50px;">Go to [firstwebsideofdunc] v0.01 </a>
+                    <a href="/firstwebsideofdunc/v0.02.html" class="version-link"><img src="/firstwebsideofdunc/img/v0.02.png" alt="v0.02" style="width:42px;height:50px;">Go to [firstwebsideofdunc] v0.02 </a>
+                    <a href="/firstwebsideofdunc/v0.03.html" class="version-link"><img src="/firstwebsideofdunc/img/patch.png" alt="v0.03" style="width:42px;height:50px;">Go to [firstwebsideofdunc] v0.03 </a>
+                    <a href="/firstwebsideofdunc/v0.04.html" class="version-link"><img src="/firstwebsideofdunc/img/patch.png" alt="v0.04" style="width:42px;height:50px;">Go to [firstwebsideofdunc] v0.04 </a>
+                    <a href="/firstwebsideofdunc/vbeta.html" class="version-link"><img src="/firstwebsideofdunc/img/patch.png" alt="vbeta" style="width:42px;height:50px;">Go to [firstwebsideofdunc] vbeta </a>
+                    <a href="/firstwebsideofdunc/henshin.html" class="version-link"><img src="/firstwebsideofdunc/img/henshin!.gif" alt="henshin!" style="width:42px;height:50px;">Go to [firstwebsideofdunc] game</a>
+                    <a href="/firstwebsideofdunc/Compare AI upscaling.html" class="version-link"><img src="/firstwebsideofdunc/img/patch.png" alt="Compare AI upscaling" style="width:42px;height:50px;">Go to [firstwebsideofdunc] Compare AI upscaling</a>
+                    <a href="/firstwebsideofdunc/log.html" class="version-link"><img src="/firstwebsideofdunc/img/patch.png" alt="[firstwebsideofdunc]log " style="width:42px;height:50px;">Go to [firstwebsideofdunc] update log</a>
+                </div>
+                <h2>Visitor count</h2>
+                <!-- Badge Code - Do Not Change The Code -->
+                <a class="hitCounter" href="https://visitorshitcounter.com/" target="_blank" title="Hit counter" data-name="74940327943091ee8b6b21094849d5b4|5|external|1|#0099cc|#f5f5f5|small|s-hit">Hit Counter</a>
+                <script>document.write("<script type='text/javascript' src='https://visitorshitcounter.com/js/hitCounter.js?v="+Date.now()+"'><\/script>");</script>
+                <!-- Badge Code End Here -->
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-content">
+                <p>© 2023 Firstwebsideofdunc</p>
+                <p>Thanks for watching</p>
+            </div>
+        </footer>
+
+        <button class="back-to-top" onclick="scrollToTop()">↑</button>
+    </div>
+
+    <!-- 延遲載入非關鍵 JavaScript -->
+    <script defer src="game.js"></script>
+    <script defer src="hero.js"></script>
     
-    .xinasay_2 {
-        
-    font-weight: bold;
-    color: #085CBA;
-    display: inline-block;
-    margin-left: 30px;
-        
-    }
+    <!-- 延遲載入訪客計數器 -->
+    <script defer>
+        window.addEventListener('load', function() {
+            const counterScript = document.createElement('script');
+            counterScript.src = 'https://visitorshitcounter.com/js/hitCounter.js';
+            document.body.appendChild(counterScript);
+        });
+    </script>
     
-</style>
-<div class="motto_label">
-    <img src="/firstwebsideofdunc/img/bingchiling.png" class="xina_icon">
-    <span class="xinasay_1">  john xina: </span>
-    <span class="xinasay_2">"i love bingchiling"</span>
-</div>
-<div class="motto_label">
-  <img src="/firstwebsideofdunc/img/laoganma.png" class="xina_icon">
-  <span class="xinasay_1">  John Xina: </span>
-  <span class="xinasay_2">"I lovs laoganma,+999 social credit"</span>
-</div>
-<br>
+    <!-- 延遲載入 YouTube iframe -->
+    <script>
+        window.addEventListener('load', function() {
+            const videoContainer = document.querySelector('.card iframe');
+            videoContainer.src = "https://www.youtube.com/embed/dQw4w9WgXcQ";
+        });
+    </script>
 
-<div class="link" data-analytics-asset-id="57699" data-analytics-asset-title="links" data-analytics-asset-type="web-content">
-	<style>
-    .portlet-layout .portlet-header {
-        margin-bottom: 0px;
-    }
-</style>
-<style type="text/css">.content_header {
-        border-radius: 10px 10px 0px 0px;
-        color: #FFF;
-        background: #4B9DFF;
-    }
+    <script>
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
 
-    .content_header p {
-        margin: 0px;
-        font-size: 25px;
-        padding: 15px 0px 15px 25px;
-        font-weight: bold;
-    }
+        function darkMode() {
+            var element = document.body;
+            element.classList.toggle("dark-mode");
+            localStorage.setItem('darkMode', element.classList.contains('dark-mode'));
+            
+            const themeToggle = document.querySelector('.theme-toggle');
+            themeToggle.innerHTML = element.classList.contains('dark-mode') ? '🌞' : '🌓';
+            setGameColors();
+        }
 
-    .content {
-        padding: 20px;
-        border-radius: 0px 0px 10px 10px;
-        background:#e5e4f1;
-        min-height: 500px;
-    }
-</style>
-<div class="content_header">
-<p>Links:</p>
-</div>
-<div class="content">
-<style type="text/css">
-</style>
-<h2>all version of [firstwebsideofdunc]:</h2>
-<ol>
-  <a href="https://web.archive.org/web/20220602105159/https://first-webside-of-dunc4.on.drv.tw/firstwebsideofdunc/">Go to Old[firstwebsideofdunc] main page  Backup from web.archive.org </a>
-  <br>
-  <a href="/firstwebsideofdunc/v0.01.html"><img src="/firstwebsideofdunc/img/v0.01.png" alt="v0.01" style="width:42px;height:50px;"></a>
-    Go to [firstwebsideofdunc] v0.01 </a>
-  <tr>
-  <a href="/firstwebsideofdunc/v0.02.html"><img src="/firstwebsideofdunc/img/v0.02.png" alt="v0.02" style="width:42px;height:50px;"></a>
-    Go to [firstwebsideofdunc] v0.02 </a>
-  <Tr>
-  <a href="/firstwebsideofdunc/v0.03.html"><img src="/firstwebsideofdunc/img/patch.png" alt="v0.03" style="width:42px;height:50px;"></a>
-    Go to [firstwebsideofdunc] v0.03 </a>
-  <Tr>
-    <a href="/firstwebsideofdunc/v0.04.html"><img src="/firstwebsideofdunc/img/patch.png" alt="v0.04" style="width:42px;height:50px;"></a>
-    Go to [firstwebsideofdunc] v0.04 </a>
-  <Tr>
-  <a href="/firstwebsideofdunc/vbeta.html"><img src="/firstwebsideofdunc/img/patch.png" alt="vbeta" style="width:42px;height:50px;"></a>
-  Go to [firstwebsideofdunc] vbeta </a> 
-  <Br>
-  <a href="/firstwebsideofdunc/henshin.html"><img src="/firstwebsideofdunc/img/henshin!.gif" alt="henshin!" style="width:42px;height:50px;"></a>
-  Go to [firstwebsideofdunc] game</a> 
-  <Tr>
-    <a href="/firstwebsideofdunc/Compare AI upscaling.html"><img src="/firstwebsideofdunc/img/patch.png" alt="Compare AI upscaling" style="width:42px;height:50px;"></a>
-    Go to [firstwebsideofdunc] Compare AI upscaling</a>
-  </Tr>  
-  <Tr>
-    <a href="/firstwebsideofdunc/log.html"><img src="/firstwebsideofdunc/img/patch.png" alt="[firstwebsideofdunc]log " style="width:42px;height:50px;"></a>
-    Go to [firstwebsideofdunc] update log</a>
-  </Tr>  
-</ol>
-<h2>Visitor count</h2>
-<!-- Badge Code - Do Not Change The Code -->
-<a class="hitCounter" href="https://visitorshitcounter.com/" target="_blank" title="Hit counter" data-name="74940327943091ee8b6b21094849d5b4|5|external|1|#0099cc|#f5f5f5|small|s-hit">Hit Counter</a><script>document.write("<script type='text/javascript' src='https://visitorshitcounter.com/js/hitCounter.js?v="+Date.now()+"'><\/script>");</script>
-<!-- Badge Code End Here -->
-</div>
-<h2>---------------------------------------------------------------------------------------------------------------------------------------------------------</h2>
-<footer>
-  <div style="color: black; background-color: #F7F8F9; padding: 20px;">
-      <div class="row">
-          <div class="footer" style="text-align: left; padding: 0px;">
-              <p style="color:black"> hi</p>
-          </div>
-          <div class="col-md-6" style="text-align: right; padding: 0px;">
-              <b>
-                  <p align="right">Thanks for watching</p>
-              </b>                      
-      </div>
-  </div>
-</footer>
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+            document.querySelector('.theme-toggle').innerHTML = '🌞';
+        }
+
+        window.onscroll = function() {
+            scrollFunction();
+        };
+
+        function scrollFunction() {
+            let topButton = document.querySelector(".back-to-top");
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                topButton.style.display = "block";
+            } else {
+                topButton.style.display = "none";
+            }
+        }
+
+        function scrollToTop() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+
+        window.addEventListener('load', () => {
+            document.querySelector('.page-loader').style.opacity = '0';
+            setTimeout(() => {
+                document.querySelector('.page-loader').style.display = 'none';
+                document.querySelector('.fade-in').classList.add('visible');
+            }, 500);
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        });
+
+        document.querySelectorAll('.card, .survey-form, .version-link').forEach((el) => {
+            el.classList.add('fade-in');
+            observer.observe(el);
+        });
+
+        document.getElementById('startBrickGame').addEventListener('click', function() {
+            this.style.display = 'none';
+            document.getElementById('gameCanvas').style.display = 'block';
+            initBrickGame();
+        });
+
+        document.getElementById('startTrainGame').addEventListener('click', function() {
+            this.style.display = 'none';
+            document.getElementById('trainCanvas').style.display = 'block';
+            initTrainGame();
+        });
+
+        function initBrickGame() {
+            var canvas = document.getElementById("gameCanvas");
+            var ctx = canvas.getContext("2d");
+            var ballRadius = 10;
+            var x = canvas.width / 2;
+            var y = canvas.height - 30;
+            var dx = 2;
+            var dy = -2;
+            var paddleHeight = 10;
+            var paddleWidth = 75;
+            var paddleX = (canvas.width - paddleWidth) / 2;
+            var rightPressed = false;
+            var leftPressed = false;
+
+            document.addEventListener("keydown", keyDownHandler, false);
+            document.addEventListener("keyup", keyUpHandler, false);
+
+            function keyDownHandler(e) {
+                if (e.key == "Right" || e.key == "ArrowRight") {
+                    rightPressed = true;
+                } else if (e.key == "Left" || e.key == "ArrowLeft") {
+                    leftPressed = true;
+                }
+            }
+
+            function keyUpHandler(e) {
+                if (e.key == "Right" || e.key == "ArrowRight") {
+                    rightPressed = false;
+                } else if (e.key == "Left" || e.key == "ArrowLeft") {
+                    leftPressed = false;
+                }
+            }
+
+            var ballColor, paddleColor, backgroundColor;
+            var trainBackgroundColor, trackColor, trainColor;
+
+            function setGameColors() {
+                var isDarkMode = document.body.classList.contains('dark-mode');
+                ballColor = isDarkMode ? "#FFFFFF" : "#4B9DFF";
+                paddleColor = isDarkMode ? "#CCCCCC" : "#357abd";
+                backgroundColor = isDarkMode ? "#1e1e1e" : "#f5f5f5";
+                trainBackgroundColor = isDarkMode ? "#1e1e1e" : "#f5f5f5";
+                trackColor = isDarkMode ? "#888888" : "#7B7B7B";
+                trainColor = isDarkMode ? "#FF8800" : "#FF0000";
+            }
+
+            setGameColors();
+
+            function drawBall() {
+                ctx.beginPath();
+                ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
+                ctx.fillStyle = ballColor;
+                ctx.fill();
+                ctx.closePath();
+            }
+
+            function drawPaddle() {
+                ctx.beginPath();
+                ctx.rect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleHeight);
+                ctx.fillStyle = paddleColor;
+                ctx.fill();
+                ctx.closePath();
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = backgroundColor;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                drawBall();
+                drawPaddle();
+
+                if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
+                    dx = -dx;
+                }
+                if (y + dy < ballRadius) {
+                    dy = -dy;
+                } else if (y + dy > canvas.height - ballRadius) {
+                    if (x > paddleX && x < paddleX + paddleWidth) {
+                        dy = -dy;
+                    } else {
+                        x = canvas.width / 2;
+                        y = canvas.height - 30;
+                        dx = 2;
+                        dy = -2;
+                        paddleX = (canvas.width - paddleWidth) / 2;
+                    }
+                }
+
+                if (rightPressed && paddleX < canvas.width - paddleWidth) {
+                    paddleX += 7;
+                } else if (leftPressed && paddleX > 0) {
+                    paddleX -= 7;
+                }
+
+                x += dx;
+                y += dy;
+            }
+
+            setInterval(draw, 10);
+        }
+
+        function initTrainGame() {
+            var trainCanvas = document.getElementById("trainCanvas");
+            var trainCtx = trainCanvas.getContext("2d");
+            var trainX = -100;
+
+            function drawTrain() {
+                trainCtx.clearRect(0, 0, trainCanvas.width, trainCanvas.height);
+
+                trainCtx.fillStyle = trainBackgroundColor;
+                trainCtx.fillRect(0, 0, trainCanvas.width, trainCanvas.height);
+
+                trainCtx.fillStyle = trackColor;
+                trainCtx.fillRect(0, trainCanvas.height / 2 + 20, trainCanvas.width, 10);
+
+                trainCtx.fillStyle = trainColor;
+                trainCtx.fillRect(trainX, trainCanvas.height / 2 - 30, 100, 50);
+
+                trainX += 2;
+                if (trainX > trainCanvas.width) {
+                    trainX = -100;
+                }
+
+                requestAnimationFrame(drawTrain);
+            }
+
+            drawTrain();
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('img');
+            Promise.all(Array.from(images).map(img => {
+                if (img.complete) return Promise.resolve();
+                return new Promise(resolve => img.addEventListener('load', resolve));
+            })).then(() => {
+                document.querySelector('.page-loader').style.opacity = '0';
+                document.body.classList.add('loaded');
+            });
+        });
+
+        const gameLoop = (timestamp) => {
+            if (!lastTime) lastTime = timestamp;
+            const deltaTime = timestamp - lastTime;
+            
+            x += dx * (deltaTime / 16);
+            y += dy * (deltaTime / 16);
+            
+            draw();
+            lastTime = timestamp;
+            requestAnimationFrame(gameLoop);
+        };
+
+        const smoothScroll = (target) => {
+            const element = document.querySelector(target);
+            window.scrollTo({
+                top: element.offsetTop,
+                behavior: 'smooth'
+            });
+        };
+
+        const heroes = [];
+
+        class Hero {
+            constructor(name) {
+                this.name = name;
+                this.power = 100;
+                this.experience = 0;
+                this.level = 1;
+            }
+        }
+
+        const heroNames = [
+            "Thunder Strike", "Shadow Walker", "Light Bearer",
+            "Storm Chaser", "Flame Guardian", "Ice Master"
+        ];
+
+        function createHero() {
+            const randomName = heroNames[Math.floor(Math.random() * heroNames.length)];
+            const hero = new Hero(randomName);
+            heroes.push(hero);
+            updateHeroList();
+        }
+
+        function powerUp() {
+            heroes.forEach(hero => {
+                hero.power += 10;
+                hero.experience += 5;
+                if (hero.experience >= 100) {
+                    hero.level++;
+                    hero.experience = 0;
+                }
+            });
+            updateHeroList();
+        }
+
+        function startFight() {
+            if (heroes.length < 2) {
+                alert("需要至少兩個英雄才能開始戰鬥！");
+                return;
+            }
+
+            const hero1 = heroes[Math.floor(Math.random() * heroes.length)];
+            let hero2;
+            do {
+                hero2 = heroes[Math.floor(Math.random() * heroes.length)];
+            } while (hero2 === hero1);
+
+            // 改進的戰鬥邏輯，加入隨機的戰鬥力和防禦力
+            const hero1Attack = hero1.power * (Math.random() + 0.5);
+            const hero2Defense = hero2.power * (Math.random() + 0.5);
+
+            if (hero1Attack > hero2Defense) {
+                hero1.experience += 20;
+                if (hero1.experience >= 100) {
+                    hero1.level++;
+                    hero1.experience = 0;
+                }
+                alert(`${hero1.name} 戰勝了 ${hero2.name}！`);
+            } else {
+                hero2.experience += 20;
+                if (hero2.experience >= 100) {
+                    hero2.level++;
+                    hero2.experience = 0;
+                }
+                alert(`${hero2.name} 防禦成功，擊敗了 ${hero1.name}！`);
+            }
+            updateHeroList();
+        }
+
+        function updateHeroList() {
+            const heroList = document.getElementById("heroList");
+            heroList.innerHTML = "";
+            
+            heroes.forEach(hero => {
+                const heroCard = document.createElement("div");
+                heroCard.className = "hero-card";
+                heroCard.innerHTML = `
+                    <img src="https://api.dicebear.com/6.x/pixel-art/svg?seed=${hero.name}" class="hero-image" alt="${hero.name}">
+                    <div>
+                        <h3>${hero.name}</h3>
+                        <p>等級: ${hero.level} | 能量: ${hero.power} | 經驗: ${hero.experience}/100</p>
+                    </div>
+                `;
+                heroList.appendChild(heroCard);
+            });
+        }
+    </script>
 </body>
 </html>
 
