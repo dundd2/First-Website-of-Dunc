@@ -1,8 +1,8 @@
 # First Website of Dunc
 
-This project represents my first foray into web development and HTML coding. I began working on it on June 2, 2022, as a way to teach myself the foundations of HTML through hands-on practice.
+This project represents my first foray into web development and HTML coding. I began working on it on June 2, 2022, to teach myself the foundations of HTML through hands-on practice.
 
-The code and site were developed entirely by me, without the use of templates or borrowed code. My learning resources were primarily the HTML tutorials and reference materials provided by [w3schools.com](https://www.w3schools.com).
+I developed the code and site entirely without the use of templates or borrowed code. My learning resources were primarily the HTML tutorials and reference materials provided by [w3schools.com](https://www.w3schools.com).
 
 As my inaugural coding project, the site is relatively simple but gave me essential experience in:
 
@@ -13,7 +13,7 @@ As my inaugural coding project, the site is relatively simple but gave me essent
 - Page structure and layout with div elements
 - Hosting static web pages
 
-This project represents an important first step for me in building real-world skills in web development. I'm proud of having taught myself HTML fundamentals through creating this site from scratch. 
+This project represents an important first step for me in building real-world skills in web development. I'm proud of having taught myself HTML fundamentals by creating this site from scratch. 
 
 Moving forward, I plan to continue improving and expanding the site over time as I learn new skills, particularly in Java and PHP. I hope this page will be much better when I update to version 1.0.
 
