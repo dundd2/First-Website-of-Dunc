@@ -1,5 +1,5 @@
 # First Website of Dunc
-
+View it on https://dundd2.github.io/firstwebsideofdunc/
 This project represents my first foray into web development and HTML coding. I began working on it on June 2, 2022, to teach myself the foundations of HTML through hands-on practice.
 
 I developed the code and site entirely without the use of templates or borrowed code. My learning resources were primarily the HTML tutorials and reference materials provided by [w3schools.com](https://www.w3schools.com).
