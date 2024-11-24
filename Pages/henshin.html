@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Firstwebsideofdunc</title>
-<link rel="icon" type="image/x-icon" href="/firstwebsideofdunc/img/favicon.ico">
+<link rel="icon" type="image/x-icon" href="../img/favicon.ico">
 </head>
 <style>
 body {
@@ -99,26 +98,26 @@ body {
 </style>
 <div class="motto_label">
   <h1> henshin!</h1>
-<img src="/firstwebsideofdunc/img/akibaranger henshin.png"  id="henshin!" height="600px">
+<img src="../img/akibaranger henshin.png"  id="henshin!" height="600px">
 </div>
 <script>
   window.onload = function() {
     var img = document.getElementById("henshin!");
-    var audio = new Audio('/firstwebsideofdunc/img/Henshin Sound.mp3');
+    var audio = new Audio('../img/Henshin Sound.mp3');
     var gifTimer;
     img.addEventListener('mousedown', function() {
-      img.src = '/firstwebsideofdunc/img/henshin!.gif';
+      img.src = '../img/henshin!.gif';
       audio.play();
     });
     img.addEventListener('mouseup', function() {
       clearTimeout(gifTimer); 
-      img.src = '/firstwebsideofdunc/img/akibaranger henshin.png';
+      img.src = '../img/akibaranger henshin.png';
       audio.play();
     });
     img.addEventListener('load', function() {
       if (img.src.includes('.gif')) {
         gifTimer = setTimeout(function() {
-          img.src = '/firstwebsideofdunc/img/akibaranger henshin.png';
+          img.src = '../img/akibaranger henshin.png';
         }, 5000);
       }
     });
@@ -129,7 +128,7 @@ body {
   <div style="color: black; background-color: #F7F8F9; padding: 20px;">
       <div class="row">
           <div class="footer" style="text-align: left; padding: 0px;">
-            <a href="/firstwebsideofdunc/index.html"><img src="/firstwebsideofdunc/img/patch.png" alt="vbeta" style="width:42px;height:50px;"></a>
+            <a href="../index.html"><img src="../img/patch.png" alt="vbeta" style="width:42px;height:50px;"></a>
             Go back to [firstwebsideofdunc] main page </a>  
           </div>
           <div class="col-md-6" style="text-align: right; padding: 0px;">
