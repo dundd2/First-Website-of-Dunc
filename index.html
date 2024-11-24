@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>DunDD's Website v0.6</title>
+    <title>firstwebsideofdunc v0.7</title>
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
-    <meta name="description" content="DunDD's personal website showcasing various updates and content.">
-    <meta name="keywords" content="DunDD, personal website, updates, content">
-    <meta name="author" content="DunDD">
+    <meta name="description" content="dunc personal website showcasing various updates and content.">
+    <meta name="keywords" content="dunc, personal website, updates, content">
+    <meta name="author" content="dunc">
     <meta name="robots" content="index, follow">
-    <meta property="og:title" content="DunDD's Website v0.6">
-    <meta property="og:description" content="DunDD's personal website showcasing various updates and content.">
+    <meta property="og:title" content="dunc's Website v0.7">
+    <meta property="og:description" content="dunc's personal website showcasing various updates and content.">
     <meta property="og:type" content="website">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/all.min.css">
@@ -21,6 +21,7 @@
             --light-bg: #f8f9fa;
             --dark-card-bg: #1e1e1e;
             --dark-text-color: #e0e0e0;
+            --navbar-height: 80px;  /* 設定導航欄高度變量 */
         }
 
         body {
@@ -28,6 +29,8 @@
             background-color: var(--light-bg);
             transition: background-color 0.3s, color 0.3s;
             line-height: 1.6;
+            scroll-padding-top: var(--navbar-height);
+            padding-top: var(--navbar-height);
         }
 
         .navbar {
@@ -36,6 +39,12 @@
             transition: background 0.3s;
             padding: 1rem 0;
             z-index: 1000;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--navbar-height);
+            z-index: 1030;
         }
 
         .content-card {
@@ -45,6 +54,7 @@
             margin: 20px 0;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             transition: transform 0.3s, box-shadow 0.3s, background 0.3s, color 0.3s;
+            scroll-margin-top: var(--navbar-height);
         }
 
         .content-card:hover {
@@ -582,6 +592,548 @@
         body.dark-mode .hover-bg:hover {
             background: rgba(255,255,255,0.05);
         }
+
+        .bingchiling-image {
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .bingchiling-image:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .content-card {
+            max-width: 1200px;
+            margin: 0 auto;
+            /* ...existing content-card styles... */
+        }
+
+        #bingchilingResult {
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1.2rem;
+            transform: scale(0);
+            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        #bingchilingResult.show {
+            transform: scale(1);
+        }
+
+        .result-positive {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+        }
+
+        .result-negative {
+            background: linear-gradient(135deg, #f44336, #d32f2f);
+            color: white;
+        }
+
+        .result-neutral {
+            background: linear-gradient(135deg, #ff9800, #f57c00);
+            color: white;
+        }
+
+        /* Add floating effect to cards */
+        .content-card {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Improve navbar styling */
+        .navbar {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            padding-top: 80px; /* Add padding to account for fixed navbar */
+        }
+
+        /* Fix navbar positioning */
+        .navbar {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1030;
+        }
+
+        .navbar-collapse {
+            max-height: calc(100vh - 75px);
+            overflow-y: auto;
+        }
+
+        /* Standardize content width */
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        /* Enhanced Bing Chiling effects */
+        .bingchiling-result {
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.5s ease-out;
+        }
+
+        .bingchiling-result.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .social-credit-animation {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 48px;
+            font-weight: bold;
+            pointer-events: none;
+            animation: socialCredit 1.5s ease-out forwards;
+            z-index: 1040;
+        }
+
+        @keyframes socialCredit {
+            0% { 
+                transform: translate(-50%, -50%) scale(0.5);
+                opacity: 0;
+            }
+            50% { 
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 1;
+            }
+            100% { 
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* Add hover effects to all cards */
+        .content-card {
+            transform-style: preserve-3d;
+            transition: all 0.3s ease;
+        }
+
+        .content-card:hover {
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        /* Add these new styles for the contact section */
+        .contact-section {
+            padding: 4rem 0;
+            background: var(--light-bg);
+            color: var(--dark-text-color);
+        }
+
+        .contact-intro {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+        }
+
+        .formkit-collection-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .link-collection {
+            display: grid;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .link-collection {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .contact-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .icon-wrapper {
+            width: 24px;
+            height: 24px;
+            margin-right: 1rem;
+        }
+
+        .social-icon {
+            width: 100%;
+            height: 100%;
+        }
+
+        body.dark-mode .contact-section {
+            background: var(--dark-bg);
+        }
+
+        body.dark-mode .contact-link {
+            background: var(--dark-card-bg);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-link.active {
+            color: var(--primary-color) !important;
+            font-weight: 500;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        body.dark-mode .nav-link.active {
+            color: var(--primary-color) !important;
+        }
+
+        .contact-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 100%;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+            color: var(--primary-color);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-card:hover .contact-icon {
+            transform: scale(1.2);
+        }
+
+        .contact-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .contact-card p {
+            font-size: 0.9rem;
+            text-align: center;
+            margin-bottom: 0;
+            color: #666;
+        }
+
+        /* Dark mode styles */
+        body.dark-mode .contact-card {
+            background: var(--dark-card-bg);
+            color: var(--dark-text-color);
+        }
+
+        body.dark-mode .contact-card p {
+            color: #999;
+        }
+
+        body.dark-mode .contact-card:hover {
+            color: var(--primary-color);
+        }
+
+        /* Section animations */
+        .section-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .section-animate.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Content card hover effects */
+        .content-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .content-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        /* Navigation link effects */
+        .nav-link {
+            position: relative;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Section specific animations */
+        #section1 .content-card {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        #section2 .content-card {
+            animation: slideInRight 0.8s ease-out;
+        }
+
+        #section3 .content-card {
+            animation: fadeInLeft 0.8s ease-out;
+        }
+
+        #section4 .content-card {
+            animation: bounceIn 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% {
+                opacity: 0.9;
+                transform: scale(1.1);
+            }
+            80% {
+                opacity: 1;
+                transform: scale(0.89);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* 定義新的特效樣式 */
+        .bingchiling-result {
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.5s ease-out;
+            text-align: center;
+            font-size: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .bingchiling-result.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .result-positive {
+            color: #4CAF50;
+        }
+
+        .result-negative {
+            color: #f44336;
+        }
+
+        .social-credit-animation {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            font-weight: bold;
+            pointer-events: none;
+            animation: creditAnimation 1.5s ease-out forwards;
+            z-index: 1040;
+        }
+
+        @keyframes creditAnimation {
+            0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            100% { opacity: 0; transform: translate(-50%, -150%) scale(2); }
+        }
+        .cookie-consent {
+            position: fixed;
+            bottom: -100%;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 20px;
+            z-index: 1000;
+            transition: bottom 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cookie-consent.show {
+            bottom: 0;
+        }
+
+        .cookie-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* 修改 Bing Chiling 投票結果樣式 */
+        .result-box {
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            color: white; /* 設定文字顏色為白色 */
+        }
+
+        .result-positive {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+        }
+
+        .result-negative {
+            background: linear-gradient(135deg, #f44336, #d32f2f);
+        }
+
+        .result-neutral {
+            background: linear-gradient(135deg, #ff9800, #f57c00);
+        }
+        .search-modal {
+            backdrop-filter: blur(8px);
+        }
+
+        .search-container {
+            max-width: 700px;
+            width: 90%;
+        }
+
+        .search-result-item {
+            transition: all 0.2s ease;
+        }
+
+        .search-result-item:hover {
+            background-color: var(--light-bg);
+            transform: translateX(5px);
+        }
+
+        .search-filters {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        mark {
+            background-color: rgba(var(--primary-color-rgb), 0.2);
+            color: inherit;
+            padding: 0 2px;
+            border-radius: 2px;
+        }
+
+        body.dark-mode .search-result-item:hover {
+            background-color: var(--dark-card-bg);
+        }
+
+        body.dark-mode mark {
+            background-color: rgba(var(--primary-color-rgb), 0.4);
+        }
+
+        .no-results i {
+            opacity: 0.5;
+        }
     </style>
 </head>
 <body>
@@ -593,40 +1145,35 @@
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="#">
-                <img src="img/patch.png" alt="DunDD logo" width="42" height="50">
-                <h4 class="ms-3 mb-0">firstwebsideofdunc</h4>
+                <img src="img/patch.png" alt="dunc logo" width="32" height="32">
+                <h5 class="ms-2 mb-0">firstwebsideofdunc</h5>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#section1">Home</a>
+                        <a class="nav-link" href="#bingchilingCard">Vote</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#section2">Legacy</a>
+                        <a class="nav-link" href="#legacyVersions">Legacy Versions</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#section3">(WIP)Memoir - Anthology Series</a>
+                        <a class="nav-link" href="#otherPages">Other Pages</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#section4">Other Pages</a>
+                        <a class="nav-link" href="#memoir">Memoir</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#section5">Other Websites</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="javascript:void(0)" onclick="showSearch()">
-                            <i class="fas fa-search"></i> Search
-                        </a>
+                        <a class="nav-link" href="#otherWebsites">Other DunDD Websites</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div class="version-badge">v0.6</div>
+    <div class="version-badge">v0.7</div>
 
     <!-- Add skip to content link for accessibility -->
     <a href="#main-content" class="skip-to-content">Skip to main content</a>
@@ -638,9 +1185,9 @@
     <main id="main-content">
         <div class="container py-4" id="section1">
             <div class="content-card">
-               <p>Hello world by ddd</p>
+                <h1 class="text-center mb-4">Hello world by ddd</h1>
                 <p>This website was launched on June 2, 2022.</p>
-                <p>You are watching the update for [firstwebsideofdunc] v0.6 update at 24-11-2024 04:40</p>
+                <p>You are watching the update for [firstwebsideofdunc] v0.7 update at 25-11-2024 00:00</p>
             </div>
 
             <div class="content-card">
@@ -650,24 +1197,25 @@
                 </div>
             </div>
 
-            <div class="content-card">
-                <img src="img/bingchiling.png" alt="i love bingchiling">
+            <div class="content-card" id="bingchilingCard">
+                <img src="img/bingchiling.png" alt="i love bingchiling" class="img-fluid mb-4 bingchiling-image">
                 <h2>Do you love bingchiling?</h2>
-                <form class="mb-4">
-                    <div class="form-check">
+                <form class="mb-4" id="bingchilingForm">
+                    <div class="form-check mb-3 hover-effect">
                         <input class="form-check-input" type="radio" name="bingchilling" id="YES" value="YES">
                         <label class="form-check-label" for="YES">YES</label>
                     </div>
-                    <div class="form-check">
+                    <div class="form-check mb-3 hover-effect">
                         <input class="form-check-input" type="radio" name="bingchilling" id="NO" value="NO">
                         <label class="form-check-label" for="NO">NO</label>
                     </div>
-                    <div class="form-check">
+                    <div class="form-check mb-3 hover-effect">
                         <input class="form-check-input" type="radio" name="bingchilling" id="EM" value="EM.....">
                         <label class="form-check-label" for="EM">EM.....</label>
                     </div>
                     <button type="submit" class="btn btn-primary mt-3">Submit</button>
                 </form>
+                <div id="bingchilingResult" class="bingchiling-result mt-4"></div>
             </div>
 
             <div class="content-card">
@@ -691,15 +1239,11 @@
         </div>
 
         <div class="container py-4" id="section2">
-            <div class="content-card">
+            <div class="content-card" id="legacyVersions">
                 <h2>Legacy Versions:</h2>
                 <div class="quick-links">
-                    <a href="https://web.archive.org/web/20220602105159/https://firstwebside-of-dunc4.on.drv.tw/firstwebsideofdunc/" class="link-card">
-                        <img src="img/patch.png" alt="Old Main Page">
-                        <span>Old [firstwebsideofdunc] main page (web.archive.org)</span>
-                    </a>
                     <a href="Legacy Versions/v0.01.html" class="link-card">
-                        <img src="img/v0.01.png" alt="v0.01">
+                        <img src="img/patch.png" alt="v0.01">
                         <span>Go to [firstwebsideofdunc] v0.01</span>
                     </a>
                     <a href="Legacy Versions/v0.02.html" class="link-card">
@@ -722,36 +1266,48 @@
                         <img src="img/patch.png" alt="v0.5">
                         <span>Go to [firstwebsideofdunc] v0.5</span>
                     </a>
+                    <a href="Legacy Versions/v0.6.html" class="link-card">
+                        <img src="img/patch.png" alt="v0.6">
+                        <span>Go to [firstwebsideofdunc] v0.6</span>
+                    </a>
                 </div>
             </div>
 
-            <div class="content-card">
+            <div class="content-card" id="otherPages">
                 <h2>Other Pages:</h2>
                 <div class="quick-links">
                     <a href="Pages/log.html" class="link-card">
                         <img src="img/patch.png" alt="Update Log">
                         <span>Update Log</span>
                     </a>
-                    <a href="Pages/vbeta.html" class="link-card">
+                    <a href="vbeta.html" class="link-card">
                         <img src="img/patch.png" alt="vbeta">
                         <span>Go to [firstwebsideofdunc] vbeta</span>
-                    </a>
-                    <a href="Pages/Compare AI upscaling p2.html" class="link-card">
-                        <img src="img/patch.png" alt="Compare AI upscaling p2">
-                        <span>Compare AI upscaling p2</span>
                     </a>
                     <a href="Pages/Compare AI upscaling.html" class="link-card">
                         <img src="img/patch.png" alt="Compare AI upscaling">
                         <span>Compare AI upscaling</span>
                     </a>
+                    <a href="Pages/Compare AI upscaling p2.html" class="link-card">
+                        <img src="img/patch.png" alt="Compare AI upscaling page 2">
+                        <span>Compare AI upscaling page 2</span>
+                    </a>
                     <a href="Pages/henshin.html" class="link-card">
                         <img src="img/patch.png" alt="Henshin">
                         <span>Henshin</span>
                     </a>
+                    <a href="Pages/funfacts.html" class="link-card">
+                        <img src="img/patch.png" alt="funfacts">
+                        <span>Dundd Funfacts</span>
+                    </a>
+                    <a href="https://web.archive.org/web/20220602105159/https://firstwebside-of-dunc4.on.drv.tw/firstwebsideofdunc/" class="link-card">
+                        <img src="img/patch.png" alt="Old Main Page">
+                        <span>Go to [firstwebsideofdunc]v0.01 (web.archive.org)</span>
+                    </a>
                 </div>
             </div>
 
-            <div class="content-card">
+            <div class="content-card" id="memoir">
                 <h2>(WIP)Memoir - Anthology Series:</h2>
                 <div class="quick-links">
                     <a href="img/Dun.DD Threads 香港中學系列文集.pdf" class="link-card">
@@ -762,7 +1318,7 @@
                         <img src="img/dunddthreadslogo.png" alt="Chinese Version with Uni">
                         <span>Secondary School+Foundation Anthology Series(Chinese Ver) </span>
                     </a>
-                    <a href="Dun.DD Threads Hong Kong Secondary School Anthology Series-Deepl.pdf" class="link-card">
+                    <a href="img/Dun.DD Threads Hong Kong Secondary School Anthology Series-Deepl.pdf" class="link-card">
                         <img src="img/dunddthreadslogo.png" alt="English Version">
                         <span>Secondary School+Foundation Anthology Series(DeepL Translate English Ver)</span>
                     </a>
@@ -771,8 +1327,8 @@
         </div>
         <div class="container py-4" id="section3">
             <div class="content-card">
-                <h2>About DunDD</h2>
-                <p>Welcome to DunDD's personal website! Here, you can find various updates, content, and projects that I am working on. I am passionate about web development, technology, and sharing my knowledge with others.</p>
+                <h2>About dunc</h2>
+                <p>Welcome to dunc's personal website! Here, you can find various updates, content, and projects that I am working on. I am passionate about web development, technology, and sharing my knowledge with others.</p>
                 <p>Feel free to explore the different sections of the website to learn more about my work and interests.</p>
             </div>
         </div>
@@ -782,7 +1338,7 @@
             <div class="content-card">
                 <h2>Testimonials</h2>
                 <div class="testimonial">
-                    <p>"DunDD's website is a fantastic resource for anyone interested in web development. The content is always up-to-date and very informative." - Jane Doe</p>
+                    <p>"dunc's website is a fantastic resource for anyone interested in web development. The content is always up-to-date and very informative." - Jane Doe</p>
                 </div>
                 <div class="testimonial">
                     <p>"I love the design and functionality of this website. It's clear that a lot of effort has gone into making it user-friendly and visually appealing." - John Smith</p>
@@ -790,21 +1346,56 @@
             </div>
         </div>
 
-        <div class="content-card">
+        <div class="content-card" id="otherWebsites">
             <h2>Other Websites Made by DunDD:</h2>
-            <div class="quick-links">
-                <a href="https://dundd2.github.io/Portfolio-Website/" class="link-card">
-                    <img src="img/Portfolio.png" alt="Portfolio Website">
-                    <span>Duncan Law - Portfolio Website</span>
-                </a>
-                <a href="https://dundd2.github.io/IFY-Website-Design-and-Development-Homework-2023-akibTsuu-Film-Productions/index.html" class="link-card">
-                    <img src="img/akblogo.png" alt="WSDD Homework">
-                    <span>Website Design and Development Homework 2023-akibTsuu Film Productions</span>
-                </a>
-                <a href="https://dundd2.github.io/Y1-Introduction-to-Multimedia-Multimedia-Web-Site-Development/akibtsuuhome.html" class="link-card">
-                    <img src="img/akblogo.png" alt="Y1 Multimedia">
-                    <span>Y1-Introduction to Multimedia-Multimedia Web Site Development</span>
-                </a>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <a href="https://dundd2.github.io/Portfolio-Website/" class="link-card">
+                        <img src="img/Portfolio.png" alt="Portfolio Website" style="width: 200px; height: 120px; object-fit: cover;">
+                        <span>Duncan Law - Portfolio Website</span>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="https://dundd2.github.io/IFY-Website-Design-and-Development-Homework-2023-akibTsuu-Film-Productions/index.html" class="link-card">
+                        <img src="img/akblogo.png" alt="WSDD Homework" style="width: 200px; height: 120px; object-fit: cover;">
+                        <span>akibTsuu Film Productions</span>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="https://dundd2.github.io/Y1-Introduction-to-Multimedia-Multimedia-Web-Site-Development/akibtsuuhome.html" class="link-card">
+                        <img src="img/akblogo.png" alt="Y1 Multimedia" style="width: 200px; height: 120px; object-fit: cover;">
+                        <span>Multimedia Web Site Development</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 修復聯絡方式區塊 -->
+        <div class="container py-4" id="contact">
+            <div class="content-card">
+                <h2 class="text-center mb-4">Let's Connect</h2>
+                <p class="text-center lead mb-5">Feel free to reach out for collaborations or just to say hello!</p>
+                
+                <div class="row g-4 justify-content-center">
+                    <div class="col-md-4">
+                        <a href="https://github.com/dundd2" class="contact-card" target="_blank" rel="noreferrer noopener">
+                            <div class="contact-icon">
+                                <i class="fab fa-github"></i>
+                            </div>
+                            <h3>GitHub</h3>
+                            <p>Check out my projects</p>
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="https://www.linkedin.com/in/duncan-l400" class="contact-card" target="_blank" rel="noreferrer noopener">
+                            <div class="contact-icon">
+                                <i class="fab fa-linkedin"></i>
+                            </div>
+                            <h3>LinkedIn</h3>
+                            <p>Let's connect professionally</p>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
@@ -819,15 +1410,26 @@
         <div class="floating-action" onclick="showSettings()">⚙️</div>
     </div>
 
-    <!-- Add Search Modal -->
+    <!-- 更新搜尋模態框 -->
     <div class="search-modal" id="searchModal">
         <div class="search-container">
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h3 class="m-0">Search</h3>
                 <button class="btn-close" onclick="hideSearch()"></button>
             </div>
-            <input type="text" class="form-control mb-3" id="searchInput" placeholder="Search...">
-            <div class="search-results" id="searchResults"></div>
+            <div class="input-group mb-3">
+                <span class="input-group-text"><i class="fas fa-search"></i></span>
+                <input type="text" class="form-control" id="searchInput" placeholder="Enter keywords to search...">
+                <button class="btn btn-primary" type="button" onclick="performSearch()">Search</button>
+            </div>
+            <div class="search-filters mb-3">
+                <div class="btn-group">
+                    <button class="btn btn-outline-primary active" data-filter="all">All</button>
+                    <button class="btn btn-outline-primary" data-filter="pages">Pages</button>
+                    <button class="btn btn-outline-primary" data-filter="content">Content</button>
+                </div>
+            </div>
+            <div id="searchResults" class="search-results"></div>
         </div>
     </div>
 
@@ -838,8 +1440,7 @@
     </div>
 
     <footer>
-        <p>&copy; 2022-2024 DunDD's Website. All rights reserved.</p>
-        <p><a href="mailto:dunddaatuk@gmail.com">Contact Us</a></p>
+        <p>&copy; 2022-2024 dunc's Website. All rights reserved.</p>
     </footer>
 
     <script>
@@ -933,9 +1534,19 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                
+                const targetId = this.getAttribute('href').slice(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    const elementPosition = targetElement.offsetTop;
+                    const offsetPosition = elementPosition - 80; // 考慮導航欄高度
+                    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
 
@@ -966,7 +1577,7 @@
             setTimeout(() => {
                 const notification = document.createElement('div');
                 notification.classList.add('notification');
-                notification.textContent = 'Welcome to DunDD\'s Website!';
+                notification.textContent = 'Welcome to Dunc\'s Website!';
                 document.body.appendChild(notification);
                 
                 requestAnimationFrame(() => {
@@ -1072,7 +1683,20 @@
 
         function acceptCookies() {
             localStorage.setItem('cookieAccepted', 'true');
-            document.getElementById('cookieConsent').classList.remove('show');
+            const cookieConsent = document.getElementById('cookieConsent');
+            cookieConsent.style.bottom = '-100%';
+            setTimeout(() => {
+                cookieConsent.remove();
+            }, 300);
+        }
+
+        function declineCookies() {
+            localStorage.setItem('cookieAccepted', 'false');
+            const cookieConsent = document.getElementById('cookieConsent');
+            cookieConsent.style.bottom = '-100%';
+            setTimeout(() => {
+                cookieConsent.remove();
+            }, 300);
         }
 
         // Image lazy loading
@@ -1138,10 +1762,431 @@
 
         // Show welcome toast on load
         window.addEventListener('load', () => {
-            showToast('Welcome to DunDD\'s Website! 👋');
+            showToast('Welcome to Dunc\'s Website! 👋');
+        });
+
+        // Add Bing Chiling form handling
+        document.getElementById('bingchilingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const selected = document.querySelector('input[name="bingchilling"]:checked');
+            if (!selected) return;
+
+            const resultDiv = document.getElementById('bingchilingResult');
+            const image = document.querySelector('.bingchiling-image');
+            
+            let message = '';
+            let creditChange = '';
+            let className = '';
+            
+            switch(selected.value) {
+                case 'YES':
+                    message = '🌟 You truly appreciate the glory of Bing Chiling! 🍦';
+                    creditChange = '+100';
+                    className = 'result-positive';
+                    image.style.animation = 'bounce 1s ease infinite';
+                    break;
+                case 'NO':
+                    message = '❌ Perhaps you need to reconsider your life choices! 😢';
+                    creditChange = '-50';
+                    className = 'result-negative';
+                    image.style.animation = 'shake 0.5s ease';
+                    break;
+                case 'EM.....':
+                    message = '🤔 Your indecision has been noted... 📝';
+                    creditChange = '+0';
+                    className = 'result-neutral';
+                    image.style.animation = 'wobble 1s ease';
+                    break;
+            }
+            
+            // Show floating social credit score
+            const creditDiv = document.createElement('div');
+            creditDiv.className = 'social-credit-animation';
+            creditDiv.textContent = creditChange;
+            creditDiv.style.color = className === 'result-positive' ? '#4CAF50' : 
+                                   className === 'result-negative' ? '#f44336' : '#ff9800';
+            document.body.appendChild(creditDiv);
+            
+            setTimeout(() => creditDiv.remove(), 1500);
+
+            // Update result with animation
+            resultDiv.innerHTML = `
+                <div class="result-box ${className}">
+                    <h3 class="mb-2">Social Credit: ${creditChange}</h3>
+                    <p class="mb-0">${message}</p>
+                </div>
+            `;
+            
+            resultDiv.classList.add('show');
+            
+            // Add confetti effect for positive response
+            if (selected.value === 'YES') {
+                createConfetti();
+            }
+        });
+
+        // Add confetti effect
+        function createConfetti() {
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animationDelay = Math.random() * 3 + 's';
+                confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 3000);
+            }
+        }
+
+        // Add this CSS for animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes bounce {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-20px); }
+            }
+            
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-10px); }
+                75% { transform: translateX(10px); }
+            }
+            
+            @keyframes wobble {
+                0%, 100% { transform: rotate(0); }
+                25% { transform: rotate(-5deg); }
+                75% { transform: rotate(5deg); }
+            }
+            
+            .confetti {
+                position: fixed;
+                width: 10px;
+                height: 10px;
+                top: -10px;
+                animation: fall 3s linear forwards;
+            }
+            
+            @keyframes fall {
+                to {
+                    transform: translateY(100vh) rotate(360deg);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Add active state to navigation links
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link[data-section]');
+            
+            // Function to update active state
+            function updateActiveLink() {
+                const scrollPosition = window.scrollY;
+                
+                document.querySelectorAll('section[id]').forEach(section => {
+                    const sectionTop = section.offsetTop - 100;
+                    const sectionBottom = sectionTop + section.offsetHeight;
+                    const sectionId = section.id;
+                    
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('data-section') === sectionId) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }
+
+            // Update active state on scroll
+            window.addEventListener('scroll', updateActiveLink);
+            
+            // Update active state on click
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Initial check for active link
+            updateActiveLink();
+        });
+
+        // Intersection Observer for section animations
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('.container > div').forEach(section => {
+            section.classList.add('section-animate');
+            observer.observe(section);
+        });
+
+        // 修復右側設定按鈕沒有反應的問題
+        function showSettings() {
+            const settingsHtml = `
+                <div class="modal fade" id="settingsModal" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Settings</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label class="form-label">Theme</label>
+                                    <select class="form-select" id="themeSelect">
+                                        <option value="light">Light</option>
+                                        <option value="dark">Dark</option>
+                                        <option value="auto">Auto</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Font Size</label>
+                                    <input type="range" class="form-range" id="fontSizeRange" min="12" max="20" value="16">
+                                    <div class="text-center" id="fontSizeValue">16px</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // 添加設定模態框��頁面
+            if (!document.getElementById('settingsModal')) {
+                document.body.insertAdjacentHTML('beforeend', settingsHtml);
+            }
+
+            // 初始化模態框
+            const settingsModal = new bootstrap.Modal(document.getElementById('settingsModal'));
+            
+            // 綁定事件處理程序
+            const themeSelect = document.getElementById('themeSelect');
+            const fontSizeRange = document.getElementById('fontSizeRange');
+            const fontSizeValue = document.getElementById('fontSizeValue');
+
+            // 載入儲存的設定
+            themeSelect.value = localStorage.getItem('theme') || 'light';
+            const savedFontSize = localStorage.getItem('fontSize') || '16';
+            fontSizeRange.value = savedFontSize;
+            fontSizeValue.textContent = `${savedFontSize}px`;
+
+            // 主題變更處理
+            themeSelect.addEventListener('change', (e) => {
+                const theme = e.target.value;
+                localStorage.setItem('theme', theme);
+                if (theme === 'dark') {
+                    document.body.classList.add('dark-mode');
+                } else {
+                    document.body.classList.remove('dark-mode');
+                }
+            });
+
+            // 字體大小變更處理
+            fontSizeRange.addEventListener('input', (e) => {
+                const size = e.target.value;
+                localStorage.setItem('fontSize', size);
+                document.documentElement.style.fontSize = size + 'px';
+                fontSizeValue.textContent = `${size}px`;
+            });
+
+            settingsModal.show();
+        }
+
+        // 修復 Cookie Consent
+        function acceptCookies() {
+            localStorage.setItem('cookieAccepted', 'true');
+            const cookieConsent = document.getElementById('cookieConsent');
+            cookieConsent.style.bottom = '-100%';
+            setTimeout(() => {
+                cookieConsent.remove();
+            }, 300);
+        }
+
+        function declineCookies() {
+            localStorage.setItem('cookieAccepted', 'false');
+            const cookieConsent = document.getElementById('cookieConsent');
+            cookieConsent.style.bottom = '-100%';
+            setTimeout(() => {
+                cookieConsent.remove();
+            }, 300);
+        }
+
+        // 新增 Bing Chiling 特效
+        function addBingChilingEffect() {
+            const bingchilingCard = document.querySelector('#bingchilingCard');
+            
+            // 添加懸浮特效
+            bingchilingCard.addEventListener('mousemove', (e) => {
+                const { left, top, width, height } = bingchilingCard.getBoundingClientRect();
+                const x = (e.clientX - left) / width;
+                const y = (e.clientY - top) / height;
+                
+                bingchilingCard.style.transform = `
+                    perspective(1000px)
+                    rotateY(${x * 20 - 10}deg)
+                    rotateX(${y * 20 - 10}deg)
+                    scale3d(1.02, 1.02, 1.02)
+                `;
+            });
+            
+            bingchilingCard.addEventListener('mouseleave', () => {
+                bingchilingCard.style.transform = 'none';
+            });
+        }
+
+        // 初始化特效
+        document.addEventListener('DOMContentLoaded', () => {
+            addBingChilingEffect();
+        });
+
+        // 改進的搜尋功能
+        function performSearch() {
+    const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+    const resultsContainer = document.getElementById('searchResults');
+    const activeFilter = document.querySelector('.search-filters .active').dataset.filter;
+    
+    // 清空之前的搜尋結果
+    resultsContainer.innerHTML = '';
+
+    // 搜尋條件檢查
+    if (searchTerm.length < 2) {
+        resultsContainer.innerHTML = '<p class="text-muted">Please enter at least 2 characters</p>';
+        return;
+    }
+
+    // 擴充搜尋內容並加入快取
+    const searchableContent = [
+        { 
+            title: 'Home', 
+            link: '#section1', 
+            description: 'Main page content and updates', 
+            type: 'pages',
+            keywords: ['home', 'main', 'update']
+        },
+        { 
+            title: 'Legacy Versions', 
+            link: '#legacyVersions', 
+            description: 'Browse old website versions', 
+            type: 'pages',
+            keywords: ['legacy', 'old', 'versions', 'history'] 
+        },
+        {
+            title: 'About', 
+            link: '#section3', 
+            description: 'Information about dunc', 
+            type: 'content',
+            keywords: ['about', 'introduction', 'info']
+        },
+        {
+            title: 'Update Log',
+            link: 'Pages/log.html',
+            description: 'Website update history',
+            type: 'pages',
+            keywords: ['log', 'update', 'history']
+        }
+    ];
+
+    // 搜尋邏輯
+    let results = searchableContent.filter(item => {
+        if (activeFilter !== 'all' && item.type !== activeFilter) return false;
+        
+        const titleMatch = item.title.toLowerCase().includes(searchTerm);
+        const descMatch = item.description.toLowerCase().includes(searchTerm);
+        const keywordMatch = item.keywords.some(keyword => 
+            keyword.toLowerCase().includes(searchTerm)
+        );
+        
+        return titleMatch || descMatch || keywordMatch;
+    });
+
+    // 顯示搜尋結果
+    if (results.length === 0) {
+        resultsContainer.innerHTML = `
+            <div class="no-results text-center p-4">
+                <i class="fas fa-search fa-3x mb-3 text-muted"></i>
+                <p class="text-muted">No results found for "${searchTerm}"</p>
+            </div>
+        `;
+        return;
+    }
+
+    // 建立搜尋結果元素
+    results.forEach(result => {
+        const resultElement = document.createElement('div');
+        resultElement.className = 'search-result-item p-3 border-bottom hover-bg';
+        resultElement.innerHTML = `
+            <a href="${result.link}" class="text-decoration-none d-block" onclick="handleSearchResult('${result.title}')">
+                <div class="d-flex align-items-center">
+                    <div class="flex-grow-1">
+                        <h5 class="mb-1">${highlightMatch(result.title, searchTerm)}</h5>
+                        <p class="mb-0 text-muted small">${highlightMatch(result.description, searchTerm)}</p>
+                    </div>
+                    <i class="fas fa-chevron-right text-muted"></i>
+                </div>
+            </a>
+        `;
+        resultsContainer.appendChild(resultElement);
+    });
+}
+
+// 移除之前的搜尋輸入監聽器，改用以下方式
+const searchInput = document.getElementById('searchInput');
+let searchDebounceTimeout;
+
+searchInput.addEventListener('input', function() {
+    clearTimeout(searchDebounceTimeout);
+    searchDebounceTimeout = setTimeout(() => {
+        performSearch();
+    }, 300);
+});
+
+// 防止搜尋結果消失
+searchInput.addEventListener('focus', () => {
+    if (searchInput.value.length >= 2) {
+        performSearch();
+    }
+});
+
+        // 反白關鍵字
+        function highlightMatch(text, searchTerm) {
+            const regex = new RegExp(`(${searchTerm})`, 'gi');
+            return text.replace(regex, '<mark>$1</mark>');
+        }
+
+        // 處理搜尋結果點擊
+        function handleSearchResult(title) {
+            hideSearch();
+            showToast(`Navigating to: ${title}`);
+        }
+
+        // 搜尋過濾器功能
+        document.querySelectorAll('.search-filters .btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.search-filters .btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                performSearch();
+            });
+        });
+
+        // 搜尋輸入防抖
+        let searchTimeout;
+        document.getElementById('searchInput').addEventListener('input', function() {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(performSearch, 300);
         });
     </script>
     <script defer src="js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-

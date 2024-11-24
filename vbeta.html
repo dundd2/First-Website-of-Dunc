@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>DunDD's Website v0.7</title>
+    <title>firstwebsideofdunc v0.7</title>
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
-    <meta name="description" content="DunDD's personal website showcasing various updates and content.">
-    <meta name="keywords" content="DunDD, personal website, updates, content">
-    <meta name="author" content="DunDD">
+    <meta name="description" content="dunc personal website showcasing various updates and content.">
+    <meta name="keywords" content="dunc, personal website, updates, content">
+    <meta name="author" content="dunc">
     <meta name="robots" content="index, follow">
-    <meta property="og:title" content="DunDD's Website v0.7">
-    <meta property="og:description" content="DunDD's personal website showcasing various updates and content.">
+    <meta property="og:title" content="dunc's Website v0.7">
+    <meta property="og:description" content="dunc's personal website showcasing various updates and content.">
     <meta property="og:type" content="website">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/all.min.css">
@@ -21,6 +21,7 @@
             --light-bg: #f8f9fa;
             --dark-card-bg: #1e1e1e;
             --dark-text-color: #e0e0e0;
+            --navbar-height: 80px;  /* 設定導航欄高度變量 */
         }
 
         body {
@@ -28,6 +29,8 @@
             background-color: var(--light-bg);
             transition: background-color 0.3s, color 0.3s;
             line-height: 1.6;
+            scroll-padding-top: var(--navbar-height);
+            padding-top: var(--navbar-height);
         }
 
         .navbar {
@@ -36,6 +39,12 @@
             transition: background 0.3s;
             padding: 1rem 0;
             z-index: 1000;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--navbar-height);
+            z-index: 1030;
         }
 
         .content-card {
@@ -45,6 +54,7 @@
             margin: 20px 0;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             transition: transform 0.3s, box-shadow 0.3s, background 0.3s, color 0.3s;
+            scroll-margin-top: var(--navbar-height);
         }
 
         .content-card:hover {
@@ -1039,6 +1049,91 @@
             0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
             100% { opacity: 0; transform: translate(-50%, -150%) scale(2); }
         }
+        .cookie-consent {
+            position: fixed;
+            bottom: -100%;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 20px;
+            z-index: 1000;
+            transition: bottom 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cookie-consent.show {
+            bottom: 0;
+        }
+
+        .cookie-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* 修改 Bing Chiling 投票結果樣式 */
+        .result-box {
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            color: white; /* 設定文字顏色為白色 */
+        }
+
+        .result-positive {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+        }
+
+        .result-negative {
+            background: linear-gradient(135deg, #f44336, #d32f2f);
+        }
+
+        .result-neutral {
+            background: linear-gradient(135deg, #ff9800, #f57c00);
+        }
+        .search-modal {
+            backdrop-filter: blur(8px);
+        }
+
+        .search-container {
+            max-width: 700px;
+            width: 90%;
+        }
+
+        .search-result-item {
+            transition: all 0.2s ease;
+        }
+
+        .search-result-item:hover {
+            background-color: var(--light-bg);
+            transform: translateX(5px);
+        }
+
+        .search-filters {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        mark {
+            background-color: rgba(var(--primary-color-rgb), 0.2);
+            color: inherit;
+            padding: 0 2px;
+            border-radius: 2px;
+        }
+
+        body.dark-mode .search-result-item:hover {
+            background-color: var(--dark-card-bg);
+        }
+
+        body.dark-mode mark {
+            background-color: rgba(var(--primary-color-rgb), 0.4);
+        }
+
+        .no-results i {
+            opacity: 0.5;
+        }
     </style>
 </head>
 <body>
@@ -1050,30 +1145,28 @@
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="#">
-                <img src="img/patch.png" alt="DunDD logo" width="42" height="50">
-                <h4 class="ms-3 mb-0">firstwebsideofdunc</h4>
+                <img src="img/patch.png" alt="dunc logo" width="32" height="32">
+                <h5 class="ms-2 mb-0">firstwebsideofdunc</h5>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#section1" data-section="section1">介紹</a>
+                        <a class="nav-link" href="#bingchilingCard">Vote</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#section2" data-section="section2">作品集</a>
+                        <a class="nav-link" href="#legacyVersions">Legacy Versions</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#section3" data-section="section3">博客</a>
+                        <a class="nav-link" href="#otherPages">Other Pages</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#contact" data-section="contact">聯絡方式</a>
+                        <a class="nav-link" href="#memoir">Memoir</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="javascript:void(0)" onclick="showSearch()">
-                            <i class="fas fa-search"></i> Search
-                        </a>
+                        <a class="nav-link" href="#otherWebsites">Other DunDD Websites</a>
                     </li>
                 </ul>
             </div>
@@ -1092,10 +1185,9 @@
     <main id="main-content">
         <div class="container py-4" id="section1">
             <div class="content-card">
-                <h1 class="text-center mb-4">Welcome to DunDD's Website</h1>
-                <p>Hello world by ddd</p>
+                <h1 class="text-center mb-4">Hello world by ddd</h1>
                 <p>This website was launched on June 2, 2022.</p>
-                <p>You are watching the update for [firstwebsideofdunc] v0.7 update at 24-11-2024 04:40</p>
+                <p>You are watching the update for [firstwebsideofdunc] v0.7 update at 25-11-2024 00:00</p>
             </div>
 
             <div class="content-card">
@@ -1147,15 +1239,11 @@
         </div>
 
         <div class="container py-4" id="section2">
-            <div class="content-card">
+            <div class="content-card" id="legacyVersions">
                 <h2>Legacy Versions:</h2>
                 <div class="quick-links">
-                    <a href="https://web.archive.org/web/20220602105159/https://firstwebside-of-dunc4.on.drv.tw/firstwebsideofdunc/" class="link-card">
-                        <img src="img/patch.png" alt="Old Main Page">
-                        <span>Old [firstwebsideofdunc] main page (web.archive.org)</span>
-                    </a>
                     <a href="Legacy Versions/v0.01.html" class="link-card">
-                        <img src="img/v0.01.png" alt="v0.01">
+                        <img src="img/patch.png" alt="v0.01">
                         <span>Go to [firstwebsideofdunc] v0.01</span>
                     </a>
                     <a href="Legacy Versions/v0.02.html" class="link-card">
@@ -1185,33 +1273,41 @@
                 </div>
             </div>
 
-            <div class="content-card">
+            <div class="content-card" id="otherPages">
                 <h2>Other Pages:</h2>
                 <div class="quick-links">
                     <a href="Pages/log.html" class="link-card">
                         <img src="img/patch.png" alt="Update Log">
                         <span>Update Log</span>
                     </a>
-                    <a href="Pages/vbeta.html" class="link-card">
+                    <a href="vbeta.html" class="link-card">
                         <img src="img/patch.png" alt="vbeta">
                         <span>Go to [firstwebsideofdunc] vbeta</span>
-                    </a>
-                    <a href="Pages/Compare AI upscaling p2.html" class="link-card">
-                        <img src="img/patch.png" alt="Compare AI upscaling p2">
-                        <span>Compare AI upscaling p2</span>
                     </a>
                     <a href="Pages/Compare AI upscaling.html" class="link-card">
                         <img src="img/patch.png" alt="Compare AI upscaling">
                         <span>Compare AI upscaling</span>
                     </a>
+                    <a href="Pages/Compare AI upscaling p2.html" class="link-card">
+                        <img src="img/patch.png" alt="Compare AI upscaling page 2">
+                        <span>Compare AI upscaling page 2</span>
+                    </a>
                     <a href="Pages/henshin.html" class="link-card">
                         <img src="img/patch.png" alt="Henshin">
                         <span>Henshin</span>
                     </a>
+                    <a href="Pages/funfacts.html" class="link-card">
+                        <img src="img/patch.png" alt="funfacts">
+                        <span>Dundd Funfacts</span>
+                    </a>
+                    <a href="https://web.archive.org/web/20220602105159/https://firstwebside-of-dunc4.on.drv.tw/firstwebsideofdunc/" class="link-card">
+                        <img src="img/patch.png" alt="Old Main Page">
+                        <span>Go to [firstwebsideofdunc]v0.01 (web.archive.org)</span>
+                    </a>
                 </div>
             </div>
 
-            <div class="content-card">
+            <div class="content-card" id="memoir">
                 <h2>(WIP)Memoir - Anthology Series:</h2>
                 <div class="quick-links">
                     <a href="img/Dun.DD Threads 香港中學系列文集.pdf" class="link-card">
@@ -1222,7 +1318,7 @@
                         <img src="img/dunddthreadslogo.png" alt="Chinese Version with Uni">
                         <span>Secondary School+Foundation Anthology Series(Chinese Ver) </span>
                     </a>
-                    <a href="Dun.DD Threads Hong Kong Secondary School Anthology Series-Deepl.pdf" class="link-card">
+                    <a href="img/Dun.DD Threads Hong Kong Secondary School Anthology Series-Deepl.pdf" class="link-card">
                         <img src="img/dunddthreadslogo.png" alt="English Version">
                         <span>Secondary School+Foundation Anthology Series(DeepL Translate English Ver)</span>
                     </a>
@@ -1231,8 +1327,8 @@
         </div>
         <div class="container py-4" id="section3">
             <div class="content-card">
-                <h2>About DunDD</h2>
-                <p>Welcome to DunDD's personal website! Here, you can find various updates, content, and projects that I am working on. I am passionate about web development, technology, and sharing my knowledge with others.</p>
+                <h2>About dunc</h2>
+                <p>Welcome to dunc's personal website! Here, you can find various updates, content, and projects that I am working on. I am passionate about web development, technology, and sharing my knowledge with others.</p>
                 <p>Feel free to explore the different sections of the website to learn more about my work and interests.</p>
             </div>
         </div>
@@ -1242,7 +1338,7 @@
             <div class="content-card">
                 <h2>Testimonials</h2>
                 <div class="testimonial">
-                    <p>"DunDD's website is a fantastic resource for anyone interested in web development. The content is always up-to-date and very informative." - Jane Doe</p>
+                    <p>"dunc's website is a fantastic resource for anyone interested in web development. The content is always up-to-date and very informative." - Jane Doe</p>
                 </div>
                 <div class="testimonial">
                     <p>"I love the design and functionality of this website. It's clear that a lot of effort has gone into making it user-friendly and visually appealing." - John Smith</p>
@@ -1250,21 +1346,27 @@
             </div>
         </div>
 
-        <div class="content-card">
+        <div class="content-card" id="otherWebsites">
             <h2>Other Websites Made by DunDD:</h2>
-            <div class="quick-links">
-                <a href="https://dundd2.github.io/Portfolio-Website/" class="link-card">
-                    <img src="img/Portfolio.png" alt="Portfolio Website">
-                    <span>Duncan Law - Portfolio Website</span>
-                </a>
-                <a href="https://dundd2.github.io/IFY-Website-Design-and-Development-Homework-2023-akibTsuu-Film-Productions/index.html" class="link-card"></a>
-                    <img src="img/akblogo.png" alt="WSDD Homework">
-                    <span>Website Design and Development Homework 2023-akibTsuu Film Productions</span>
-                </a>
-                <a href="https://dundd2.github.io/Y1-Introduction-to-Multimedia-Multimedia-Web-Site-Development/akibtsuuhome.html" class="link-card">
-                    <img src="img/akblogo.png" alt="Y1 Multimedia">
-                    <span>Y1-Introduction to Multimedia-Multimedia Web Site Development</span>
-                </a>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <a href="https://dundd2.github.io/Portfolio-Website/" class="link-card">
+                        <img src="img/Portfolio.png" alt="Portfolio Website" style="width: 200px; height: 120px; object-fit: cover;">
+                        <span>Duncan Law - Portfolio Website</span>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="https://dundd2.github.io/IFY-Website-Design-and-Development-Homework-2023-akibTsuu-Film-Productions/index.html" class="link-card">
+                        <img src="img/akblogo.png" alt="WSDD Homework" style="width: 200px; height: 120px; object-fit: cover;">
+                        <span>akibTsuu Film Productions</span>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="https://dundd2.github.io/Y1-Introduction-to-Multimedia-Multimedia-Web-Site-Development/akibtsuuhome.html" class="link-card">
+                        <img src="img/akblogo.png" alt="Y1 Multimedia" style="width: 200px; height: 120px; object-fit: cover;">
+                        <span>Multimedia Web Site Development</span>
+                    </a>
+                </div>
             </div>
         </div>
 
@@ -1275,14 +1377,6 @@
                 <p class="text-center lead mb-5">Feel free to reach out for collaborations or just to say hello!</p>
                 
                 <div class="row g-4 justify-content-center">
-                    <!-- 添加聯絡卡片 -->
-                    <div class="col-md-4">
-                        <a href="mailto:example@example.com" class="contact-card">
-                            <i class="contact-icon fas fa-envelope"></i>
-                            <h3>Email Me</h3>
-                            <p>example@example.com</p>
-                        </a>
-                    </div>
                     <div class="col-md-4">
                         <a href="https://github.com/dundd2" class="contact-card" target="_blank" rel="noreferrer noopener">
                             <div class="contact-icon">
@@ -1301,15 +1395,6 @@
                             <p>Let's connect professionally</p>
                         </a>
                     </div>
-                    <div class="col-md-4">
-                        <a href="mailto:dunddatuk@gmail.com" class="contact-card">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <h3>Email</h3>
-                            <p>Drop me a message</p>
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
@@ -1325,15 +1410,26 @@
         <div class="floating-action" onclick="showSettings()">⚙️</div>
     </div>
 
-    <!-- Add Search Modal -->
+    <!-- 更新搜尋模態框 -->
     <div class="search-modal" id="searchModal">
         <div class="search-container">
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h3 class="m-0">Search</h3>
                 <button class="btn-close" onclick="hideSearch()"></button>
             </div>
-            <input type="text" class="form-control mb-3" id="searchInput" placeholder="Search...">
-            <div class="search-results" id="searchResults"></div>
+            <div class="input-group mb-3">
+                <span class="input-group-text"><i class="fas fa-search"></i></span>
+                <input type="text" class="form-control" id="searchInput" placeholder="Enter keywords to search...">
+                <button class="btn btn-primary" type="button" onclick="performSearch()">Search</button>
+            </div>
+            <div class="search-filters mb-3">
+                <div class="btn-group">
+                    <button class="btn btn-outline-primary active" data-filter="all">All</button>
+                    <button class="btn btn-outline-primary" data-filter="pages">Pages</button>
+                    <button class="btn btn-outline-primary" data-filter="content">Content</button>
+                </div>
+            </div>
+            <div id="searchResults" class="search-results"></div>
         </div>
     </div>
 
@@ -1344,7 +1440,7 @@
     </div>
 
     <footer>
-        <p>&copy; 2022-2024 DunDD's Website. All rights reserved.</p>
+        <p>&copy; 2022-2024 dunc's Website. All rights reserved.</p>
     </footer>
 
     <script>
@@ -1438,9 +1534,19 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                
+                const targetId = this.getAttribute('href').slice(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    const elementPosition = targetElement.offsetTop;
+                    const offsetPosition = elementPosition - 80; // 考慮導航欄高度
+                    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
 
@@ -1471,7 +1577,7 @@
             setTimeout(() => {
                 const notification = document.createElement('div');
                 notification.classList.add('notification');
-                notification.textContent = 'Welcome to DunDD\'s Website!';
+                notification.textContent = 'Welcome to Dunc\'s Website!';
                 document.body.appendChild(notification);
                 
                 requestAnimationFrame(() => {
@@ -1578,8 +1684,19 @@
         function acceptCookies() {
             localStorage.setItem('cookieAccepted', 'true');
             const cookieConsent = document.getElementById('cookieConsent');
-            cookieConsent.classList.remove('show');
-            cookieConsent.style.display = 'none'; // 隱藏元素
+            cookieConsent.style.bottom = '-100%';
+            setTimeout(() => {
+                cookieConsent.remove();
+            }, 300);
+        }
+
+        function declineCookies() {
+            localStorage.setItem('cookieAccepted', 'false');
+            const cookieConsent = document.getElementById('cookieConsent');
+            cookieConsent.style.bottom = '-100%';
+            setTimeout(() => {
+                cookieConsent.remove();
+            }, 300);
         }
 
         // Image lazy loading
@@ -1645,7 +1762,7 @@
 
         // Show welcome toast on load
         window.addEventListener('load', () => {
-            showToast('Welcome to DunDD\'s Website! 👋');
+            showToast('Welcome to Dunc\'s Website! 👋');
         });
 
         // Add Bing Chiling form handling
@@ -1694,7 +1811,7 @@
 
             // Update result with animation
             resultDiv.innerHTML = `
-                <div class="${className} p-4 rounded">
+                <div class="result-box ${className}">
                     <h3 class="mb-2">Social Credit: ${creditChange}</h3>
                     <p class="mb-0">${message}</p>
                 </div>
@@ -1818,56 +1935,258 @@
 
         // 修復右側設定按鈕沒有反應的問題
         function showSettings() {
-            // 添加設定按鈕的功能，例如顯示設定面板
-            alert('設定功能正在開發中，敬請期待！');
+            const settingsHtml = `
+                <div class="modal fade" id="settingsModal" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Settings</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label class="form-label">Theme</label>
+                                    <select class="form-select" id="themeSelect">
+                                        <option value="light">Light</option>
+                                        <option value="dark">Dark</option>
+                                        <option value="auto">Auto</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Font Size</label>
+                                    <input type="range" class="form-range" id="fontSizeRange" min="12" max="20" value="16">
+                                    <div class="text-center" id="fontSizeValue">16px</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // 添加設定模態框��頁面
+            if (!document.getElementById('settingsModal')) {
+                document.body.insertAdjacentHTML('beforeend', settingsHtml);
+            }
+
+            // 初始化模態框
+            const settingsModal = new bootstrap.Modal(document.getElementById('settingsModal'));
+            
+            // 綁定事件處理程序
+            const themeSelect = document.getElementById('themeSelect');
+            const fontSizeRange = document.getElementById('fontSizeRange');
+            const fontSizeValue = document.getElementById('fontSizeValue');
+
+            // 載入儲存的設定
+            themeSelect.value = localStorage.getItem('theme') || 'light';
+            const savedFontSize = localStorage.getItem('fontSize') || '16';
+            fontSizeRange.value = savedFontSize;
+            fontSizeValue.textContent = `${savedFontSize}px`;
+
+            // 主題變更處理
+            themeSelect.addEventListener('change', (e) => {
+                const theme = e.target.value;
+                localStorage.setItem('theme', theme);
+                if (theme === 'dark') {
+                    document.body.classList.add('dark-mode');
+                } else {
+                    document.body.classList.remove('dark-mode');
+                }
+            });
+
+            // 字體大小變更處理
+            fontSizeRange.addEventListener('input', (e) => {
+                const size = e.target.value;
+                localStorage.setItem('fontSize', size);
+                document.documentElement.style.fontSize = size + 'px';
+                fontSizeValue.textContent = `${size}px`;
+            });
+
+            settingsModal.show();
         }
 
-        // 修復 cookies 同意後仍然殘留的問題
+        // 修復 Cookie Consent
+        function acceptCookies() {
+            localStorage.setItem('cookieAccepted', 'true');
+            const cookieConsent = document.getElementById('cookieConsent');
+            cookieConsent.style.bottom = '-100%';
+            setTimeout(() => {
+                cookieConsent.remove();
+            }, 300);
+        }
+
         function declineCookies() {
             localStorage.setItem('cookieAccepted', 'false');
             const cookieConsent = document.getElementById('cookieConsent');
-            cookieConsent.classList.remove('show');
-            cookieConsent.style.display = 'none'; // 隱藏元素
+            cookieConsent.style.bottom = '-100%';
+            setTimeout(() => {
+                cookieConsent.remove();
+            }, 300);
         }
+
+        // 新增 Bing Chiling 特效
+        function addBingChilingEffect() {
+            const bingchilingCard = document.querySelector('#bingchilingCard');
+            
+            // 添加懸浮特效
+            bingchilingCard.addEventListener('mousemove', (e) => {
+                const { left, top, width, height } = bingchilingCard.getBoundingClientRect();
+                const x = (e.clientX - left) / width;
+                const y = (e.clientY - top) / height;
+                
+                bingchilingCard.style.transform = `
+                    perspective(1000px)
+                    rotateY(${x * 20 - 10}deg)
+                    rotateX(${y * 20 - 10}deg)
+                    scale3d(1.02, 1.02, 1.02)
+                `;
+            });
+            
+            bingchilingCard.addEventListener('mouseleave', () => {
+                bingchilingCard.style.transform = 'none';
+            });
+        }
+
+        // 初始化特效
+        document.addEventListener('DOMContentLoaded', () => {
+            addBingChilingEffect();
+        });
+
+        // 改進的搜尋功能
+        function performSearch() {
+    const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+    const resultsContainer = document.getElementById('searchResults');
+    const activeFilter = document.querySelector('.search-filters .active').dataset.filter;
+    
+    // 清空之前的搜尋結果
+    resultsContainer.innerHTML = '';
+
+    // 搜尋條件檢查
+    if (searchTerm.length < 2) {
+        resultsContainer.innerHTML = '<p class="text-muted">Please enter at least 2 characters</p>';
+        return;
+    }
+
+    // 擴充搜尋內容並加入快取
+    const searchableContent = [
+        { 
+            title: 'Home', 
+            link: '#section1', 
+            description: 'Main page content and updates', 
+            type: 'pages',
+            keywords: ['home', 'main', 'update']
+        },
+        { 
+            title: 'Legacy Versions', 
+            link: '#legacyVersions', 
+            description: 'Browse old website versions', 
+            type: 'pages',
+            keywords: ['legacy', 'old', 'versions', 'history'] 
+        },
+        {
+            title: 'About', 
+            link: '#section3', 
+            description: 'Information about dunc', 
+            type: 'content',
+            keywords: ['about', 'introduction', 'info']
+        },
+        {
+            title: 'Update Log',
+            link: 'Pages/log.html',
+            description: 'Website update history',
+            type: 'pages',
+            keywords: ['log', 'update', 'history']
+        }
+    ];
+
+    // 搜尋邏輯
+    let results = searchableContent.filter(item => {
+        if (activeFilter !== 'all' && item.type !== activeFilter) return false;
+        
+        const titleMatch = item.title.toLowerCase().includes(searchTerm);
+        const descMatch = item.description.toLowerCase().includes(searchTerm);
+        const keywordMatch = item.keywords.some(keyword => 
+            keyword.toLowerCase().includes(searchTerm)
+        );
+        
+        return titleMatch || descMatch || keywordMatch;
+    });
+
+    // 顯示搜尋結果
+    if (results.length === 0) {
+        resultsContainer.innerHTML = `
+            <div class="no-results text-center p-4">
+                <i class="fas fa-search fa-3x mb-3 text-muted"></i>
+                <p class="text-muted">No results found for "${searchTerm}"</p>
+            </div>
+        `;
+        return;
+    }
+
+    // 建立搜尋結果元素
+    results.forEach(result => {
+        const resultElement = document.createElement('div');
+        resultElement.className = 'search-result-item p-3 border-bottom hover-bg';
+        resultElement.innerHTML = `
+            <a href="${result.link}" class="text-decoration-none d-block" onclick="handleSearchResult('${result.title}')">
+                <div class="d-flex align-items-center">
+                    <div class="flex-grow-1">
+                        <h5 class="mb-1">${highlightMatch(result.title, searchTerm)}</h5>
+                        <p class="mb-0 text-muted small">${highlightMatch(result.description, searchTerm)}</p>
+                    </div>
+                    <i class="fas fa-chevron-right text-muted"></i>
+                </div>
+            </a>
+        `;
+        resultsContainer.appendChild(resultElement);
+    });
+}
+
+// 移除之前的搜尋輸入監聽器，改用以下方式
+const searchInput = document.getElementById('searchInput');
+let searchDebounceTimeout;
+
+searchInput.addEventListener('input', function() {
+    clearTimeout(searchDebounceTimeout);
+    searchDebounceTimeout = setTimeout(() => {
+        performSearch();
+    }, 300);
+});
+
+// 防止搜尋結果消失
+searchInput.addEventListener('focus', () => {
+    if (searchInput.value.length >= 2) {
+        performSearch();
+    }
+});
+
+        // 反白關鍵字
+        function highlightMatch(text, searchTerm) {
+            const regex = new RegExp(`(${searchTerm})`, 'gi');
+            return text.replace(regex, '<mark>$1</mark>');
+        }
+
+        // 處理搜尋結果點擊
+        function handleSearchResult(title) {
+            hideSearch();
+            showToast(`Navigating to: ${title}`);
+        }
+
+        // 搜尋過濾器功能
+        document.querySelectorAll('.search-filters .btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.search-filters .btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                performSearch();
+            });
+        });
+
+        // 搜尋輸入防抖
+        let searchTimeout;
+        document.getElementById('searchInput').addEventListener('input', function() {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(performSearch, 300);
+        });
     </script>
     <script defer src="js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-V0.7 :
-//修復最抵段聯絡方式裏面的過大問題以及圖案沒有顯示的問題另外修復Other Websites Made by DunDD裏面的版面配置問題,現在裏面的配置很有問題,修改nav bar 的索引現在很多都是錯的,現時右邊的設定按鈕再按下去之後並沒有任何反應修復這個問題,以及把cookies版面按要同意及不同意之後並沒能完全消除在版面上仍然可以在網頁的最底部看到他的痕跡,增加更多特效都版面最底下的幾個內容,以及新增更加多bingchiling effect
-//fun fact of dundd page ?
-// world map of dundd?
-
-//幫我修改文件裏面的連結,因為我更改了檔案的結構,希望你可以幫我修改文件裏連接其他文件的連結讓他們仍然能夠正常開啟檔案:
-
-根目录：最顶层是名为 FIRSTWEBSIDEOFDUNC 的目录，这是整个项目的根目录。
-
-子目录和文件：
-
-css: 包含CSS代码的目录。
-
-all.min.css,bootstrap.min.css
-
-js:包含JavaScript代码的目录
-all.min.js,bootstrap.bundle.min.js
-
-img: 这是一个目录，通常用于存放项目中的图片资源。
-
-Legacy Versions：这是一个目录，用于存放项目的旧版本文件。
-
-v01.html 到 v0.41.html
-
-Pages：这是一个目录，用于存放项目的主要页面文件。
-
-Compare AI upscaling p2.html
-
-Compare AI upscaling.html
-
-henshin.html
-
-log.html
-
-vbeta.html
-
-index.html
-
