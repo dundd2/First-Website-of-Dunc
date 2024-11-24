@@ -1,26 +1,67 @@
-# First Website of Dunc
-View it on https://dundd2.github.io/firstwebsideofdunc/
+# First Website of DunDD
 
-This project represents my first foray into web development and HTML coding. I began working on it on June 2, 2022, to teach myself the foundations of HTML through hands-on practice.
+A personal website project demonstrating my journey in web development.
 
-I developed the code and site entirely without the use of templates or borrowed code. My learning resources were primarily the HTML tutorials and reference materials provided by [w3schools.com](https://www.w3schools.com).
+## 🌐 Live Demo
+Visit the site at: https://dundd2.github.io/firstwebsideofdunc/
 
-As my inaugural coding project, the site is relatively simple but gave me essential experience in:
+## 📖 About
+This project represents my first venture into web development, initiated on June 2, 2022. What started as a simple "Hello World" has evolved into a fully-featured personal website, showcasing my growth as a developer.
 
-- HTML document structure (DOCTYPE, head, body, etc.)
-- Basic HTML tags for text formatting, lists, links, images, etc.
-- Using HTML tables to organize tabular data
-- Embedding media like videos and photos
-- Page structure and layout with div elements
-- Hosting static web pages
+## These photos show what the site looks like as of v0.6:
 
-This project represents an important first step for me in building real-world skills in web development. I'm proud of having taught myself HTML fundamentals by creating this site from scratch. 
 
-Moving forward, I plan to continue improving and expanding the site over time as I learn new skills, particularly in Java and PHP. I hope this page will be much better when I update to version 1.0.
+## Development History
 
-These photos show what the site looks like as of v0.04.1:
-![Screenshot 2023-09-27 002227](https://github.com/dunc4009/firstwebsideofdunc/assets/105787911/dc34b094-6dd8-4c76-8cd0-e63dffd81512)
-![Screenshot 2023-09-27 002220](https://github.com/dunc4009/firstwebsideofdunc/assets/105787911/5a493d66-5ea0-4c70-a625-c37001d1746f)
-![Screenshot 2023-09-27 002251](https://github.com/dunc4009/firstwebsideofdunc/assets/105787911/01d8d7d6-f7f0-44be-b03c-e58b01057a69)
-![Screenshot 2023-09-27 002237](https://github.com/dunc4009/firstwebsideofdunc/assets/105787911/858a6c79-d0e0-4c9d-b77f-c6dcd4e28063)
+### Pre v0.5
+All code and site development was done entirely from scratch, I developed the code and site entirely without the use of any templates or borrowed code. This includes all HTML, CSS, and JavaScript implementations.
+
+### v0.5 and Later
+Starting from version 0.5, the project began incorporating external libraries to enhance functionality and design:
+### External Resources Used:
+- Bootstrap CSS & JS (v5.3.2)
+  - By The Bootstrap Team
+  - License: MIT
+  - Website: https://getbootstrap.com/
+
+- Font Awesome (v6.0.0-beta3)
+  - By Fonticons, Inc.
+  - License: Icons (CC BY 4.0), Fonts (SIL OFL 1.1), Code (MIT)
+  - Website: https://fontawesome.com/
+
+## ✨ Features
+
+### Current Features (v0.6)
+- 🎨 Responsive design using Bootstrap 5
+- 🌓 Dark mode toggle with smooth transitions
+- 🔍 Advanced search functionality
+- 🍪 Cookie consent management
+- ♿ Enhanced accessibility features
+- 📱 Mobile-friendly interface
+- 🎭 Interactive UI elements
+- ⚡ Dynamic content loading
+- 🎯 Custom animations and transitions
+
+
+## Technology Stack
+
+### 🛠️ Built With
+- HTML5
+- CSS3
+- JavaScript (ES6+)
+- Bootstrap 5.3.2
+- Font Awesome 6.0.0-beta3
+
+### Development Tools
+- Git for version control
+- GitHub Pages for hosting
+- VS Code for development
+- Chrome DevTools for testing
+
+### License
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+### Acknowledgments
+W3Schools for learning resources
+Bootstrap team for the framework
 

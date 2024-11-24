@@ -999,6 +999,46 @@
                 transform: scale(1);
             }
         }
+
+        /* 定義新的特效樣式 */
+        .bingchiling-result {
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.5s ease-out;
+            text-align: center;
+            font-size: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .bingchiling-result.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .result-positive {
+            color: #4CAF50;
+        }
+
+        .result-negative {
+            color: #f44336;
+        }
+
+        .social-credit-animation {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            font-weight: bold;
+            pointer-events: none;
+            animation: creditAnimation 1.5s ease-out forwards;
+            z-index: 1040;
+        }
+
+        @keyframes creditAnimation {
+            0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            100% { opacity: 0; transform: translate(-50%, -150%) scale(2); }
+        }
     </style>
 </head>
 <body>
@@ -1019,19 +1059,16 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#section1" data-section="section1">🏠 Home</a>
+                        <a class="nav-link" href="#section1" data-section="section1">介紹</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#section2" data-section="section2">📚 Archives</a>
+                        <a class="nav-link" href="#section2" data-section="section2">作品集</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#section3" data-section="section3">✍️ Blog</a>
+                        <a class="nav-link" href="#section3" data-section="section3">博客</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#section4" data-section="section4">🛠️ Projects</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact" data-section="contact">📬 Contact</a>
+                        <a class="nav-link" href="#contact" data-section="contact">聯絡方式</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="javascript:void(0)" onclick="showSearch()">
@@ -1230,6 +1267,52 @@
                 </a>
             </div>
         </div>
+
+        <!-- 修復聯絡方式區塊 -->
+        <div class="container py-4" id="contact">
+            <div class="content-card">
+                <h2 class="text-center mb-4">Let's Connect</h2>
+                <p class="text-center lead mb-5">Feel free to reach out for collaborations or just to say hello!</p>
+                
+                <div class="row g-4 justify-content-center">
+                    <!-- 添加聯絡卡片 -->
+                    <div class="col-md-4">
+                        <a href="mailto:example@example.com" class="contact-card">
+                            <i class="contact-icon fas fa-envelope"></i>
+                            <h3>Email Me</h3>
+                            <p>example@example.com</p>
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="https://github.com/dundd2" class="contact-card" target="_blank" rel="noreferrer noopener">
+                            <div class="contact-icon">
+                                <i class="fab fa-github"></i>
+                            </div>
+                            <h3>GitHub</h3>
+                            <p>Check out my projects</p>
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="https://www.linkedin.com/in/duncan-l400" class="contact-card" target="_blank" rel="noreferrer noopener">
+                            <div class="contact-icon">
+                                <i class="fab fa-linkedin"></i>
+                            </div>
+                            <h3>LinkedIn</h3>
+                            <p>Let's connect professionally</p>
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="mailto:dunddatuk@gmail.com" class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <h3>Email</h3>
+                            <p>Drop me a message</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
     <button class="back-to-top" id="backToTopBtn">⬆️</button>
@@ -1258,43 +1341,6 @@
     <div class="cookie-consent" id="cookieConsent">
         <p>This website uses cookies to ensure you get the best experience.</p>
         <button class="btn btn-primary" onclick="acceptCookies()">Accept</button>
-    </div>
-
-    <div class="container py-4" id="contact">
-        <div class="content-card">
-            <h2 class="text-center mb-4">Let's Connect</h2>
-            <p class="text-center lead mb-5">Feel free to reach out for collaborations or just to say hello!</p>
-            
-            <div class="row g-4 justify-content-center">
-                <div class="col-md-4">
-                    <a href="https://github.com/dundd2" class="contact-card" target="_blank" rel="noreferrer noopener">
-                        <div class="contact-icon">
-                            <i class="fab fa-github"></i>
-                        </div>
-                        <h3>GitHub</h3>
-                        <p>Check out my projects</p>
-                    </a>
-                </div>
-                <div class="col-md-4">
-                    <a href="https://www.linkedin.com/in/duncan-l400" class="contact-card" target="_blank" rel="noreferrer noopener">
-                        <div class="contact-icon">
-                            <i class="fab fa-linkedin"></i>
-                        </div>
-                        <h3>LinkedIn</h3>
-                        <p>Let's connect professionally</p>
-                    </a>
-                </div>
-                <div class="col-md-4">
-                    <a href="mailto:dunddatuk@gmail.com" class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <h3>Email</h3>
-                        <p>Drop me a message</p>
-                    </a>
-                </div>
-            </div>
-        </div>
     </div>
 
     <footer>
@@ -1531,7 +1577,9 @@
 
         function acceptCookies() {
             localStorage.setItem('cookieAccepted', 'true');
-            document.getElementById('cookieConsent').classList.remove('show');
+            const cookieConsent = document.getElementById('cookieConsent');
+            cookieConsent.classList.remove('show');
+            cookieConsent.style.display = 'none'; // 隱藏元素
         }
 
         // Image lazy loading
@@ -1767,6 +1815,20 @@
             section.classList.add('section-animate');
             observer.observe(section);
         });
+
+        // 修復右側設定按鈕沒有反應的問題
+        function showSettings() {
+            // 添加設定按鈕的功能，例如顯示設定面板
+            alert('設定功能正在開發中，敬請期待！');
+        }
+
+        // 修復 cookies 同意後仍然殘留的問題
+        function declineCookies() {
+            localStorage.setItem('cookieAccepted', 'false');
+            const cookieConsent = document.getElementById('cookieConsent');
+            cookieConsent.classList.remove('show');
+            cookieConsent.style.display = 'none'; // 隱藏元素
+        }
     </script>
     <script defer src="js/bootstrap.bundle.min.js"></script>
 </body>
