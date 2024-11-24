@@ -119,25 +119,114 @@
             color: var(--text-dark);
             border-top-color: rgba(255,255,255,0.1);
         }
+
+        /* Add standardized styles */
+        .row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer {
+            text-align: left;
+            padding: 0px;
+        }
+
+        .col-md-6 {
+            text-align: right;
+            padding: 0px;
+        }
+
+        body.dark-mode .col-md-6 p {
+            color: var(--text-dark);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 0;
+        }
+
+        .footer {
+            width: 100%;
+            padding: 2rem 0;
+        }
+
+        .footer .row {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-right {
+            text-align: right;
+        }
+
+        .footer-bottom {
+            margin-top: 1.5rem;
+            text-align: center;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            padding-top: 1.5rem;
+        }
+
+        body.dark-mode .footer-bottom {
+            border-top-color: rgba(255,255,255,0.1);
+        }
     </style>
 </head>
 <body>
-    <button id="darkModeToggle" aria-label="Toggle dark mode">Toggle Dark Mode</button>
+    <div class="container">
+        <button id="darkModeToggle" aria-label="Toggle dark mode">Toggle Dark Mode</button>
 
-    <div class="logo-container">
-        <h1>VBeta Page Moved</h1>
-        <img src="../img/patch.png" alt="logo">
+        <main class="main-content">
+            <div class="logo-container">
+                <h1>VBeta Page Moved</h1>
+                <img src="../img/patch.png" alt="logo">
+            </div>
+
+            <section>
+                <a href="../vbeta.html" class="nav-button">
+                    <span>VBeta has moved to a new location! Click here to visit.</span>
+                </a>
+            </section>
+        </main>
     </div>
 
-    <section>
-        <a href="../vbeta.html" class="nav-button">
-            <span>VBeta has moved to a new location! Click here to visit.</span>
-        </a>
-    </section>
-
-    <footer>
-        <p>&copy; 2023 Your Website Name. All rights reserved.</p>
-        <p>Looking for the VBeta page? You're in the right place!</p>
+    <footer class="footer">
+        <div class="row">
+            <div class="footer-left">
+                <a href="../index.html">
+                    <img src="../img/patch.png" alt="vbeta" width="42" height="50">
+                </a>
+                <h4>Go back to [firstwebsideofdunc] main page</h4>
+            </div>
+            <div class="footer-right">
+                <b>
+                    <p>Thanks for watching</p>
+                </b>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 firstwebsideofdunc. All rights reserved.</p>
+        </div>
     </footer>
 
     <script>

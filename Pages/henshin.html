@@ -44,11 +44,14 @@
 
         .henshin-container {
             text-align: center;
-            margin: 20px 0;
-            padding: 2rem;
+            margin: 10px 0; /* 減少上下邊距 */
+            padding: 1rem; /* 減少內邊距 */
             background: var(--bg-light);
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
+            max-width: 650px; /* 限制容器最大寬度 */
+            margin-left: auto;
+            margin-right: auto;
         }
 
         body.dark-mode .henshin-container {
@@ -56,9 +59,9 @@
         }
 
         .henshin-image {
-            width: 400px; /* Set a fixed width */
-            height: 500px; /* Set a fixed height */
-            object-fit: contain; /* Maintain aspect ratio while fitting in bounds */
+            width: 600px; /* 設定新的固定寬度 */
+            height: 338px; /* 設定新的固定高度 */
+            object-fit: contain; /* 保持圖片比例 */
             cursor: pointer;
             transition: transform 0.2s;
         }
@@ -75,6 +78,13 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            padding: 12px 24px;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
         .theme-toggle:hover {
@@ -132,14 +142,110 @@
         body.dark-mode .footer-text {
             color: var(--text-dark);
         }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 1rem;
+            color: var(--text-light);
+        }
+
+        body.dark-mode .footer-bottom {
+            color: var(--text-dark);
+        }
+
+        /* Add missing standardized styles */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .logo-container img {
+            width: 42px;
+            height: 50px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer {
+            text-align: left;
+            padding: 0px;
+        }
+
+        .col-md-6 {
+            text-align: right;
+            padding: 0px;
+        }
+
+        body.dark-mode .col-md-6 p {
+            color: var(--text-dark);
+        }
+
+        /* 添加載入動畫 */
+        .loading {
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        /* 添加說明文字樣式 */
+        .instruction {
+            text-align: center;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(33, 150, 243, 0.1);
+            border-radius: var(--border-radius);
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 768px) {
+            .henshin-container {
+                padding: 0.5rem;
+            }
+            
+            .henshin-image {
+                width: 100%;
+                height: auto;
+                max-width: 600px;
+            }
+            
+            .theme-toggle {
+                position: static;
+                margin: 1rem auto;
+                display: block;
+            }
+        }
+
+        /* 添加動畫效果 */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Henshin! Game</h1>
+    <div class="container fade-in">
+        <div class="logo-container">
+            <h1>Henshin! Game</h1>
+            <img src="../img/patch.png" alt="logo">
+        </div>
         <p>This page starts with [firstwebsideofdunc] update v0.04</p>
         
         <button class="theme-toggle" onclick="darkMode()">Toggle Dark Mode</button>
+
+        <div class="instruction">
+            <p>👆 Click the image to start the transformation animation!</p>
+        </div>
 
         <div class="henshin-container">
             <img src="../img/akibaranger henshin.png" id="henshin!" class="henshin-image" alt="Henshin transformation">
@@ -147,18 +253,21 @@
     </div>
 
     <footer>
-        <div class="footer-content">
-            <div class="footer-text">
-                <a href="../index.html" class="footer-link">
+        <div class="row">
+            <div class="footer">
+                <a href="../index.html">
                     <img src="../img/patch.png" alt="vbeta" width="42" height="50">
-                    <span>Go back to [firstwebsideofdunc] main page</span>
                 </a>
+                <h4>Go back to [firstwebsideofdunc] main page</h4>
             </div>
-            <div class="footer-text">
-                <b>
+            <div class="col-md-6">
+                <b></b>
                     <p>Thanks for watching</p>
                 </b>
             </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 firstwebsideofdunc. All rights reserved.</p>
         </div>
     </footer>
 
@@ -177,6 +286,7 @@
             // Add error handling for audio
             audio.addEventListener('error', (e) => {
                 console.error('Error loading audio:', e);
+                alert('Failed to load audio. Please refresh the page.');
             });
 
             function startAnimation() {
@@ -198,6 +308,11 @@
                         img.src = '../img/akibaranger henshin.png';
                         isAnimating = false;
                     }, 5000);
+
+                    // 添加震動反饋（如果設備支援）
+                    if (navigator.vibrate) {
+                        navigator.vibrate(200);
+                    }
                 }
             }
 
@@ -217,6 +332,18 @@
 
             img.addEventListener('click', startAnimation);
             img.addEventListener('touchstart', startAnimation);
+
+            // 添加載入動畫
+            document.querySelector('.container').classList.remove('loading');
+            
+            // 添加音效預加載
+            audio.preload = 'auto';
+
+            // Error handling
+            img.addEventListener('error', () => {
+                console.error('Image loading failed');
+                alert('Failed to load image. Please refresh the page.');
+            });
         }
     </script>
 </body>

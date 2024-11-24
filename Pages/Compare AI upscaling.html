@@ -20,6 +20,8 @@
             --border-radius: 5px;
             --transition-speed: 0.3s;
             --shadow: 0 2px 4px rgba(0,0,0,0.1);
+            --footer-light: #F7F8F9;
+            --footer-dark: #2a2a2a;
         }
 
         .img-comp-container {
@@ -63,7 +65,7 @@
             color: var(--text-light);
             font-family: Arial, sans-serif;
             transition: background-color 0.3s, color 0.3s;
-            padding-bottom: 80px; /* Add padding to prevent content from being hidden behind fixed nav */
+            padding-bottom: 20px; /* 統一與 page 2 一致 */
         }
 
         body.dark-mode {
@@ -106,10 +108,22 @@
         #darkModeToggle {
             padding: 10px 20px;
             border: none;
-            border-radius: 5px;
+            border-radius: var(--border-radius);
             cursor: pointer;
-            background-color: #2196F3;
+            background-color: var(--primary-color);
             color: white;
+            font-weight: bold;
+            transition: all var(--transition-speed);
+        }
+
+        #darkModeToggle:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        body.dark-mode #darkModeToggle {
+            background-color: #454545;
+            border: 1px solid #666;
         }
 
         .comparison-section {
@@ -158,11 +172,69 @@
             width: 42px;
             height: 50px;
         }
+
+        footer {
+            margin-top: 2rem;
+            padding: 20px;
+            background-color: var(--footer-light);
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+        }
+
+        body.dark-mode footer {
+            background-color: var(--footer-dark);
+            color: var(--text-dark);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-text {
+            color: inherit;
+        }
+
+        body.dark-mode .footer-text {
+            color: var(--text-dark);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            margin-top: 1rem;
+            color: var(--text-light);
+        }
+
+        body.dark-mode .footer-bottom {
+            color: var(--text-dark);
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer {
+            text-align: left;
+            padding: 0px;
+        }
+
+        .col-md-6 {
+            text-align: right;
+            padding: 0px;
+        }
+
+        body.dark-mode .col-md-6 p {
+            color: var(--text-dark);
+        }
     </style>
 </head>
 <body>
     <div class="logo-container">
-        <h1>Compare AMD FSR upscaling video and the original video</h1>
+        <h1>AI Upscaling Technology Comparison 2023</h1>
         <img src="../img/patch.png" alt="logo">
     </div>
     <button id="darkModeToggle">Toggle Dark Mode</button>
@@ -170,6 +242,8 @@
     <p>How good is AI in 2023?</p>
     <p>Use blue slider to compare!</p>
     <div class="comparison-section">
+        <h1>Compare AMD FSR upscaling video and the Original video</h1>
+        <p>AMD FidelityFX Super Resolution (FSR) is an open-source spatial upscaling technology that delivers high-quality image magnification without requiring specialized hardware. It uses edge reconstruction algorithms to maintain image detail clarity.</p>
         <div class="img-comp-container">
             <div class="img-comp-img">
                 <img src="../img/960540.png" width="960" height="540">
@@ -179,6 +253,7 @@
             </div>
         </div>
         <h1>Compare video2x Algorithms</h1>
+        <p>This comparison shows two video2x algorithms: waifu2x and RealSR. waifu2x uses convolutional neural networks optimized for anime-style images, while RealSR employs real-world super-resolution deep learning models.</p>
         <div class="img-comp-container">
             <div class="img-comp-img">
                 <img src="../img/waifu2x-converter-cpp.png" width="960" height="540">
@@ -187,7 +262,8 @@
                 <img src="../img/RealSR.png" width="960" height="540">
             </div>
         </div> 
-        <h1>video2x vs original</h1> 
+        <h1>video2x vs Original</h1> 
+        <p>video2x is an open-source video upscaling framework that integrates multiple AI super-resolution algorithms. This demonstrates the comparison between waifu2x engine processing and the Original image.</p>
         <div class="img-comp-container">
             <div class="img-comp-img">
                 <img src="../img/waifu2x-converter-cpp.png" width="960" height="540">
@@ -197,6 +273,7 @@
             </div>
         </div>  
         <h1>video2x vs AMD FSR upscaling video</h1> 
+        <p>This directly compares AI deep learning methods (video2x) with traditional algorithms (AMD FSR). FSR offers faster processing but may lack detail, while video2x can reconstruct more details but requires more computational resources.</p>
         <div class="img-comp-container">
             <div class="img-comp-img">
                 <img src="../img/waifu2x-converter-cpp.png" width="960" height="540">
@@ -215,17 +292,21 @@
         </a>
     </nav>
     <footer>
-        <div style="color: black; background-color: #F7F8F9; padding: 20px;">
-            <div class="row">
-                <div class="footer" style="text-align: left; padding: 0px;">
-                    <p style="color:black"> hi</p>
-                </div>
-                <div class="col-md-6" style="text-align: right; padding: 0px;">
-                    <b>
-                        <p align="right">Thanks for watching</p>
-                    </b>                      
-                </div>
+        <div class="row">
+            <div class="footer">
+                <a href="../index.html">
+                    <img src="../img/patch.png" alt="vbeta" width="42" height="50">
+                </a>
+                <h4>Go back to [firstwebsideofdunc] main page</h4>
             </div>
+            <div class="col-md-6">
+                <b>
+                    <p>Thanks for watching</p>
+                </b>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 firstwebsideofdunc. All rights reserved.</p>
         </div>
     </footer>
     <script>
