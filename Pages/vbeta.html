@@ -2,15 +2,116 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>VBeta Page Moved </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VBeta Page Moved</title>
+    <link rel="icon" type="image/x-icon" href="../img/favicon.ico">
+    <style>
+        :root {
+            --bg-light: #FFF;
+            --text-light: #000;
+            --bg-dark: #1a1a1a;
+            --text-dark: #fff;
+            --primary-color: #2196F3;
+            --primary-hover: #1976D2;
+            --spacing-unit: 1rem;
+            --border-radius: 5px;
+            --transition-speed: 0.3s;
+            --shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        body {
+            padding: 20px;
+            background-color: var(--bg-light);
+            color: var(--text-light);
+            font-family: Arial, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body.dark-mode {
+            background-color: var(--bg-dark);
+            color: var(--text-dark);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .logo-container img {
+            width: 42px;
+            height: 50px;
+        }
+
+        .nav-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            background: var(--primary-color);
+            color: white;
+            border-radius: var(--border-radius);
+            transition: background var(--transition-speed);
+            margin: 1rem 0;
+        }
+
+        .nav-button:hover {
+            background: var(--primary-hover);
+        }
+
+        #darkModeToggle {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: var(--primary-color);
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 20px;
+            background-color: #F7F8F9;
+            text-align: center;
+        }
+
+        body.dark-mode footer {
+            background-color: var(--bg-dark);
+            color: var(--text-dark);
+        }
+    </style>
 </head>
 <body>
-    <header>
+    <button id="darkModeToggle">Toggle Dark Mode</button>
+
+    <div class="logo-container">
         <h1>VBeta Page Moved</h1>
-    </header>
-        <section>
-            <a href="../vbeta.html" class="nav-button">
-                <span>VBeta has moved to a new location! Click here to visit.</span>
-            </a>
-        </section>
+        <img src="../img/patch.png" alt="logo">
+    </div>
+
+    <section>
+        <a href="../vbeta.html" class="nav-button">
+            <span>VBeta has moved to a new location! Click here to visit.</span>
+        </a>
+    </section>
+
+    <script>
+        // Dark mode functionality
+        document.getElementById('darkModeToggle').addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+        });
+
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+        }
+    </script>
+</body>
 </html>

@@ -15,6 +15,16 @@
             --success-color: #2ecc71;
             --warning-color: #f1c40f;
             --danger-color: #e74c3c;
+            --bg-light: #FFF;
+            --text-light: #000;
+            --bg-dark: #1a1a1a;
+            --text-dark: #fff;
+            --primary-color: #2196F3;
+            --primary-hover: #1976D2;
+            --spacing-unit: 1rem;
+            --border-radius: 5px;
+            --transition-speed: 0.3s;
+            --shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         body {
@@ -37,11 +47,16 @@
             margin-left: 30px;
             background-color: var(--background-light);
             z-index: 1;
+            background: var(--bg-light);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: transform var(--transition-speed);
         }
 
         body.dark-mode .version-card {
             background-color: var(--background-dark);
             border-color: #333;
+            background: var(--bg-dark);
         }
 
         .version-card:hover {
@@ -113,23 +128,24 @@
         }
 
         .search-container {
-            margin: 20px 0;
-            position: sticky;
+            position: absolute;
             top: 20px;
-            z-index: 100;
-            background: inherit;
-            padding: 10px 0;
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            right: 70px;
+            width: auto;
+            z-index: 1001;
         }
 
         .search-input {
-            width: 100%;
-            max-width: 400px;
-            padding: 10px 15px;
-            border: 2px solid var(--primary-color);
-            border-radius: 20px;
-            font-size: 16px;
+            width: 200px;
+        }
+
+        @media (max-width: 768px) {
+            .search-container {
+                position: static;
+                margin: 10px auto;
+                width: 100%;
+                padding: 0 20px;
+            }
         }
 
         .timeline {
@@ -170,20 +186,44 @@
         }
 
         .quick-nav {
-            position: fixed;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            display: none;
-            z-index: 98;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            padding: 10px 0;
             background: var(--background-light);
-            padding: 10px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            border-bottom: 1px solid #ddd;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .quick-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .quick-nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        .quick-nav a:hover {
+            background: var(--primary-color);
+            color: white;
         }
 
         body.dark-mode .quick-nav {
             background: var(--background-dark);
+            border-color: #333;
         }
 
         @media (min-width: 1200px) {
@@ -360,6 +400,22 @@
             z-index: 1;
             margin-top: 80px;
         }
+
+        .nav-button {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            background: var(--primary-color);
+            border-radius: var(--border-radius);
+            transition: background var(--transition-speed);
+        }
+
+        .nav-button:hover {
+            background: var(--primary-hover);
+        }
     </style>
 </head>
 <body>
@@ -381,13 +437,12 @@
         <button class="filter-btn" onclick="filterVersions('all')">All</button>
         <button class="filter-btn" onclick="filterVersions('major')">Major Updates</button>
         <button class="filter-btn" onclick="filterVersions('minor')">Minor Updates</button>
+        <nav class="quick-nav">
+            <ul>
+                <li><a href="#other-pages">Other Pages</a></li>
+            </ul>
+        </nav>
     </div>
-
-    <nav class="quick-nav">
-        <ul>
-            <!-- Generated dynamically by JavaScript -->
-        </ul>
-    </nav>
 
     <button onclick="scrollToTop()" class="scroll-top" aria-label="Scroll to top">↑</button>
 
@@ -396,98 +451,23 @@
     </div>
 
     <div id="versions-container">
+        <!-- Newest version first -->
         <div class="version-card">
             <div class="version-header">
-                <h2>firstwebsideofdunc v0.01</h2>
+                <h2>firstwebsideofdunc v0.7</h2>
                 <span class="version-tag tag-major">Major Release</span>
             </div>
-            <p>Released 2022-06-02</p>
+            <p>Released 2024-xx-xx</p>
             <ul>
-                <li>Initial release</li>
-                <li>only show "Hello world by ddd"</li>
+                <li>Improved code quality and organization</li>
             </ul>
-            <a href="../Legacy Versions/v0.01.html">Go to [firstwebsideofdunc] v0.01 </a>  
+            <a href="../index.html">Go to [firstwebsideofdunc] v0.7 </a>
         </div>
-        <div class="version-card">
+
+        <div class="version-card" id="v0-6">
             <div class="version-header">
-                <h2>firstwebsideofdunc v0.02</h2>
+                <h2>firstwebsideofdunc v0.6</h2>
                 <span class="version-tag tag-major">Major Release</span>
-            </div>
-            <p>Released 2022-06-02</p>
-            <ul>
-                <li>add a quiz form</li>
-                <li>add more content (word)</li>
-                <li>add youtube video (iframe) with size </li>
-                <li>add background color in style(CSS)</li>
-                <li>add the hyperlink to older version</li>
-            </ul>
-            <a href="../Legacy Versions/v0.02.html">Go to [firstwebsideofdunc] v0.02 </a>  
-        </div>
-        <div class="version-card">
-            <div class="version-header">
-                <h2>firstwebsideofdunc v0.03</h2>
-                <span class="version-tag tag-major">Major Release</span>
-            </div>
-            <p>Released 2023-02-08</p>
-            <ul>
-                <li>add HTML Language Code Reference</li>
-                <li>add Responsive Web Design - The Viewport</li>
-                <li>add title and icon(ico) to the page</li>
-                <li>add more css about the page</li>
-                <li>add a darkmode button (frist javascript in here )</li>
-                <li>add a photo in this web (bingchiling.png)</li>
-                <li>add 2 motto_label of john xina with css and html with photo</li>
-                <li>add a beta version of [firstwebsideofdunc]</li>
-                <li>add a link tree to other version and older version</li>
-                <li>add the Visitor count with javascript,css,html</li>
-                <li>add a footer at the end of the web with css</li>
-            </ul>
-            <a href="../Legacy Versions/v0.03.html">Go to [firstwebsideofdunc] v0.03 </a>  
-        </div>
-        <div class="version-card">
-            <div class="version-header">
-                <h2>firstwebsideofdunc v0.04</h2>
-                <span class="version-tag tag-major">Major Release</span>
-            </div>
-            <p>Released 2023-02-19</p>
-            <ul>
-                <li>add a new [firstwebsideofdunc] Henshin!game page</li>
-                <li>add a hyper link to [firstwebsideofdunc] Henshin!game in the link tree with a gif photo</li>
-            </ul>
-        </div>
-        <div class="version-card">
-            <div class="version-header">
-                <h4>firstwebsideofdunc v0.04.1</h4>
-                <span class="version-tag tag-minor">Minor Release</span>
-            </div>
-            <p>Released 2023-02-20</p>
-            <ul>
-                <li>more beautiful layout with the link  tree</li>
-                <li>new [firstwebsideofdunc]  Compare AI upscaling page </li>
-                <li>new [firstwebsideofdunc] Update log page</li>
-                <li>add a hyper link to [firstwebsideofdunc] Update log and [firstwebsideofdunc] Compare AI upscaling in the link tree with photo</li>
-            </ul>
-            <a href="../Legacy Versions/v0.04.html">Go to [firstwebsideofdunc] v0.04 </a><br>
-            <a href="../Legacy Versions/v0.41.html">Go to [firstwebsideofdunc] v0.04.1 </a>
-        </div>
-        <div class="version-card">
-            <div class="version-header">
-                <h2>firstwebsideofdunc v0.5</h2>
-                <span class="version-tag tag-major">Major Release</span>
-            </div>
-            <p>Released 2024-11-02</p>
-            <ul>
-                <li>Added a loading animation</li>
-                <li>Improved dark mode toggle with animation</li>
-                <li>Enhanced card hover effects with 3D rotation</li>
-                <li>Big UI improvements and bug fixes</li>
-            </ul>
-            <a href="../Legacy Versions/v0.5.html">Go to [firstwebsideofdunc] v0.5 </a>
-        </div>
-        <div class="version-card">
-            <div class="version-header">
-                <h4>firstwebsideofdunc v0.6</h4>
-                <span class="version-tag tag-minor">Minor Release</span>
             </div>
             <p>Released 2024-11-24</p>
             <ul>
@@ -512,19 +492,103 @@
             </ul>
             <a href="../Legacy Versions/v0.6.html">Go to [firstwebsideofdunc] v0.6 </a>
         </div>
-        <div class="version-card">
-          <div class="version-header">
-              <h4>firstwebsideofdunc v0.7</h4>
-              <span class="version-tag tag-minor">Minor Release</span>
-          </div>
-          <p>Released 2024-xx-xx</p>
-          <ul>
-              <li>Improved code quality and organization</li>
-          </ul>
-          <a href="../index.html">Go to [firstwebsideofdunc] v0.7 </a>
-      </div>
-      <br>
-        <div class="version-card">
+
+        <div class="version-card" id="v0-5">
+            <div class="version-header">
+                <h2>firstwebsideofdunc v0.5</h2>
+                <span class="version-tag tag-major">Major Release</span>
+            </div>
+            <p>Released 2024-11-02</p>
+            <ul>
+                <li>Added a loading animation</li>
+                <li>Improved dark mode toggle with animation</li>
+                <li>Enhanced card hover effects with 3D rotation</li>
+                <li>Big UI improvements and bug fixes</li>
+            </ul>
+            <a href="../Legacy Versions/v0.5.html">Go to [firstwebsideofdunc] v0.5 </a>
+        </div>
+
+        <div class="version-card" id="v0-04.1">
+            <div class="version-header">
+                <h2>firstwebsideofdunc v0.04.1</h2>
+                <span class="version-tag tag-major">Major Release</span>
+            </div>
+            <p>Released 2023-02-20</p>
+            <ul>
+                <li>more beautiful layout with the link  tree</li>
+                <li>new [firstwebsideofdunc]  Compare AI upscaling page </li>
+                <li>new [firstwebsideofdunc] Update log page</li>
+                <li>add a hyper link to [firstwebsideofdunc] Update log and [firstwebsideofdunc] Compare AI upscaling in the link tree with photo</li>
+            </ul>
+            <a href="../Legacy Versions/v0.04.html">Go to [firstwebsideofdunc] v0.04 </a><br>
+            <a href="../Legacy Versions/v0.41.html">Go to [firstwebsideofdunc] v0.04.1 </a>
+        </div>
+
+        <div class="version-card" id="v0-04">
+            <div class="version-header">
+                <h2>firstwebsideofdunc v0.04</h2>
+                <span class="version-tag tag-minor">Minor Release</span>
+            </div>
+            <p>Released 2023-02-19</p>
+            <ul>
+                <li>add a new [firstwebsideofdunc] Henshin!game page</li>
+                <li>add a hyper link to [firstwebsideofdunc] Henshin!game in the link tree with a gif photo</li>
+            </ul>
+        </div>
+
+        <div class="version-card" id="v0-03">
+            <div class="version-header">
+                <h2>firstwebsideofdunc v0.03</h2>
+                <span class="version-tag tag-major">Major Release</span>
+            </div>
+            <p>Released 2023-02-08</p>
+            <ul>
+                <li>add HTML Language Code Reference</li>
+                <li>add Responsive Web Design - The Viewport</li>
+                <li>add title and icon(ico) to the page</li>
+                <li>add more css about the page</li>
+                <li>add a darkmode button (frist javascript in here )</li>
+                <li>add a photo in this web (bingchiling.png)</li>
+                <li>add 2 motto_label of john xina with css and html with photo</li>
+                <li>add a beta version of [firstwebsideofdunc]</li>
+                <li>add a link tree to other version and older version</li>
+                <li>add the Visitor count with javascript,css,html</li>
+                <li>add a footer at the end of the web with css</li>
+            </ul>
+            <a href="../Legacy Versions/v0.03.html">Go to [firstwebsideofdunc] v0.03 </a>  
+        </div>
+
+        <div class="version-card" id="v0-02">
+            <div class="version-header">
+                <h2>firstwebsideofdunc v0.02</h2>
+                <span class="version-tag tag-major">Major Release</span>
+            </div>
+            <p>Released 2022-06-02</p>
+            <ul>
+                <li>add a quiz form</li>
+                <li>add more content (word)</li>
+                <li>add youtube video (iframe) with size </li>
+                <li>add background color in style(CSS)</li>
+                <li>add the hyperlink to older version</li>
+            </ul>
+            <a href="../Legacy Versions/v0.02.html">Go to [firstwebsideofdunc] v0.02 </a>  
+        </div>
+
+        <div class="version-card" id="v0-01">
+            <div class="version-header">
+                <h2>firstwebsideofdunc v0.01</h2>
+                <span class="version-tag tag-major">Major Release</span>
+            </div>
+            <p>Released 2022-06-02</p>
+            <ul>
+                <li>Initial release</li>
+                <li>only show "Hello world by ddd"</li>
+            </ul>
+            <a href="../Legacy Versions/v0.01.html">Go to [firstwebsideofdunc] v0.01 </a>  
+        </div>
+
+        <!-- Other Pages section at the bottom -->
+        <div class="version-card" id="other-pages">
             <h2>Other Pages:</h2>
             <h2>firstwebsideofdunc henshin</h2>
             <p>Released with firstwebsideofdunc v0.04 in 2023-02-19</p>
@@ -543,13 +607,8 @@
             </ul>
             <a href="../Pages/Compare AI upscaling.html">Go to firstwebsideofdunc Compare AI upscaling</a>
         </div>
+        
         <img src="../img/patch.png" style="width:126px;height:150px">
-    </div>
-
-    <div class="compare-versions" id="comparePanel">
-        <select id="version1"></select>
-        <select id="version2"></select>
-        <button onclick="compareVersions()">Compare</button>
     </div>
 
     <script>
@@ -595,8 +654,6 @@
                     }
                 }
             });
-
-            generateQuickNav();
         });
 
         function searchVersions(query) {
@@ -606,20 +663,6 @@
             cards.forEach(card => {
                 const text = card.textContent.toLowerCase();
                 card.style.display = text.includes(query) ? 'block' : 'none';
-            });
-        }
-
-        function generateQuickNav() {
-            const nav = document.querySelector('.quick-nav ul');
-            const majorVersions = document.querySelectorAll('.version-card h2');
-            
-            majorVersions.forEach(version => {
-                const li = document.createElement('li');
-                const link = document.createElement('a');
-                link.href = `#${version.textContent.replace(/\s+/g, '-')}`;
-                link.textContent = version.textContent;
-                li.appendChild(link);
-                nav.appendChild(li);
             });
         }
 
@@ -642,34 +685,6 @@
         }
 
         window.onscroll = updateProgressBar;
-
-        // Version comparison functionality
-        function initializeComparison() {
-            const versions = Array.from(document.querySelectorAll('.version-card h2, .version-card h4'))
-                .map(el => el.textContent);
-            const selects = [document.getElementById('version1'), document.getElementById('version2')];
-            
-            selects.forEach(select => {
-                versions.forEach(version => {
-                    const option = document.createElement('option');
-                    option.value = option.textContent = version;
-                    select.appendChild(option);
-                });
-            });
-        }
-
-        function compareVersions() {
-            const v1 = document.getElementById('version1').value;
-            const v2 = document.getElementById('version2').value;
-            // Implement comparison logic here
-            console.log(`Comparing ${v1} with ${v2}`);
-        }
-
-        // Initialize features
-        document.addEventListener('DOMContentLoaded', () => {
-            // ...existing initialization...
-            initializeComparison();
-        });
     </script>
 
     <footer>

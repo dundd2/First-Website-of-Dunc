@@ -73,23 +73,17 @@
 
         .nav-buttons {
             display: flex;
+            justify-content: center;
             gap: 20px;
-            position: fixed; /* Changed from sticky to fixed */
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 10px 20px;
+            margin: 2rem 0;
+            padding: 1rem;
+            background: var(--bg-light);
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
-            z-index: 100;
-            width: auto;
-            justify-content: center;
         }
 
         body.dark-mode .nav-buttons {
-            background: rgba(26, 26, 26, 0.8);
+            background: var(--bg-dark);
         }
 
         .nav-button {
@@ -152,12 +146,24 @@
             padding: 1rem;
             border-radius: var(--border-radius);
         }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .logo-container img {
+            width: 42px;
+            height: 50px;
+        }
     </style>
 </head>
 <body>
-    <div class="logo-with-the-web-name img">
-        <h1>Compare AMD FSR upscaling video and the original video </h1>
-        <img src="../img/patch.png" alt="logo" style="width:42px;height:50px;">
+    <div class="logo-container">
+        <h1>Compare AMD FSR upscaling video and the original video</h1>
+        <img src="../img/patch.png" alt="logo">
     </div>
     <button id="darkModeToggle">Toggle Dark Mode</button>
     <h2>This page start with [firstwebsideofdunc] update v0.04.1</h2>
@@ -202,17 +208,24 @@
     </div>
     <nav class="nav-buttons">
         <a href="Compare AI upscaling p2.html" class="nav-button">
-            <img src="../img/patch.png" alt="Next page" width="42" height="50">
             <span>Next Page</span>
         </a>
         <a href="../index.html" class="nav-button">
-            <img src="../img/patch.png" alt="Home" width="42" height="50">
             <span>Main Page</span>
         </a>
     </nav>
     <footer>
-        <div style="padding: 20px;">
-            <p>&copy; 2023 firstwebsideofdunc. Thanks for visiting!</p>
+        <div style="color: black; background-color: #F7F8F9; padding: 20px;">
+            <div class="row">
+                <div class="footer" style="text-align: left; padding: 0px;">
+                    <p style="color:black"> hi</p>
+                </div>
+                <div class="col-md-6" style="text-align: right; padding: 0px;">
+                    <b>
+                        <p align="right">Thanks for watching</p>
+                    </b>                      
+                </div>
+            </div>
         </div>
     </footer>
     <script>
