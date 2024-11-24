@@ -7,8 +7,7 @@ This project represents my first venture into web development, initiated on June
 Visit the site at: https://dundd2.github.io/firstwebsideofdunc/
 
 ## These photos show what the site looks like as of v0.7:
-![FireShot Capture 166 - DunDD's Website v0 6 - dundd2 github io](https://github.com/user-attachments/assets/f4663704-62ff-481a-9202-8abbb280470d)
-
+![screencapture-dundd2-github-io-firstwebsideofdunc-2024-11-24-23_28_07](https://github.com/user-attachments/assets/f0982518-89cf-485f-8b19-4cbc8c96295c)
 
 ## Development History
 
