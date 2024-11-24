@@ -1,140 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Firstwebsideofdunc</title>
-<link rel="icon" type="image/x-icon" href="../img/favicon.ico">
-</head>
-<style>
-body {
-  padding: 15px;
-  background-color: #FFF;
-  color: black;
-  font-size: 15px;
-}
-.logo-with-the-web-name {
-    display: flex;
-    align-items: center;
-  }
-.logo-with-the-web-name img {
-    margin-left: 10px;
-  }
-.dark-mode {
-    background-color: #7C7B7B;
-    color: #131417;;
-  }
-</style>
-<body>
- <h1> Henshin!game</h1>
-</div>
- <p>This page start with [firstwebsideofdunc] update v0.04</p>
-<div>
-    <button onclick="darkMode()">Darkmode</button>
-  </div>
-  <script>
-    function darkMode() {
-      var element = document.body;
-      element.classList.toggle("dark-mode");
-    }
-  </script>
-<br>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Henshin Game - Firstwebsideofdunc</title>
+    <link rel="icon" type="image/x-icon" href="../img/favicon.ico">
+    <style>
+        :root {
+            --text-color: #131417;
+            --bg-color: #FFF;
+            --accent-color: #085cba;
+        }
 
-<div class="hi">
-	<div><style>
-    
-@media (max-width: 767px) {
-      .xinasay_1 {
-          font-size: 16px; 
-      }
-      .xinasay_2 {
-          font-size: 14px; 
-      }
-      .motto_label .xina_icon {
-        max-width: 24px;
-        height: auto;
-      }
-    }
-    
-@media (min-width: 768px) {
-       .xinasay_1 {
-          font-size: 20px; 
-      }
-      
-      .xinasay_2 {
-          font-size: 16px; 
-      }
-      
-      .motto_label .xina_icon{
-          max-width: 48px;
-          height: auto;
-          
-      }
-    
-    }
-    
-    .motto_label {
-        background:#e5e4f1;
-        border-left:10px solid #085cba;
-        color: #085CBA;
-        padding: 10px;
+        body {
+            padding: 15px;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-size: 15px;
+            transition: background-color 0.3s, color 0.3s;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .dark-mode {
+            --text-color: #e5e4f1;
+            --bg-color: #2c2c2c;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .henshin-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .henshin-image {
+            max-width: 100%;
+            height: auto;
+            max-height: 600px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .henshin-image:active {
+            transform: scale(0.98);
+        }
+
+        .theme-toggle {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background-color: #064a94;
+        }
+
+        footer {
+            background-color: #F7F8F9;
+            padding: 20px;
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-color);
+        }
+
+        .footer-link img {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Henshin! Game</h1>
+        <p>This page starts with [firstwebsideofdunc] update v0.04</p>
         
-    }
-    .xinasay_1 {
-        
-    font-weight: bold;
-    color: black;
-    display: inline-block;
-    margin-left: 20px;
-    }
-    
-    .xinasay_2 {
-        
-    font-weight: bold;
-    color: #085CBA;
-    display: inline-block;
-    margin-left: 30px;
-        
-    }
-</style>
-<div class="motto_label">
-  <h1> henshin!</h1>
-<img src="../img/akibaranger henshin.png"  id="henshin!" height="600px">
-</div>
-<script>
-  window.onload = function() {
-    var img = document.getElementById("henshin!");
-    var audio = new Audio('../img/Henshin Sound.mp3');
-    var gifTimer;
-    img.addEventListener('mousedown', function() {
-      img.src = '../img/henshin!.gif';
-      audio.play();
-    });
-    img.addEventListener('mouseup', function() {
-      clearTimeout(gifTimer); 
-      img.src = '../img/akibaranger henshin.png';
-      audio.play();
-    });
-    img.addEventListener('load', function() {
-      if (img.src.includes('.gif')) {
-        gifTimer = setTimeout(function() {
-          img.src = '../img/akibaranger henshin.png';
-        }, 5000);
-      }
-    });
-  }
-</script>
-<h2>---------------------------------------------------------------------------------------------------------------------------------------------------------</h2>
-<footer>
-  <div style="color: black; background-color: #F7F8F9; padding: 20px;">
-      <div class="row">
-          <div class="footer" style="text-align: left; padding: 0px;">
-            <a href="../index.html"><img src="../img/patch.png" alt="vbeta" style="width:42px;height:50px;"></a>
-            Go back to [firstwebsideofdunc] main page </a>  
-          </div>
-          <div class="col-md-6" style="text-align: right; padding: 0px;">
-                  <p align="right">Thanks for watching</p>                    
-      </div>
-  </div>
-</footer>
+        <button class="theme-toggle" onclick="darkMode()">Toggle Dark Mode</button>
+
+        <div class="henshin-container">
+            <img src="../img/akibaranger henshin.png" id="henshin!" class="henshin-image" alt="Henshin transformation">
+        </div>
+    </div>
+
+    <footer>
+        <a href="../index.html" class="footer-link">
+            <img src="../img/patch.png" alt="vbeta" width="42" height="50">
+            <span>Go back to [firstwebsideofdunc] main page</span>
+        </a>
+        <p>Thanks for watching</p>
+    </footer>
+
+    <script>
+        function darkMode() {
+            document.body.classList.toggle("dark-mode");
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+        }
+
+        window.onload = function() {
+            const img = document.getElementById("henshin!");
+            const audio = new Audio('../img/Henshin Sound.mp3');
+            let isAnimating = false;
+            let animationTimeout;
+
+            // Restore dark mode preference
+            if (localStorage.getItem('darkMode') === 'true') {
+                document.body.classList.add('dark-mode');
+            }
+
+            function startAnimation() {
+                if (!isAnimating) {
+                    isAnimating = true;
+                    img.src = '../img/henshin!.gif';
+                    audio.play();
+                    animationTimeout = setTimeout(() => {
+                        img.src = '../img/akibaranger henshin.png';
+                        isAnimating = false;
+                    }, 5000);
+                }
+            }
+
+            img.addEventListener('click', startAnimation);
+            img.addEventListener('touchstart', startAnimation);
+        }
+    </script>
 </body>
 </html>
