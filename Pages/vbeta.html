@@ -34,6 +34,8 @@
             backdrop-filter: blur(10px);
             background: rgba(255,255,255,0.9) !important;
             transition: background 0.3s;
+            padding: 1rem 0;
+            z-index: 1000;
         }
 
         .content-card {
@@ -363,7 +365,7 @@
         /* Notification system */
         .notification {
             position: fixed;
-            top: 20px;
+            top: 80px; /* Increased to appear below navbar */
             right: 20px;
             padding: 15px 25px;
             background: var(--primary-color);
@@ -371,7 +373,7 @@
             border-radius: 8px;
             transform: translateX(150%);
             transition: transform 0.3s ease-out;
-            z-index: 1000;
+            z-index: 999; /* Below navbar */
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
 
@@ -548,6 +550,38 @@
             outline: 3px solid var(--primary-color);
             outline-offset: 2px;
         }
+
+        .search-modal {
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .search-container {
+            width: 90%;
+            max-width: 600px;
+            padding: 25px;
+            background: var(--light-bg);
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .search-results {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .hover-bg:hover {
+            background: rgba(0,0,0,0.05);
+        }
+
+        body.dark-mode .search-container {
+            background: var(--dark-card-bg);
+            color: var(--dark-text-color);
+        }
+
+        body.dark-mode .hover-bg:hover {
+            background: rgba(255,255,255,0.05);
+        }
     </style>
 </head>
 <body>
@@ -571,16 +605,21 @@
                         <a class="nav-link" href="#section1">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#section2">Links</a>
+                        <a class="nav-link" href="#section2">Legacy</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#section3">About</a>
+                        <a class="nav-link" href="#section3">(WIP)Memoir - Anthology Series</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#section4">Contact</a>
+                        <a class="nav-link" href="#section4">Other Pages</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#section5">Blog</a>
+                        <a class="nav-link" href="#section5">Other Websites</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0)" onclick="showSearch()">
+                            <i class="fas fa-search"></i> Search
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -601,7 +640,7 @@
             <div class="content-card">
                <p>Hello world by ddd</p>
                 <p>This website was launched on June 2, 2022.</p>
-                <p>You are watching the update for [firstwebsideofdunc] v0.6 update at 24-11-2024 08:20</p>
+                <p>You are watching the update for [firstwebsideofdunc] v0.6 update at 24-11-2024 04:40</p>
             </div>
 
             <div class="content-card">
@@ -715,17 +754,17 @@
             <div class="content-card">
                 <h2>(WIP)Memoir - Anthology Series:</h2>
                 <div class="quick-links">
-                    <a href="img/Dun.DD Threads 中學系列文集.pdf" class="link-card">
+                    <a href="img/Dun.DD Threads 香港中學系列文集(香港版).pdf" class="link-card">
                         <img src="img/dunddthreadslogo.png" alt="Chinese Version">
                         <span>Hong Kong Secondary School Anthology Series (Chinese Ver)</span>
                     </a>
-                    <a href="img/Dun.DD Threads 香港中學系列文集(香港版).pdf" class="link-card">
-                        <img src="img/dunddthreadslogo.png" alt="English Version">
-                        <span>Hong Kong Secondary School Anthology Series (DeepL Translate English Ver)</span>
-                    </a>
-                    <a href="img/Dun.DD Threads Hong Kong Secondary School Anthology Series-Deepl.pdf" class="link-card">
+                    <a href="img/Dun.DD Threads 中學系列文集.pdf" class="link-card">
                         <img src="img/dunddthreadslogo.png" alt="Chinese Version with Uni">
                         <span>Dundd Anthology Series (Chinese with Uni)</span>
+                    </a>
+                    <a href="Dun.DD Threads Hong Kong Secondary School Anthology Series-Deepl.pdf.pdf" class="link-card">
+                        <img src="img/dunddthreadslogo.png" alt="English Version">
+                        <span>Hong Kong Secondary School Anthology Series (DeepL Translate English Ver)</span>
                     </a>
                 </div>
             </div>
@@ -750,6 +789,24 @@
                 </div>
             </div>
         </div>
+
+        <div class="content-card">
+            <h2>Other Websites Made by DunDD:</h2>
+            <div class="quick-links">
+                <a href="https://dundd2.github.io/Portfolio-Website/" class="link-card">
+                    <img src="img/Portfolio.png" alt="Portfolio Website">
+                    <span>Duncan Law - Portfolio Website</span>
+                </a>
+                <a href="https://dundd2.github.io/IFY-Website-Design-and-Development-Homework-2023-akibTsuu-Film-Productions/index.html" class="link-card">
+                    <img src="img/akblogo.png" alt="WSDD Homework">
+                    <span>Website Design and Development Homework 2023-akibTsuu Film Productions</span>
+                </a>
+                <a href="https://dundd2.github.io/Y1-Introduction-to-Multimedia-Multimedia-Web-Site-Development/akibtsuuhome.html" class="link-card">
+                    <img src="img/akblogo.png" alt="Y1 Multimedia">
+                    <span>Y1-Introduction to Multimedia-Multimedia Web Site Development</span>
+                </a>
+            </div>
+        </div>
     </main>
 
     <button class="back-to-top" id="backToTopBtn">⬆️</button>
@@ -765,8 +822,12 @@
     <!-- Add Search Modal -->
     <div class="search-modal" id="searchModal">
         <div class="search-container">
-            <input type="text" class="form-control" placeholder="Search...">
-            <div class="search-results mt-3"></div>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h3 class="m-0">Search</h3>
+                <button class="btn-close" onclick="hideSearch()"></button>
+            </div>
+            <input type="text" class="form-control mb-3" id="searchInput" placeholder="Search...">
+            <div class="search-results" id="searchResults"></div>
         </div>
     </div>
 
@@ -903,14 +964,87 @@
         // Show welcome message
         window.addEventListener('load', () => {
             setTimeout(() => {
-                showNotification('Welcome to DunDD\'s Website!');
-            }, 1000);
+                const notification = document.createElement('div');
+                notification.classList.add('notification');
+                notification.textContent = 'Welcome to DunDD\'s Website!';
+                document.body.appendChild(notification);
+                
+                requestAnimationFrame(() => {
+                    notification.classList.add('show');
+                });
+
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                    setTimeout(() => notification.remove(), 300);
+                }, 3000);
+            }, 1500); // Increased delay to ensure proper positioning
         });
 
         // Search functionality
         function showSearch() {
             document.getElementById('searchModal').style.display = 'flex';
+            document.getElementById('searchInput').focus();
         }
+
+        function hideSearch() {
+            document.getElementById('searchModal').style.display = 'none';
+        }
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const resultsContainer = document.getElementById('searchResults');
+            resultsContainer.innerHTML = '';
+
+            if (searchTerm.length < 2) return;
+
+            // Define searchable content
+            const searchableContent = [
+                { title: 'Home', link: '#section1', description: 'Main page content and updates' },
+                { title: 'Legacy Versions', link: '#section2', description: 'Access to previous versions of the website' },
+                { title: 'About', link: '#section3', description: 'Information about DunDD' },
+                { title: 'Testimonials', link: '#section4', description: 'User feedback and testimonials' },
+                { title: 'Update Log', link: 'Pages/log.html', description: 'Website update history' },
+                { title: 'Compare AI upscaling', link: 'Pages/Compare AI upscaling.html', description: 'AI upscaling comparison' },
+                { title: 'Henshin', link: 'Pages/henshin.html', description: 'Henshin page' }
+            ];
+
+            const results = searchableContent.filter(item => 
+                item.title.toLowerCase().includes(searchTerm) || 
+                item.description.toLowerCase().includes(searchTerm)
+            );
+
+            if (results.length === 0) {
+                resultsContainer.innerHTML = '<p class="text-muted">No results found</p>';
+                return;
+            }
+
+            results.forEach(result => {
+                const resultElement = document.createElement('div');
+                resultElement.className = 'p-3 border-bottom hover-bg';
+                resultElement.innerHTML = `
+                    <a href="${result.link}" class="text-decoration-none" onclick="hideSearch()">
+                        <h5 class="mb-1">${result.title}</h5>
+                        <p class="mb-0 text-muted">${result.description}</p>
+                    </a>
+                `;
+                resultsContainer.appendChild(resultElement);
+            });
+        });
+
+        // Close search modal when clicking outside
+        document.getElementById('searchModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                hideSearch();
+            }
+        });
+
+        // Close search modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                hideSearch();
+            }
+        });
 
         // Share functionality
         async function shareContent() {
