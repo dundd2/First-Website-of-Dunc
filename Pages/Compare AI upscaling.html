@@ -315,6 +315,7 @@
                 img.classList.remove('loading');
                 img.classList.add('error');
                 img.parentElement.innerHTML = 'Failed to load image';
+                console.error(`Failed to load image: ${img.src}`); // Add error logging
             };
         });
 

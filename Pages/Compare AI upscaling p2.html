@@ -18,6 +18,8 @@
             --border-radius: 5px;
             --transition-speed: 0.3s;
             --shadow: 0 2px 4px rgba(0,0,0,0.1);
+            --footer-light: #F7F8F9;
+            --footer-dark: #2a2a2a;
         }
 
         * {box-sizing: border-box;}
@@ -86,7 +88,7 @@
 
         body.dark-mode {
             background-color: var(--bg-dark);
-            color: var (--text-dark);
+            color: var(--text-dark);
         }
 
         .nav-buttons {
@@ -107,10 +109,22 @@
         #darkModeToggle {
             padding: 10px 20px;
             border: none;
-            border-radius: 5px;
+            border-radius: var(--border-radius);
             cursor: pointer;
             background-color: var(--primary-color);
             color: white;
+            font-weight: bold;
+            transition: all var(--transition-speed);
+        }
+
+        #darkModeToggle:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        body.dark-mode #darkModeToggle {
+            background-color: #454545;
+            border: 1px solid #666;
         }
 
         .comparison-section {
@@ -174,6 +188,34 @@
 
         .nav-button:hover {
             background: var(--primary-hover);
+        }
+
+        footer {
+            margin-top: 2rem;
+            padding: 20px;
+            background-color: var(--footer-light);
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+        }
+
+        body.dark-mode footer {
+            background-color: var(--footer-dark);
+            color: var(--text-dark);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-text {
+            color: inherit;
+        }
+
+        body.dark-mode .footer-text {
+            color: var(--text-dark);
         }
     </style>
 </head>
@@ -342,15 +384,14 @@
     </script>
     <h2>---------------------------------------------------------------------------------------------------------------------------------------------------------</h2>
     <footer>
-        <div style="color: black; background-color: #F7F8F9; padding: 20px;">
-            <div class="row">
-                <div class="footer" style="text-align: left; padding: 0px;">
-                    <p style="color:black"> hi</p>
-                </div>
-                <div class="col-md-6" style="text-align: right; padding: 0px;">
-                    <b>
-                        <p align="right">Thanks for watching</p>
-                    </b>                      
+        <div class="footer-content">
+            <div class="footer-text">
+                <p>hi</p>
+            </div>
+            <div class="footer-text">
+                <b>
+                    <p>Thanks for watching</p>
+                </b>
             </div>
         </div>
     </footer>

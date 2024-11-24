@@ -999,6 +999,77 @@
                 transform: scale(1);
             }
         }
+
+        /* Add responsive grid layout */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        /* Improve card layouts */
+        .content-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            padding: 2rem;
+            margin: 0;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Improve section spacing */
+        .section-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        /* Enhanced mobile responsiveness */
+        @media (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+            
+            .content-card {
+                padding: 1.5rem;
+            }
+
+            .section-wrapper {
+                padding: 2rem 1rem;
+            }
+        }
+
+        /* Improved typography */
+        h1, h2, h3 {
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            line-height: 1.6;
+        }
+
+        /* Better navbar layout */
+        .navbar {
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.95) !important;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        /* Improved contact cards */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
     </style>
 </head>
 <body>
@@ -1053,162 +1124,172 @@
 
     <!-- Add main content wrapper for better semantics -->
     <main id="main-content">
-        <div class="container py-4" id="section1">
-            <div class="content-card">
-                <h1 class="text-center mb-4">Welcome to DunDD's Website</h1>
-                <p>Hello world by ddd</p>
-                <p>This website was launched on June 2, 2022.</p>
-                <p>You are watching the update for [firstwebsideofdunc] v0.7 update at 24-11-2024 04:40</p>
-            </div>
-
-            <div class="content-card">
-                <h1>Never GIVE YOU UP BY Rick Astley</h1>
-                <div class="ratio ratio-16x9">
-                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+        <!-- Update section structure -->
+        <div class="section-wrapper" id="section1">
+            <div class="grid-container">
+                <!-- Wrap content cards in grid -->
+                <div class="content-card">
+                    <h1 class="text-center mb-4">Welcome to DunDD's Website</h1>
+                    <p>Hello world by ddd</p>
+                    <p>This website was launched on June 2, 2022.</p>
+                    <p>You are watching the update for [firstwebsideofdunc] v0.7 update at 24-11-2024 04:40</p>
                 </div>
-            </div>
 
-            <div class="content-card" id="bingchilingCard">
-                <img src="img/bingchiling.png" alt="i love bingchiling" class="img-fluid mb-4 bingchiling-image">
-                <h2>Do you love bingchiling?</h2>
-                <form class="mb-4" id="bingchilingForm">
-                    <div class="form-check mb-3 hover-effect">
-                        <input class="form-check-input" type="radio" name="bingchilling" id="YES" value="YES">
-                        <label class="form-check-label" for="YES">YES</label>
+                <div class="content-card">
+                    <h1>Never GIVE YOU UP BY Rick Astley</h1>
+                    <div class="ratio ratio-16x9">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
                     </div>
-                    <div class="form-check mb-3 hover-effect">
-                        <input class="form-check-input" type="radio" name="bingchilling" id="NO" value="NO">
-                        <label class="form-check-label" for="NO">NO</label>
-                    </div>
-                    <div class="form-check mb-3 hover-effect">
-                        <input class="form-check-input" type="radio" name="bingchilling" id="EM" value="EM.....">
-                        <label class="form-check-label" for="EM">EM.....</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary mt-3">Submit</button>
-                </form>
-                <div id="bingchilingResult" class="bingchiling-result mt-4"></div>
-            </div>
+                </div>
 
-            <div class="content-card">
-                <div class="motto-cards">
-                    <div class="motto-item mb-3">
-                        <img src="img/bingchiling.png" alt="Bing Chilling" width="48" height="48">
-                        <div>
-                            <div class="fw-bold">John Xina:</div>
-                            <div class="text-primary">"I love Bing Chilling"</div>
+                <div class="content-card" id="bingchilingCard">
+                    <img src="img/bingchiling.png" alt="i love bingchiling" class="img-fluid mb-4 bingchiling-image">
+                    <h2>Do you love bingchiling?</h2>
+                    <form class="mb-4" id="bingchilingForm">
+                        <div class="form-check mb-3 hover-effect">
+                            <input class="form-check-input" type="radio" name="bingchilling" id="YES" value="YES">
+                            <label class="form-check-label" for="YES">YES</label>
+                        </div>
+                        <div class="form-check mb-3 hover-effect">
+                            <input class="form-check-input" type="radio" name="bingchilling" id="NO" value="NO">
+                            <label class="form-check-label" for="NO">NO</label>
+                        </div>
+                        <div class="form-check mb-3 hover-effect">
+                            <input class="form-check-input" type="radio" name="bingchilling" id="EM" value="EM.....">
+                            <label class="form-check-label" for="EM">EM.....</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                    </form>
+                    <div id="bingchilingResult" class="bingchiling-result mt-4"></div>
+                </div>
+
+                <div class="content-card">
+                    <div class="motto-cards">
+                        <div class="motto-item mb-3">
+                            <img src="img/bingchiling.png" alt="Bing Chilling" width="48" height="48">
+                            <div>
+                                <div class="fw-bold">John Xina:</div>
+                                <div class="text-primary">"I love Bing Chilling"</div>
+                            </div>
+                        </div>
+                        <div class="motto-item">
+                            <img src="img/laoganma.png" alt="Lao Gan Ma" width="48" height="48">
+                            <div>
+                                <div class="fw-bold">John Xina:</div>
+                                <div class="text-primary">"I love Lao Gan Ma, +999 social credit"</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="motto-item">
-                        <img src="img/laoganma.png" alt="Lao Gan Ma" width="48" height="48">
-                        <div>
-                            <div class="fw-bold">John Xina:</div>
-                            <div class="text-primary">"I love Lao Gan Ma, +999 social credit"</div>
-                        </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-wrapper" id="section2">
+            <div class="grid-container">
+                <div class="content-card">
+                    <h2>Legacy Versions:</h2>
+                    <div class="quick-links">
+                        <a href="https://web.archive.org/web/20220602105159/https://firstwebside-of-dunc4.on.drv.tw/firstwebsideofdunc/" class="link-card">
+                            <img src="img/patch.png" alt="Old Main Page">
+                            <span>Old [firstwebsideofdunc] main page (web.archive.org)</span>
+                        </a>
+                        <a href="Legacy Versions/v0.01.html" class="link-card">
+                            <img src="img/v0.01.png" alt="v0.01">
+                            <span>Go to [firstwebsideofdunc] v0.01</span>
+                        </a>
+                        <a href="Legacy Versions/v0.02.html" class="link-card">
+                            <img src="img/v0.02.png" alt="v0.02">
+                            <span>Go to [firstwebsideofdunc] v0.02</span>
+                        </a>
+                        <a href="Legacy Versions/v0.03.html" class="link-card">
+                            <img src="img/patch.png" alt="v0.03">
+                            <span>Go to [firstwebsideofdunc] v0.03</span>
+                        </a>
+                        <a href="Legacy Versions/v0.04.html" class="link-card">
+                            <img src="img/patch.png" alt="v0.04">
+                            <span>Go to [firstwebsideofdunc] v0.04</span>
+                        </a>
+                        <a href="Legacy Versions/v0.41.html" class="link-card">
+                            <img src="img/patch.png" alt="v0.04.1">
+                            <span>Go to [firstwebsideofdunc] v0.04.1</span>
+                        </a>
+                        <a href="Legacy Versions/v0.5.html" class="link-card">
+                            <img src="img/patch.png" alt="v0.5">
+                            <span>Go to [firstwebsideofdunc] v0.5</span>
+                        </a>
+                        <a href="Legacy Versions/v0.5.html" class="link-card">
+                            <img src="img/patch.png" alt="v0.5">
+                            <span>Go to [firstwebsideofdunc] v0.6</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <h2>Other Pages:</h2>
+                    <div class="quick-links">
+                        <a href="Pages/log.html" class="link-card">
+                            <img src="img/patch.png" alt="Update Log">
+                            <span>Update Log</span>
+                        </a>
+                        <a href="Pages/vbeta.html" class="link-card">
+                            <img src="img/patch.png" alt="vbeta">
+                            <span>Go to [firstwebsideofdunc] vbeta</span>
+                        </a>
+                        <a href="Pages/Compare AI upscaling p2.html" class="link-card">
+                            <img src="img/patch.png" alt="Compare AI upscaling p2">
+                            <span>Compare AI upscaling p2</span>
+                        </a>
+                        <a href="Pages/Compare AI upscaling.html" class="link-card">
+                            <img src="img/patch.png" alt="Compare AI upscaling">
+                            <span>Compare AI upscaling</span>
+                        </a>
+                        <a href="Pages/henshin.html" class="link-card">
+                            <img src="img/patch.png" alt="Henshin">
+                            <span>Henshin</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <h2>(WIP)Memoir - Anthology Series:</h2>
+                    <div class="quick-links">
+                        <a href="img/Dun.DD Threads 香港中學系列文集(香港版).pdf" class="link-card">
+                            <img src="img/dunddthreadslogo.png" alt="Chinese Version">
+                            <span>Hong Kong Secondary School Anthology Series (Chinese Ver)</span>
+                        </a>
+                        <a href="img/Dun.DD Threads 中學系列文集.pdf" class="link-card">
+                            <img src="img/dunddthreadslogo.png" alt="Chinese Version with Uni">
+                            <span>Dundd Anthology Series (Chinese with Uni)</span>
+                        </a>
+                        <a href="Dun.DD Threads Hong Kong Secondary School Anthology Series-Deepl.pdf.pdf" class="link-card">
+                            <img src="img/dunddthreadslogo.png" alt="English Version">
+                            <span>Hong Kong Secondary School Anthology Series (DeepL Translate English Ver)</span>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="container py-4" id="section2">
-            <div class="content-card">
-                <h2>Legacy Versions:</h2>
-                <div class="quick-links">
-                    <a href="https://web.archive.org/web/20220602105159/https://firstwebside-of-dunc4.on.drv.tw/firstwebsideofdunc/" class="link-card">
-                        <img src="img/patch.png" alt="Old Main Page">
-                        <span>Old [firstwebsideofdunc] main page (web.archive.org)</span>
-                    </a>
-                    <a href="Legacy Versions/v0.01.html" class="link-card">
-                        <img src="img/v0.01.png" alt="v0.01">
-                        <span>Go to [firstwebsideofdunc] v0.01</span>
-                    </a>
-                    <a href="Legacy Versions/v0.02.html" class="link-card">
-                        <img src="img/v0.02.png" alt="v0.02">
-                        <span>Go to [firstwebsideofdunc] v0.02</span>
-                    </a>
-                    <a href="Legacy Versions/v0.03.html" class="link-card">
-                        <img src="img/patch.png" alt="v0.03">
-                        <span>Go to [firstwebsideofdunc] v0.03</span>
-                    </a>
-                    <a href="Legacy Versions/v0.04.html" class="link-card">
-                        <img src="img/patch.png" alt="v0.04">
-                        <span>Go to [firstwebsideofdunc] v0.04</span>
-                    </a>
-                    <a href="Legacy Versions/v0.41.html" class="link-card">
-                        <img src="img/patch.png" alt="v0.04.1">
-                        <span>Go to [firstwebsideofdunc] v0.04.1</span>
-                    </a>
-                    <a href="Legacy Versions/v0.5.html" class="link-card">
-                        <img src="img/patch.png" alt="v0.5">
-                        <span>Go to [firstwebsideofdunc] v0.5</span>
-                    </a>
-                    <a href="Legacy Versions/v0.5.html" class="link-card">
-                        <img src="img/patch.png" alt="v0.5">
-                        <span>Go to [firstwebsideofdunc] v0.6</span>
-                    </a>
-                </div>
-            </div>
-
-            <div class="content-card">
-                <h2>Other Pages:</h2>
-                <div class="quick-links">
-                    <a href="Pages/log.html" class="link-card">
-                        <img src="img/patch.png" alt="Update Log">
-                        <span>Update Log</span>
-                    </a>
-                    <a href="Pages/vbeta.html" class="link-card">
-                        <img src="img/patch.png" alt="vbeta">
-                        <span>Go to [firstwebsideofdunc] vbeta</span>
-                    </a>
-                    <a href="Pages/Compare AI upscaling p2.html" class="link-card">
-                        <img src="img/patch.png" alt="Compare AI upscaling p2">
-                        <span>Compare AI upscaling p2</span>
-                    </a>
-                    <a href="Pages/Compare AI upscaling.html" class="link-card">
-                        <img src="img/patch.png" alt="Compare AI upscaling">
-                        <span>Compare AI upscaling</span>
-                    </a>
-                    <a href="Pages/henshin.html" class="link-card">
-                        <img src="img/patch.png" alt="Henshin">
-                        <span>Henshin</span>
-                    </a>
-                </div>
-            </div>
-
-            <div class="content-card">
-                <h2>(WIP)Memoir - Anthology Series:</h2>
-                <div class="quick-links">
-                    <a href="img/Dun.DD Threads 香港中學系列文集(香港版).pdf" class="link-card">
-                        <img src="img/dunddthreadslogo.png" alt="Chinese Version">
-                        <span>Hong Kong Secondary School Anthology Series (Chinese Ver)</span>
-                    </a>
-                    <a href="img/Dun.DD Threads 中學系列文集.pdf" class="link-card">
-                        <img src="img/dunddthreadslogo.png" alt="Chinese Version with Uni">
-                        <span>Dundd Anthology Series (Chinese with Uni)</span>
-                    </a>
-                    <a href="Dun.DD Threads Hong Kong Secondary School Anthology Series-Deepl.pdf.pdf" class="link-card">
-                        <img src="img/dunddthreadslogo.png" alt="English Version">
-                        <span>Hong Kong Secondary School Anthology Series (DeepL Translate English Ver)</span>
-                    </a>
+        <div class="section-wrapper" id="section3">
+            <div class="grid-container">
+                <div class="content-card">
+                    <h2>About DunDD</h2>
+                    <p>Welcome to DunDD's personal website! Here, you can find various updates, content, and projects that I am working on. I am passionate about web development, technology, and sharing my knowledge with others.</p>
+                    <p>Feel free to explore the different sections of the website to learn more about my work and interests.</p>
                 </div>
             </div>
         </div>
-        <div class="container py-4" id="section3">
-            <div class="content-card">
-                <h2>About DunDD</h2>
-                <p>Welcome to DunDD's personal website! Here, you can find various updates, content, and projects that I am working on. I am passionate about web development, technology, and sharing my knowledge with others.</p>
-                <p>Feel free to explore the different sections of the website to learn more about my work and interests.</p>
-            </div>
-        </div>
 
 
-        <div class="container py-4" id="section4">
-            <div class="content-card">
-                <h2>Testimonials</h2>
-                <div class="testimonial">
-                    <p>"DunDD's website is a fantastic resource for anyone interested in web development. The content is always up-to-date and very informative." - Jane Doe</p>
-                </div>
-                <div class="testimonial">
-                    <p>"I love the design and functionality of this website. It's clear that a lot of effort has gone into making it user-friendly and visually appealing." - John Smith</p>
+        <div class="section-wrapper" id="section4">
+            <div class="grid-container">
+                <div class="content-card">
+                    <h2>Testimonials</h2>
+                    <div class="testimonial">
+                        <p>"DunDD's website is a fantastic resource for anyone interested in web development. The content is always up-to-date and very informative." - Jane Doe</p>
+                    </div>
+                    <div class="testimonial">
+                        <p>"I love the design and functionality of this website. It's clear that a lot of effort has gone into making it user-friendly and visually appealing." - John Smith</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1220,7 +1301,7 @@
                     <img src="img/Portfolio.png" alt="Portfolio Website">
                     <span>Duncan Law - Portfolio Website</span>
                 </a>
-                <a href="https://dundd2.github.io/IFY-Website-Design-and-Development-Homework-2023-akibTsuu-Film-Productions/index.html" class="link-card"></a>
+                <a href="https://dundd2.github.io/IFY-Website-Design-and-Development-Homework-2023-akibTsuu-Film-Productions/index.html" class="link-card">
                     <img src="img/akblogo.png" alt="WSDD Homework">
                     <span>Website Design and Development Homework 2023-akibTsuu Film Productions</span>
                 </a>
@@ -1260,39 +1341,34 @@
         <button class="btn btn-primary" onclick="acceptCookies()">Accept</button>
     </div>
 
-    <div class="container py-4" id="contact">
-        <div class="content-card">
-            <h2 class="text-center mb-4">Let's Connect</h2>
-            <p class="text-center lead mb-5">Feel free to reach out for collaborations or just to say hello!</p>
-            
-            <div class="row g-4 justify-content-center">
-                <div class="col-md-4">
-                    <a href="https://github.com/dundd2" class="contact-card" target="_blank" rel="noreferrer noopener">
-                        <div class="contact-icon">
-                            <i class="fab fa-github"></i>
-                        </div>
-                        <h3>GitHub</h3>
-                        <p>Check out my projects</p>
-                    </a>
-                </div>
-                <div class="col-md-4">
-                    <a href="https://www.linkedin.com/in/duncan-l400" class="contact-card" target="_blank" rel="noreferrer noopener">
-                        <div class="contact-icon">
-                            <i class="fab fa-linkedin"></i>
-                        </div>
-                        <h3>LinkedIn</h3>
-                        <p>Let's connect professionally</p>
-                    </a>
-                </div>
-                <div class="col-md-4">
-                    <a href="mailto:dunddatuk@gmail.com" class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <h3>Email</h3>
-                        <p>Drop me a message</p>
-                    </a>
-                </div>
+    <div class="section-wrapper" id="contact">
+        <div class="contact-grid">
+            <div class="col-md-4">
+                <a href="https://github.com/dundd2" class="contact-card" target="_blank" rel="noreferrer noopener">
+                    <div class="contact-icon">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <h3>GitHub</h3>
+                    <p>Check out my projects</p>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="https://www.linkedin.com/in/duncan-l400" class="contact-card" target="_blank" rel="noreferrer noopener">
+                    <div class="contact-icon">
+                        <i class="fab fa-linkedin"></i>
+                    </div>
+                    <h3>LinkedIn</h3>
+                    <p>Let's connect professionally</p>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="mailto:dunddatuk@gmail.com" class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email</h3>
+                    <p>Drop me a message</p>
+                </a>
             </div>
         </div>
     </div>
