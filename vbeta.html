@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>firstwebsideofdunc v0.7</title>
+    <title>firstwebsideofdunc v0.8</title>
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     <meta name="description" content="dunc personal website showcasing various updates and content.">
     <meta name="keywords" content="dunc, personal website, updates, content">
     <meta name="author" content="dunc">
     <meta name="robots" content="index, follow">
-    <meta property="og:title" content="dunc's Website v0.7">
+    <meta property="og:title" content="dunc's Website v0.8">
     <meta property="og:description" content="dunc's personal website showcasing various updates and content.">
     <meta property="og:type" content="website">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/all.min.css">
+    <script src="js/d3.v7.min.js"></script>
     <style>
         :root {
             --primary-color: #4B9DFF;
@@ -1134,6 +1135,80 @@
         .no-results i {
             opacity: 0.5;
         }
+        .map-container {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        #worldMapSVG {
+            width: 100%;
+            height: auto;
+        }
+
+        .country {
+            fill: #e0e0e0;
+            stroke: #ffffff;
+            stroke-width: 0.5;
+            transition: fill 0.3s;
+        }
+
+        .country.highlighted {
+            fill: #4B9DFF;
+        }
+
+        .country.active {
+            fill: #357abd;
+        }
+
+        .country-info-popup {
+            display: none;
+            position: absolute;
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            max-width: 300px;
+            pointer-events: none;
+        }
+
+        body.dark-mode .country-info-popup {
+            background: var(--dark-card-bg);
+            color: var(--dark-text-color);
+        }
+
+        body.dark-mode .country {
+            fill: #2d2d2d;
+            stroke: #3d3d3d;
+        }
+        /* 添加特殊行政區的樣式 */
+        .special-region {
+            cursor: pointer;
+            transition: r 0.3s;
+        }
+
+        .special-region:hover {
+            r: 5;
+        }
+
+        /* 更新地圖容器樣式 */
+        .map-container {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: var(--light-bg);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .map-legend {
+            font-size: 0.9rem;
+            color: var(--dark-text-color);
+        }
     </style>
 </head>
 <body>
@@ -1168,12 +1243,15 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#otherWebsites">Other DunDD Websites</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#worldMap">World Map</a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div class="version-badge">v0.7</div>
+    <div class="version-badge">v0.8</div>
 
     <!-- Add skip to content link for accessibility -->
     <a href="#main-content" class="skip-to-content">Skip to main content</a>
@@ -1187,7 +1265,7 @@
             <div class="content-card">
                 <h1 class="text-center mb-4">Hello world by ddd</h1>
                 <p>This website was launched on June 2, 2022.</p>
-                <p>You are watching the update for [firstwebsideofdunc] v0.7 update at 25-11-2024 00:00</p>
+                <p>You are watching the update for [firstwebsideofdunc] v0.8 update at 25-11-2024 00:00</p>
             </div>
 
             <div class="content-card">
@@ -1238,6 +1316,27 @@
             </div>
         </div>
 
+        <div class="content-card" id="worldMap">
+            <h2>Dunc's World Explorer Progress</h2>
+            <p class="text-center text-muted">Track my journey around the world</p>
+            <div class="map-container">
+                <svg id="worldMapSVG" viewBox="0 0 1000 500">
+                    <!-- SVG world map will be inserted here by JavaScript -->
+                </svg>
+                <div id="countryInfo" class="country-info-popup">
+                    <h3 id="countryName"></h3>
+                    <p id="countryDetails"></p>
+                    <small class="text-muted">Year visited</small>
+                </div>
+            </div>
+            <div class="map-legend mt-3">
+                <div class="d-flex justify-content-center align-items-center gap-3">
+                    <span><i class="fas fa-square text-primary"></i> Visited</span>
+                    <span><i class="fas fa-square text-muted"></i> Not visited yet</span>
+                </div>
+            </div>
+        </div>
+
         <div class="container py-4" id="section2">
             <div class="content-card" id="legacyVersions">
                 <h2>Legacy Versions:</h2>
@@ -1269,6 +1368,10 @@
                     <a href="Legacy Versions/v0.6.html" class="link-card">
                         <img src="img/patch.png" alt="v0.6">
                         <span>Go to [firstwebsideofdunc] v0.6</span>
+                    </a>
+                    <a href="Legacy Versions/v0.7.html" class="link-card">
+                        <img src="img/patch.png" alt="v0.7">
+                        <span>Go to [firstwebsideofdunc] v0.7</span>
                     </a>
                 </div>
             </div>
@@ -2186,6 +2289,306 @@ searchInput.addEventListener('focus', () => {
             clearTimeout(searchTimeout);
             searchTimeout = setTimeout(performSearch, 300);
         });
+
+        // 需要高亮顯示的國家數據
+        const highlightedCountries = {
+            'CHN': {
+        name: 'China',
+        color: '#4b9dff',
+        details: 'Home of Bing Chilling! Social Credit Score: +100'
+    },
+    'HKG': {
+        name: 'Hong Kong SAR',
+        color: '#4b9dff',
+        details: '2005-Present',
+        type: 'special'
+    },
+    'MAC': {
+        name: 'Macau SAR',
+        color: '#4b9dff',
+        details: '200x',
+        type: 'special'
+    },
+    'TWN': {
+        name: 'Taiwan',
+        color: '#4b9dff',
+        details: '2018'
+    },
+    'SGP': {
+        name: 'Singapore',
+        color: '#4b9dff',
+        details: '2012'
+    },
+    'MYS': {
+        name: 'Malaysia',
+        color: '#4b9dff',
+        details: '2019'
+    },
+    'BRN': {
+        name: 'Brunei',
+        color: '#4b9dff',
+        details: '2019'
+    },
+    'IDN': {
+        name: 'Indonesia',
+        color: '#4b9dff',
+        details: '2019'
+    },
+    'JPN': {
+        name: 'Japan',
+        color: '#4b9dff',
+        details: '2017'
+    },
+    'KOR': {
+        name: 'South Korea',
+        color: '#4b9dff',
+        details: '2011'
+    },
+    'MDV': {
+        name: 'Maldives',
+        color: '#4b9dff',
+        details: '2019'
+    },
+    'QAT': {
+        name: 'Qatar',
+        color: '#4b9dff',
+        details: '2019'
+    },
+    'ARE': {
+        name: 'United Arab Emirates',
+        color: '#4b9dff',
+        details: '2018'
+    },
+    'RUS': {
+        name: 'Russia',
+        color: '#4b9dff',
+        details: '2018'
+    },
+    'CHE': {
+        name: 'Switzerland',
+        color: '#4b9dff',
+        details: '2018'
+    },
+    'LIE': {
+        name: 'Liechtenstein',
+        color: '#4b9dff',
+        details: '2018'
+    },
+    'AUT': {
+        name: 'Austria',
+        color: '#4b9dff',
+        details: '2017'
+    },
+    'DEU': {
+        name: 'Germany',
+        color: '#4b9dff',
+        details: '2017'
+    },
+    'SVN': {
+        name: 'Slovenia',
+        color: '#4b9dff',
+        details: '2017'
+    },
+    'CZE': {
+        name: 'Czech Republic',
+        color: '#4b9dff',
+        details: '2017'
+    },
+    'HUN': {
+        name: 'Hungary',
+        color: '#4b9dff',
+        details: '2017'
+    },
+    'SVK': {
+        name: 'Slovakia',
+        color: '#4b9dff',
+        details: '2017'
+    },
+    'HRV': {
+        name: 'Croatia',
+        color: '#4b9dff',
+        details: '2017'
+    },
+    'POL': {
+        name: 'Poland',
+        color: '#4b9dff',
+        details: '2024'    },
+    'SWE': {
+        name: 'Sweden',
+        color: '#4b9dff',
+        details: '2016'    },
+    'FIN': {
+        name: 'Finland',
+        color: '#4b9dff',
+        details: '2016'
+    },
+    'DNK': {
+        name: 'Denmark',
+        color: '#4b9dff',
+        details: '2016'    },
+    'NOR': {
+        name: 'Norway',
+        color: '#4b9dff',
+     details: '2016'
+    },
+    'LTU': {
+        name: 'Lithuania',
+        color: '#4b9dff',
+     details: '2024'
+    },
+    'LVA': {
+        name: 'Latvia',
+        color: '#4b9dff',
+     details: '2024'
+    },
+    'EST': {
+        name: 'Estonia',
+        color: '#4b9dff',
+        details: '2024'
+    },
+    'GRC': {
+        name: 'Greece',
+        color: '#4b9dff',
+        details: '2019'
+    },
+    'ENG': {
+        name: 'England',
+        color: '#4b9dff',
+        details: '2022'
+    },
+    'WLS': {
+        name: 'Wales',
+        color: '#4b9dff',
+        details: '2023'
+    },
+    'SCT': {
+        name: 'Scotland',
+        color: '#4b9dff',
+        details: '2023'
+    },
+    'IRL': {
+        name: 'Ireland',
+        color: '#4b9dff',
+        details: '2024'
+    },
+    'BEL': {
+        name: 'Belgium',
+        color: '#4b9dff',
+        details: '2024'
+    },
+    'FRA': {
+        name: 'France',
+        color: '#4b9dff',
+        details: '2024'
+    },
+    'JEY': {
+        name: 'Jersey',
+        color: '#4b9dff',
+        details: '2024',
+        type: 'special'
+    },
+    'GIB': {
+        name: 'Gibraltar',
+        color: '#4b9dff',
+        details: '2024',
+        type: 'special'
+    },
+    'CAN': {
+        name: 'Canada',
+        color: '#4b9dff',
+        details: '2019'
+    },
+    'GBR': {
+        name: 'United Kingdom',
+        color: '#4b9dff',
+        details: '2022'
+    }
+};
+
+        // 當文檔加載完成後載入地圖
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                // 載入世界地圖 SVG 數據 (使用簡化的世界地圖 GeoJSON)
+                const response = await fetch('https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson');
+                const data = await response.json();
+                
+                // 使用 D3.js 繪製地圖
+                const svg = d3.select('#worldMapSVG');
+                const projection = d3.geoMercator()
+                    .scale(140)
+                    .translate([500, 300]);
+                const path = d3.geoPath().projection(projection);
+
+                // 繪製國家
+                svg.selectAll('path')
+                    .data(data.features)
+                    .enter()
+                    .append('path')
+                    .attr('d', path)
+                    .attr('class', 'country')
+                    .attr('id', d => `country-${d.id}`)
+                    .style('fill', d => highlightedCountries[d.id]?.color || '#e0e0e0')
+                    .on('mouseover', showCountryInfo)
+                    .on('mouseout', hideCountryInfo);
+
+                // 添加特殊行政區（使用圓點標記）
+                const specialRegions = Object.entries(highlightedCountries)
+                    .filter(([_, info]) => info.type === 'special')
+                    .map(([id, info]) => ({
+                        id: id,
+                        ...info,
+                        coordinates: getSpecialRegionCoordinates(id)
+                    }));
+
+                svg.selectAll('circle.special-region')
+                    .data(specialRegions)
+                    .enter()
+                    .append('circle')
+                    .attr('class', 'special-region')
+                    .attr('r', 3)
+                    .attr('cx', d => projection(d.coordinates)[0])
+                    .attr('cy', d => projection(d.coordinates)[1])
+                    .style('fill', d => d.color)
+                    .style('stroke', '#fff')
+                    .style('stroke-width', 1)
+                    .on('mouseover', showSpecialRegionInfo)
+                    .on('mouseout', hideCountryInfo);
+
+            } catch (error) {
+                console.error('Error loading map:', error);
+            }
+        });
+
+        // 特殊行政區座標
+        function getSpecialRegionCoordinates(id) {
+            const coordinates = {
+                'HKG': [114.1694, 22.3193],
+                'MAC': [113.5439, 22.1987],
+                'JEY': [-2.1328, 49.2144],
+                'GIB': [-5.3536, 36.1408]
+            };
+            return coordinates[id] || [0, 0];
+        }
+
+        // 特殊行政區信息顯示
+        function showSpecialRegionInfo(event, d) {
+            const popup = document.getElementById('countryInfo');
+            const rect = event.target.getBoundingClientRect();
+            const mapContainer = document.querySelector('.map-container');
+            const containerRect = mapContainer.getBoundingClientRect();
+
+            popup.style.display = 'block';
+            popup.style.left = `${rect.left - containerRect.left}px`;
+            popup.style.top = `${rect.top - containerRect.top - popup.offsetHeight - 5}px`;
+
+            document.getElementById('countryName').textContent = d.name;
+            document.getElementById('countryDetails').textContent = d.details;
+        }
+
+        // 隱藏國家信息
+        function hideCountryInfo() {
+            document.getElementById('countryInfo').style.display = 'none';
+        }
     </script>
     <script defer src="js/bootstrap.bundle.min.js"></script>
 </body>
