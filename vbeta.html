@@ -1186,11 +1186,11 @@
         /* 添加特殊行政區的樣式 */
         .special-region {
             cursor: pointer;
-            transition: r 0.3s;
+            transition: all 0.3s;
         }
 
         .special-region:hover {
-            r: 5;
+            transform: scale(1.5);
         }
 
         /* 更新地圖容器樣式 */
@@ -1208,6 +1208,71 @@
         .map-legend {
             font-size: 0.9rem;
             color: var(--dark-text-color);
+        }
+        .settings-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .settings-toggle:hover {
+            transform: rotate(360deg);
+        }
+
+        .settings-panel {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 300px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 20px;
+            display: none;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1001;
+            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+        }
+
+        .settings-panel.show {
+            display: flex;
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .settings-panel.hide {
+            transform: translateY(20px);
+            opacity: 0;
+        }
+
+        .settings-panel h3 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+
+        .settings-panel label {
+            font-size: 0.9rem;
+        }
+
+        .settings-panel input[type="range"] {
+            width: 100%;
+        }
+
+        .settings-panel select {
+            width: 100%;
         }
     </style>
 </head>
@@ -1540,6 +1605,33 @@
     <div class="cookie-consent" id="cookieConsent">
         <p>This website uses cookies to ensure you get the best experience.</p>
         <button class="btn btn-primary" onclick="acceptCookies()">Accept</button>
+    </div>
+
+    <div class="settings-toggle" id="settingsToggle">⚙️</div>
+    <div class="settings-panel" id="settingsPanel">
+        <h3>Settings</h3>
+        <div>
+            <label for="themeSelect">Theme</label>
+            <select id="themeSelect">
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+                <option value="solarized">Solarized</option>
+                <option value="high-contrast">High Contrast</option>
+                <option value="auto">Auto</option>
+            </select>
+        </div>
+        <div>
+            <label for="darkModeToggle">Dark Mode</label>
+            <input type="checkbox" id="darkModeToggle">
+        </div>
+        <div>
+            <label for="zoomControl">Zoom</label>
+            <input type="range" id="zoomControl" min="80" max="120" value="100">
+        </div>
+        <div>
+            <label for="fontSizeControl">Font Size</label>
+            <input type="range" id="fontSizeControl" min="12" max="20" value="16">
+        </div>
     </div>
 
     <footer>
@@ -2066,7 +2158,7 @@
                 </div>
             `;
 
-            // 添加設定模態框��頁面
+            // 添加設定模態框到頁面
             if (!document.getElementById('settingsModal')) {
                 document.body.insertAdjacentHTML('beforeend', settingsHtml);
             }
@@ -2589,6 +2681,68 @@ searchInput.addEventListener('focus', () => {
         function hideCountryInfo() {
             document.getElementById('countryInfo').style.display = 'none';
         }
+
+        const settingsToggle = document.getElementById('settingsToggle');
+        const settingsPanel = document.getElementById('settingsPanel');
+        const themeSelect = document.getElementById('themeSelect');
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const zoomControl = document.getElementById('zoomControl');
+        const fontSizeControl = document.getElementById('fontSizeControl');
+
+        settingsToggle.addEventListener('click', () => {
+            if (settingsPanel.classList.contains('show')) {
+                settingsPanel.classList.remove('show');
+                settingsPanel.classList.add('hide');
+                setTimeout(() => settingsPanel.style.display = 'none', 300);
+            } else {
+                settingsPanel.style.display = 'flex';
+                settingsPanel.classList.remove('hide');
+                settingsPanel.classList.add('show');
+            }
+        });
+
+        themeSelect.addEventListener('change', (e) => {
+            const theme = e.target.value;
+            localStorage.setItem('theme', theme);
+            if (theme === 'dark') {
+                document.body.classList.add('dark-mode');
+            } else {
+                document.body.classList.remove('dark-mode');
+            }
+        });
+
+        darkModeToggle.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                document.body.classList.add('dark-mode');
+            } else {
+                document.body.classList.remove('dark-mode');
+            }
+        });
+
+        zoomControl.addEventListener('input', (e) => {
+            document.body.style.zoom = e.target.value + '%';
+        });
+
+        fontSizeControl.addEventListener('input', (e) => {
+            document.documentElement.style.fontSize = e.target.value + 'px';
+        });
+
+        // Load saved settings
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            themeSelect.value = savedTheme;
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+            }
+
+            const savedZoom = localStorage.getItem('zoom') || '100';
+            zoomControl.value = savedZoom;
+            document.body.style.zoom = savedZoom + '%';
+
+            const savedFontSize = localStorage.getItem('fontSize') || '16';
+            fontSizeControl.value = savedFontSize;
+            document.documentElement.style.fontSize = savedFontSize + 'px';
+        });
     </script>
     <script defer src="js/bootstrap.bundle.min.js"></script>
 </body>
