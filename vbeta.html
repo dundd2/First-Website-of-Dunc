@@ -14,7 +14,6 @@
     <meta property="og:type" content="website">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/all.min.css">
-    <link rel="alternate" type="application/rss+xml" title="RSS Feed for firstwebsideofdunc" href="rss.xml">
     <script src="js/d3.v7.min.js"></script>
     <style>
         :root {
@@ -1782,7 +1781,7 @@
 
                 setTimeout(() => {
                     notification.classList.remove('show');
-                    setTimeout(() => notification remove(), 300);
+                    setTimeout(() => notification.remove(), 300);
                 }, 3000);
             }, 1500); // Increased delay to ensure proper positioning
         });
@@ -1923,7 +1922,7 @@
             
             setTimeout(() => {
                 toast.style.opacity = '0';
-                setTimeout(() => toast remove(), 300);
+                setTimeout(() => toast.remove(), 300);
             }, 3000);
         }
 
@@ -2003,7 +2002,7 @@
                                    className === 'result-negative' ? '#f44336' : '#ff9800';
             document.body.appendChild(creditDiv);
             
-            setTimeout(() => creditDiv remove(), 1500);
+            setTimeout(() => creditDiv.remove(), 1500);
 
             // Update result with animation
             resultDiv.innerHTML = `
@@ -2030,7 +2029,7 @@
                 confetti.style.animationDelay = Math.random() * 3 + 's';
                 confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
                 document.body.appendChild(confetti);
-                setTimeout(() => confetti remove(), 3000);
+                setTimeout(() => confetti.remove(), 3000);
             }
         }
 
@@ -2206,7 +2205,7 @@
             const cookieConsent = document.getElementById('cookieConsent');
             cookieConsent.style.bottom = '-100%';
             setTimeout(() => {
-                cookieConsent remove();
+                cookieConsent.remove();
             }, 300);
         }
 
@@ -2215,7 +2214,7 @@
             const cookieConsent = document.getElementById('cookieConsent');
             cookieConsent.style.bottom = '-100%';
             setTimeout(() => {
-                cookieConsent remove();
+                cookieConsent.remove();
             }, 300);
         }
 
