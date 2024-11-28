@@ -940,12 +940,12 @@
     </div>
 
     <script>
-        function toggleDarkMode() {
+        const toggleDarkMode = () => {
             document.body.classList.toggle('dark-mode');
             localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
-        }
+        };
 
-        function filterVersions(type) {
+        const filterVersions = (type) => {
             const cards = document.querySelectorAll('.version-card');
             cards.forEach(card => {
                 if (type === 'all') {
@@ -956,7 +956,7 @@
                     card.style.display = card.querySelector('.tag-minor') ? 'block' : 'none';
                 }
             });
-        }
+        };
 
         // Initialize dark mode from localStorage
         if (localStorage.getItem('darkMode') === 'true') {
@@ -994,7 +994,7 @@
         });
 
         // Enhanced search functionality with highlighting
-        function searchVersions(query) {
+        const searchVersions = (query) => {
             const cards = document.querySelectorAll('.version-card');
             query = query.toLowerCase();
             
@@ -1009,9 +1009,9 @@
                     removeHighlight(card);
                 }
             });
-        }
+        };
 
-        function highlightText(element, query) {
+        const highlightText = (element, query) => {
             const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
             let node;
             while (node = walker.nextNode()) {
@@ -1024,22 +1024,22 @@
                     node.parentNode.replaceChild(span, node);
                 }
             }
-        }
+        };
 
-        function removeHighlight(element) {
+        const removeHighlight = (element) => {
             const marks = element.getElementsByTagName('mark');
             while (marks.length > 0) {
                 const mark = marks[0];
                 mark.parentNode.replaceChild(document.createTextNode(mark.textContent), mark);
             }
-        }
+        };
 
-        function scrollToTop() {
+        const scrollToTop = () => {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
-        }
+        };
 
         // Improved scroll button visibility logic
         window.addEventListener('scroll', () => {
@@ -1049,12 +1049,12 @@
         });
 
         // Add progress bar functionality
-        function updateProgressBar() {
+        const updateProgressBar = () => {
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             const scrolled = (winScroll / height) * 100;
             document.getElementById("progressBar").style.width = scrolled + "%";
-        }
+        };
 
         window.onscroll = updateProgressBar;
     </script>
