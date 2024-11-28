@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+  <channel>
+    <title>firstwebsideofdunc RSS Feed</title>
+    <link>https://dundd2.github.io/firstwebsideofdunc/</link>
+    <description>Recent updates and content from firstwebsideofdunc</description>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 25 Nov 2024 00:00:00 +0000</lastBuildDate>
+    <pubDate>Mon, 25 Nov 2024 00:00:00 +0000</pubDate>
+    <ttl>1800</ttl>
+
+    <item>
+      <title>firstwebsideofdunc v0.7 Released</title>
+      <link>https://dundd2.github.io/firstwebsideofdunc/Legacy%20Versions/v0.7.html</link>
+      <description>New features and improvements in version 0.7</description>
+      <pubDate>Mon, 25 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>https://dundd2.github.io/firstwebsideofdunc/Legacy%20Versions/v0.7.html</guid>
+    </item>
+
+    <item>
+      <title>firstwebsideofdunc v0.6 Released</title>
+      <link>https://dundd2.github.io/firstwebsideofdunc/Legacy%20Versions/v0.6.html</link>
+      <description>New features and improvements in version 0.6</description>
+      <pubDate>Sun, 24 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>https://dundd2.github.io/firstwebsideofdunc/Legacy%20Versions/v0.6.html</guid>
+    </item>
+
+    <item>
+      <title>firstwebsideofdunc v0.5 Released</title>
+      <link>https://dundd2.github.io/firstwebsideofdunc/Legacy%20Versions/v0.5.html</link>
+      <description>New features and improvements in version 0.5</description>
+      <pubDate>Sat, 02 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>https://dundd2.github.io/firstwebsideofdunc/Legacy%20Versions/v0.5.html</guid>
+    </item>
+
+    <item>
+      <title>firstwebsideofdunc v0.04.1 Released</title>
+      <link>https://dundd2.github.io/firstwebsideofdunc/Legacy%20Versions/v0.41.html</link>
+      <description>New features and improvements in version 0.04.1</description>
+      <pubDate>Mon, 20 Feb 2023 00:00:00 +0000</pubDate>
+      <guid>https://dundd2.github.io/firstwebsideofdunc/Legacy%20Versions/v0.41.html</guid>
+    </item>
+
+    <item>
+      <title>firstwebsideofdunc v0.04 Released</title>
+      <link>https://dundd2.github.io/firstwebsideofdunc/Legacy%20Versions/v0.04.html</link>
+      <description>New features and improvements in version 0.04</description>
+      <pubDate>Sun, 19 Feb 2023 00:00:00 +0000</pubDate>
+      <guid>https://dundd2.github.io/firstwebsideofdunc/Legacy%20Versions/v0.04.html</guid>
+    </item>
+
+    <item>
+      <title>firstwebsideofdunc v0.03 Released</title>
+      <link>https://dundd2.github.io/firstwebsideofdunc/Legacy%20Versions/v0.03.html</link>
+      <description>New features and improvements in version 0.03</description>
+      <pubDate>Wed, 08 Feb 2023 00:00:00 +0000</pubDate>
+      <guid>https://dundd2.github.io/firstwebsideofdunc/Legacy%20Versions/v0.03.html</guid>
+    </item>
+
+    <item>
+      <title>firstwebsideofdunc v0.02 Released</title>
+      <link>https://dundd2.github.io/firstwebsideofdunc/Legacy%20Versions/v0.02.html</link>
+      <description>New features and improvements in version 0.02</description>
+      <pubDate>Thu, 02 Jun 2022 00:00:00 +0000</pubDate>
+      <guid>https://dundd2.github.io/firstwebsideofdunc/Legacy%20Versions/v0.02.html</guid>
+    </item>
+
+    <item>
+      <title>firstwebsideofdunc v0.01 Released</title>
+      <link>https://dundd2.github.io/firstwebsideofdunc/Legacy%20Versions/v0.01.html</link>
+      <description>Initial release of firstwebsideofdunc</description>
+      <pubDate>Thu, 02 Jun 2022 00:00:00 +0000</pubDate>
+      <guid>https://dundd2.github.io/firstwebsideofdunc/Legacy%20Versions/v0.01.html</guid>
+    </item>
+  </channel>
+</rss>
