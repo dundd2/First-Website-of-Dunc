@@ -1261,6 +1261,36 @@
             background: #000 url('data:image/svg+xml,...') fixed;
             color: #fff;
         }
+        .country-tooltip {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            pointer-events: none;
+            z-index: 1000;
+            transition: opacity 0.3s;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            backdrop-filter: blur(4px);
+        }
+
+        .country-tooltip::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 5px;
+            border-style: solid;
+            border-color: rgba(0, 0, 0, 0.8) transparent transparent transparent;
+        }
+
+        .visited-year {
+            font-size: 12px;
+            color: #4B9DFF;
+            margin-top: 4px;
+        }
     </style>
 </head>
 <body>
@@ -1273,7 +1303,7 @@
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="#">
                 <img src="img/patch.png" alt="dunc logo" width="32" height="32">
-                <h5 class="ms-2 mb-0">firstwebsideofdunc</h5>
+                <h5 class="ms-2 mb-0">🌐 firstwebsideofdunc</h5>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -1281,22 +1311,22 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#bingchilingCard">Vote</a>
+                        <a class="nav-link" href="#bingchilingCard">🗳️ Vote</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#worldMap">World Map</a>
+                        <a class="nav-link" href="#worldMap">🗺️ World Map</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#legacyVersions">Legacy Versions</a>
+                        <a class="nav-link" href="#legacyVersions">📚 Legacy Versions</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#otherPages">Other Pages</a>
+                        <a class="nav-link" href="#otherPages">📑 Other Pages</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#memoir">Memoir</a>
+                        <a class="nav-link" href="#memoir">📖 Memoir</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#otherWebsites">Other DunDD Websites</a>
+                        <a class="nav-link" href="#otherWebsites">🌐 Other DunDD Websites</a>
                     </li>
                 </ul>
             </div>
@@ -1603,7 +1633,7 @@
     </div>
 
     <!-- Replace the settings modal HTML with this enhanced version -->
-    <div class="modal fade" id="settingsModal">
+    <div class="modal fade" id="settingsModal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -1626,7 +1656,11 @@
                             <option value="space">Space</option>
                         </select>
                     </div>
-                    <!-- Other settings remain unchanged -->
+                    <div class="mb-4">
+                        <label class="form-label">Font Size</label>
+                        <input type="range" class="form-range" id="fontSizeRange" min="12" max="20" value="16">
+                        <div class="text-center" id="fontSizeValue">16px</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -2128,72 +2162,50 @@
 
         // 修復右側設定按鈕沒有反應的問題
         function showSettings() {
-            const settingsHtml = `
-                <div class="modal fade" id="settingsModal" tabindex="-1">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Settings</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="mb-3">
-                                    <label class="form-label">Theme</label>
-                                    <select class="form-select" id="themeSelect">
-                                        <option value="light">Light</option>
-                                        <option value="dark">Dark</option>
-                                        <option value="auto">Auto</option>
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Font Size</label>
-                                    <input type="range" class="form-range" id="fontSizeRange" min="12" max="20" value="16">
-                                    <div class="text-center" id="fontSizeValue">16px</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-
-            // 添加設定模態框到頁面
-            if (!document.getElementById('settingsModal')) {
-                document.body.insertAdjacentHTML('beforeend', settingsHtml);
-            }
-
-            // 初始化模態框
+            // Initialize Bootstrap modal
             const settingsModal = new bootstrap.Modal(document.getElementById('settingsModal'));
             
-            // 綁定事件處理程序
+            // Load saved settings
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            const savedFontSize = localStorage.getItem('fontSize') || '16';
+            
             const themeSelect = document.getElementById('themeSelect');
             const fontSizeRange = document.getElementById('fontSizeRange');
             const fontSizeValue = document.getElementById('fontSizeValue');
-
-            // 載入儲存的設定
-            themeSelect.value = localStorage.getItem('theme') || 'light';
-            const savedFontSize = localStorage.getItem('fontSize') || '16';
+            
+            // Set initial values
+            themeSelect.value = savedTheme;
             fontSizeRange.value = savedFontSize;
             fontSizeValue.textContent = `${savedFontSize}px`;
-
-            // 主題變更處理
-            themeSelect.addEventListener('change', (e) => {
-                const theme = e.target.value;
-                localStorage.setItem('theme', theme);
-                if (theme === 'dark') {
+            
+            // Theme change handler
+            themeSelect.addEventListener('change', function(e) {
+                const selectedTheme = e.target.value;
+                localStorage.setItem('theme', selectedTheme);
+                
+                // Remove all theme classes
+                document.body.classList.remove('theme-synthwave', 'theme-cyberpunk', 'theme-retro', 
+                    'theme-nature', 'theme-pastel', 'theme-terminal', 'theme-neon', 'theme-space', 'dark-mode');
+                
+                // Apply selected theme
+                if (selectedTheme === 'dark') {
                     document.body.classList.add('dark-mode');
-                } else {
-                    document.body.classList.remove('dark-mode');
+                } else if (selectedTheme !== 'light') {
+                    document.body.classList.add(`theme-${selectedTheme}`);
                 }
+                
+                showToast(`Theme changed to ${selectedTheme}`);
             });
-
-            // 字體大小變更處理
-            fontSizeRange.addEventListener('input', (e) => {
+            
+            // Font size change handler
+            fontSizeRange.addEventListener('input', function(e) {
                 const size = e.target.value;
                 localStorage.setItem('fontSize', size);
-                document.documentElement.style.fontSize = size + 'px';
+                document.documentElement.style.fontSize = `${size}px`;
                 fontSizeValue.textContent = `${size}px`;
             });
-
+            
+            // Show the modal
             settingsModal.show();
         }
 
@@ -2757,7 +2769,95 @@ searchInput.addEventListener('focus', () => {
             fontSizeControl.value = savedFontSize;
             document.documentElement.style.fontSize = savedFontSize + 'px';
         });
+
+        // Update the showCountryInfo function
+        function showCountryInfo(event, d) {
+            const countryData = highlightedCountries[d.id];
+            if (!countryData) return;
+
+            const tooltip = document.createElement('div');
+            tooltip.className = 'country-tooltip';
+            
+            // Get the appropriate flag emoji based on country code
+            let flagEmoji = getFlagEmoji(d.id);
+            
+            // Create tooltip content with flag emoji
+            tooltip.innerHTML = `
+                <div style="font-weight: bold">${flagEmoji} ${countryData.name}</div>
+                <div class="visited-year">✈️ First visited: ${countryData.details}</div>
+            `;
+
+            // Position the tooltip near the mouse cursor
+            const mapContainer = document.querySelector('.map-container');
+            const rect = mapContainer.getBoundingClientRect();
+            const mouseX = event.clientX - rect.left;
+            const mouseY = event.clientY - rect.top;
+
+            tooltip.style.left = `${mouseX}px`;
+            tooltip.style.top = `${mouseY - 60}px`; // Offset above the cursor
+
+            // Remove any existing tooltips
+            const existingTooltip = document.querySelector('.country-tooltip');
+            if (existingTooltip) {
+                existingTooltip.remove();
+            }
+
+            // Add the tooltip to the map container
+            mapContainer.appendChild(tooltip);
+
+            // Add hover effect to the country
+            d3.select(`#country-${d.id}`).classed('active', true);
+        }
+
+        // Helper function to get flag emoji from country code
+        function getFlagEmoji(countryCode) {
+            // Special cases for regions that don't have standard flag emoji
+            const specialFlags = {
+                'HKG': '🇭🇰',
+                'MAC': '🇲🇴',
+                'TWN': '🇹🇼',
+                'GBR': '🇬🇧',
+                'USA': '🇺🇸',
+                'CHN': '🇨🇳',
+                'JPN': '🇯🇵',
+                'KOR': '🇰🇷',
+                'ESP': '🇪🇸',
+                // Add more special cases as needed
+            };
+
+            // Return special flag if it exists, otherwise generate flag emoji from country code
+            return specialFlags[countryCode] || countryCode
+                .toUpperCase()
+                .replace(/./g, char => String.fromCodePoint(char.charCodeAt(0) + 127397));
+        }
+
+        // Add this to the existing document.addEventListener('DOMContentLoaded', ...)
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            themeSelect.value = savedTheme;
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+            }
+
+            const savedZoom = localStorage.getItem('zoom') || '100';
+            zoomControl.value = savedZoom;
+            document.body.style.zoom = savedZoom + '%';
+
+            const savedFontSize = localStorage.getItem('fontSize') || '16';
+            fontSizeControl.value = savedFontSize;
+            document.documentElement.style.fontSize = savedFontSize + 'px';
+
+            // Add click handler for map tooltips to make them sticky
+            document.querySelector('.map-container').addEventListener('click', (e) => {
+                if (e.target.classList.contains('country')) {
+                    const tooltip = document.querySelector('.country-tooltip');
+                    if (tooltip) {
+                        tooltip.classList.toggle('sticky');
+                    }
+                }
+            });
+        });
+
     </script>
-    <script defer src="js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
