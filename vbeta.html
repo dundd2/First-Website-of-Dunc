@@ -1210,70 +1210,56 @@
             font-size: 0.9rem;
             color: var(--dark-text-color);
         }
-        .settings-toggle {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--primary-color);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            animation: float 6s ease-in-out infinite;
+        /* Theme: Synthwave */
+        body.theme-synthwave {
+            background: linear-gradient(45deg, #2b1055, #7597de);
+            color: #ff2d95;
         }
-
-        .settings-toggle:hover {
-            transform: rotate(360deg);
+        
+        /* Theme: Cyberpunk */
+        body.theme-cyberpunk {
+            background: #000;
+            color: #0f0;
+            text-shadow: 0 0 5px #0f0;
         }
-
-        .settings-panel {
-            position: fixed;
-            bottom: 80px;
-            right: 20px;
-            width: 300px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            padding: 20px;
-            display: none;
-            flex-direction: column;
-            gap: 15px;
-            z-index: 1001;
-            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+        
+        /* Theme: Retro */
+        body.theme-retro {
+            background: #fdf6e3;
+            color: #586e75;
+            font-family: 'Courier New', monospace;
         }
-
-        .settings-panel.show {
-            display: flex;
-            transform: translateY(0);
-            opacity: 1;
+        
+        /* Theme: Nature */
+        body.theme-nature {
+            background: linear-gradient(to bottom, #a8e6cf, #dcedc1);
+            color: #3d5a80;
         }
-
-        .settings-panel.hide {
-            transform: translateY(20px);
-            opacity: 0;
+        
+        /* Theme: Pastel */
+        body.theme-pastel {
+            background: #ffd5cd;
+            color: #645c9c;
         }
-
-        .settings-panel h3 {
-            margin: 0;
-            font-size: 1.2rem;
+        
+        /* Theme: Terminal */
+        body.theme-terminal {
+            background: #002b36;
+            color: #859900;
+            font-family: 'Consolas', monospace;
         }
-
-        .settings-panel label {
-            font-size: 0.9rem;
+        
+        /* Theme: Neon */
+        body.theme-neon {
+            background: #000;
+            color: #fff;
+            text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0ff;
         }
-
-        .settings-panel input[type="range"] {
-            width: 100%;
-        }
-
-        .settings-panel select {
-            width: 100%;
+        
+        /* Theme: Space */
+        body.theme-space {
+            background: #000 url('data:image/svg+xml,...') fixed;
+            color: #fff;
         }
     </style>
 </head>
@@ -1298,6 +1284,9 @@
                         <a class="nav-link" href="#bingchilingCard">Vote</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="#worldMap">World Map</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="#legacyVersions">Legacy Versions</a>
                     </li>
                     <li class="nav-item">
@@ -1308,9 +1297,6 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#otherWebsites">Other DunDD Websites</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#worldMap">World Map</a>
                     </li>
                 </ul>
             </div>
@@ -1385,14 +1371,22 @@
         <div class="content-card" id="worldMap">
             <h2>Dunc's World Explorer Progress</h2>
             <p class="text-center text-muted">Track my journey around the world</p>
+            
+            <!-- Add FlightRadar24 Banner -->
+            <div class="flight-stats text-center mb-4">
+                <a href="https://my.flightradar24.com/dundd" target="_blank" rel="noopener"> 
+                    <img src="img/myflightradar24.png"
+                         alt="My FlightRadar24 profile" 
+                         class="img-fluid rounded shadow-sm hover-effect"
+                         style="max-width: 100%; height: auto;">
+                </a>
+            </div>
+
             <div class="map-container">
-                <svg id="worldMapSVG" viewBox="0 0 1000 500">
-                    <!-- SVG world map will be inserted here by JavaScript -->
-                </svg>
+                <svg id="worldMapSVG" viewBox="0 0 1000 500"></svg>
                 <div id="countryInfo" class="country-info-popup">
                     <h3 id="countryName"></h3>
                     <p id="countryDetails"></p>
-                    <small class="text-muted">Year visited</small>
                 </div>
             </div>
             <div class="map-legend mt-3">
@@ -1549,7 +1543,7 @@
                     <div class="col-md-4">
                         <a href="https://github.com/dundd2" class="contact-card" target="_blank" rel="noreferrer noopener">
                             <div class="contact-icon">
-                                <i class="fab fa-github"></i>
+                                <img src="img/github.png" alt="GitHub" width="40" height="40">
                             </div>
                             <h3>GitHub</h3>
                             <p>Check out my projects</p>
@@ -1558,7 +1552,7 @@
                     <div class="col-md-4">
                         <a href="https://www.linkedin.com/in/duncan-l400" class="contact-card" target="_blank" rel="noreferrer noopener">
                             <div class="contact-icon">
-                                <i class="fab fa-linkedin"></i>
+                                <img src="img/linkedin.png" alt="LinkedIn" width="40" height="40">
                             </div>
                             <h3>LinkedIn</h3>
                             <p>Let's connect professionally</p>
@@ -1608,30 +1602,33 @@
         <button class="btn btn-primary" onclick="acceptCookies()">Accept</button>
     </div>
 
-    <div class="settings-toggle" id="settingsToggle">⚙️</div>
-    <div class="settings-panel" id="settingsPanel">
-        <h3>Settings</h3>
-        <div>
-            <label for="themeSelect">Theme</label>
-            <select id="themeSelect">
-                <option value="light">Light</option>
-                <option value="dark">Dark</option>
-                <option value="solarized">Solarized</option>
-                <option value="high-contrast">High Contrast</option>
-                <option value="auto">Auto</option>
-            </select>
-        </div>
-        <div>
-            <label for="darkModeToggle">Dark Mode</label>
-            <input type="checkbox" id="darkModeToggle">
-        </div>
-        <div>
-            <label for="zoomControl">Zoom</label>
-            <input type="range" id="zoomControl" min="80" max="120" value="100">
-        </div>
-        <div>
-            <label for="fontSizeControl">Font Size</label>
-            <input type="range" id="fontSizeControl" min="12" max="20" value="16">
+    <!-- Replace the settings modal HTML with this enhanced version -->
+    <div class="modal fade" id="settingsModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Website Settings</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-4">
+                        <label class="form-label">Theme</label>
+                        <select class="form-select" id="themeSelect">
+                            <option value="light">Light</option>
+                            <option value="dark">Dark</option>
+                            <option value="synthwave">Synthwave</option>
+                            <option value="cyberpunk">Cyberpunk</option>
+                            <option value="retro">Retro</option>
+                            <option value="nature">Nature</option>
+                            <option value="pastel">Pastel</option>
+                            <option value="terminal">Terminal</option>
+                            <option value="neon">Neon</option>
+                            <option value="space">Space</option>
+                        </select>
+                    </div>
+                    <!-- Other settings remain unchanged -->
+                </div>
+            </div>
         </div>
     </div>
 
@@ -2049,7 +2046,7 @@
             }
             
             @keyframes wobble {
-                0%, 100% { transform: rotate(0); }
+                 0%, 100% { transform: rotate(0); }
                 25% { transform: rotate(-5deg); }
                 75% { transform: rotate(5deg); }
             }
@@ -2391,13 +2388,18 @@ searchInput.addEventListener('focus', () => {
         details: 'Home of Bing Chilling! Social Credit Score: +100'
     },
     'HKG': {
-        name: 'Hong Kong SAR',
+        name: 'Hong Kong',
         color: '#4b9dff',
-        details: '2005-Present',
+        details: '2005-2022',
         type: 'special'
     },
+    'ESP': {
+        name: 'Spain',
+        color: '#4b9dff',
+        details: '2024',
+    },
     'MAC': {
-        name: 'Macau SAR',
+        name: 'Macau',
         color: '#4b9dff',
         details: '200x',
         type: 'special'
@@ -2712,6 +2714,17 @@ searchInput.addEventListener('focus', () => {
             }
         });
 
+        darkModeToggle.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                document.body.classList.add('dark-mode');
+            } else {
+                document.body.classList.remove('dark-mode');
+            }
+        });
+
+        zoomControl.addEventListener('input', (e) => {
+            document.body.style.zoom = e.target.value + '%';
+        });
         darkModeToggle.addEventListener('change', (e) => {
             if (e.target.checked) {
                 document.body.classList.add('dark-mode');

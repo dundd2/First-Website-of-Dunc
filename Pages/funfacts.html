@@ -362,7 +362,7 @@
                 </div>
                 <div class="col-md-6">
                     <b>
-                        <p>Thanks for watching</p>
+                        <p>Thanks for Playing</p>
                     </b>
                 </div>
             </div>
@@ -660,6 +660,20 @@
         let currentQuestionIndex = 0;
         let shuffledQuestions = [];
 
+        const correctMessages = [
+            "Correct! 🎉 You gain 10 points!",
+            "Well done! 👍 +10 points!",
+            "Awesome! 🌟 10 points added!",
+            "Great job! 🏆 10 points for you!"
+        ];
+
+        const wrongMessages = [
+            "Wrong! 😢 You lose 5 points!",
+            "Oops! 😬 -5 points!",
+            "Incorrect! ❌ 5 points deducted!",
+            "Nope! 🚫 Minus 5 points!"
+        ];
+
         function shuffleQuestions() {
             shuffledQuestions = [...questions].sort(() => Math.random() - 0.5);
         }
@@ -726,7 +740,7 @@
             if (optionIndex === question.answer) {
                 buttons[optionIndex].classList.add('correct');
                 feedback.className = 'answer-feedback correct-feedback';
-                feedback.textContent = 'Correct!';
+                feedback.textContent = correctMessages[Math.floor(Math.random() * correctMessages.length)];
                 score += 10;
                 createFireworks();
                 card.classList.add('win-animation');
@@ -734,7 +748,7 @@
                 buttons[optionIndex].classList.add('wrong');
                 buttons[question.answer].classList.add('correct');
                 feedback.className = 'answer-feedback wrong-feedback';
-                feedback.textContent = 'Wrong!';
+                feedback.textContent = wrongMessages[Math.floor(Math.random() * wrongMessages.length)];
                 
                 // 新增錯誤效果
                 card.classList.add('shake-effect', 'flash-effect');
