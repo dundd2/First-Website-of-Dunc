@@ -71,6 +71,27 @@
             "description": "Vote for Bing Chiling",
             "url": "/firstwebsideofdunc/#bingchilingCard",
             "icons": [{ "src": "img/icons/vote-icon-96x96.png", "sizes": "96x96" }]
+        },
+        {
+            "name": "Fun Facts Quiz",
+            "short_name": "Quiz",
+            "description": "Take the DunDD Fun Facts Quiz",
+            "url": "/firstwebsideofdunc/Pages/funfacts.html",
+            "icons": [{ "src": "img/icons/quiz-icon-96x96.png", "sizes": "96x96" }]
+        },
+        {
+            "name": "AI Upscaling",
+            "short_name": "AI Compare",
+            "description": "Compare AI Upscaling Technologies",
+            "url": "/firstwebsideofdunc/Pages/Compare AI upscaling.html",
+            "icons": [{ "src": "img/icons/ai-icon-96x96.png", "sizes": "96x96" }]
+        },
+        {
+            "name": "Update Log",
+            "short_name": "Log",
+            "description": "View Website Update History",
+            "url": "/firstwebsideofdunc/Pages/log.html",
+            "icons": [{ "src": "img/icons/log-icon-96x96.png", "sizes": "96x96" }]
         }
     ],
     "screenshots": [
@@ -87,6 +108,27 @@
             "type": "image/png",
             "form_factor": "wide",
             "label": "World Explorer Map"
+        },
+        {
+            "src": "img/screenshots/funfacts.png",
+            "sizes": "1280x720",
+            "type": "image/png",
+            "form_factor": "wide",
+            "label": "DunDD Fun Facts Quiz"
+        },
+        {
+            "src": "img/screenshots/ai-upscaling.png",
+            "sizes": "1280x720",
+            "type": "image/png",
+            "form_factor": "wide",
+            "label": "AI Upscaling Comparison"
+        },
+        {
+            "src": "img/screenshots/update-log.png",
+            "sizes": "1280x720",
+            "type": "image/png",
+            "form_factor": "wide",
+            "label": "Website Update Log"
         }
     ],
     "categories": ["personal", "travel", "portfolio"],
